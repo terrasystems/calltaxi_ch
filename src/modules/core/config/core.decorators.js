@@ -84,7 +84,7 @@ angular.module('com.module.core')
 	 */
 	//
 	.config(function($provide) {
-		$provide.decorator('typeaheadDirective', function($delegate) { //https://gist.github.com/cakesmith/44d126c1ae0f4e9dc4b9
+		$provide.decorator('uibTypeaheadDirective', function($delegate) { //https://gist.github.com/cakesmith/44d126c1ae0f4e9dc4b9
 			var directive = $delegate[0];
 			var compile = directive.compile;
 			directive.compile = function(tElement, tAttrs) {
@@ -104,7 +104,7 @@ angular.module('com.module.core')
 	})
 	//
 	.config(function($provide) {
-		$provide.decorator('pagerDirective', function($delegate) {
+		$provide.decorator('uibPagerDirective', function($delegate) {
 			var directive = $delegate[0];
 			angular.extend(directive, { transclude:true });
 			// directive.$$isolateBindings.addon = { // http://stackoverflow.com/a/27738755/4115894
@@ -117,7 +117,7 @@ angular.module('com.module.core')
 	})
 	//
 	.config(function($provide) {
-		$provide.decorator('paginationDirective', function($delegate) {
+		$provide.decorator('uibPaginationDirective', function($delegate) {
 			var directive = $delegate[0];
 			angular.extend(directive, { transclude:true });
 			// directive.$$isolateBindings.addon = { // http://stackoverflow.com/a/27738755/4115894
@@ -128,75 +128,4 @@ angular.module('com.module.core')
 			return $delegate;
 		});
 	})
-	// TODO: декоратор щоб переробити нгМесаги на тултіпи
-	/*.config(function($provide) {
-		$provide.decorator('ngMessagesDirective', function($delegate) {
-			var directive = $delegate[0];
-			var compile = directive.compile;
-			console.log('flag');
-			// directive.compile = function(tElement, tAttrs) {
-			function setupTooltipElement() {
-				if (element[0].nodeName.toUpperCase() === 'SELECT' && !attrs.placement) {
-						attrs.placement = 'top';
-						element.attr('placement', attrs.placement);
-				}
-
-				element.tooltip({
-						animation: false,
-						html: true,
-						placement: attrs.placement || 'bottom',
-						trigger: xtForm.tooltipTrigger || 'manual',
-						container: attrs.container || 'body'
-				});
-			}
-			//////////////////////////////////////////////////////////////////
-			this.renderMessages = function(values, multiple) {
-				values = values || {};
-
-				var found;
-				angular.forEach(messages, function(message) {
-					if ((!found || multiple) && truthyVal(values[message.type])) {
-						message.attach();
-						found = true;
-					} else {
-						message.detach();
-					}
-				});
-	// };
-			return $delegate;
-		});
-	})*/
-	// TODO: декоратор щоб дізейблити текстовий редактор
-	/*$provide.decorator('ngWigDirective', function($delegate) {
-			var directive = $delegate[0];
-			var compile = directive.compile;
-			directive.compile = function(tElement, tAttrs, tAtrib) {
-				var link = compile.apply(this, arguments);
-				return function(elem, atrib) {
-					link.apply(this, arguments);
-					//var atrib = attrs[0].attributes;
-					if (atrib[0].attributes.getNamedItem('ng-disabled')) {
-						elem.toggleEditMode = function() {
-							elem.editMode = false;
-						};
-					}
-				};
-			};
-			return $delegate;
-		})*/
-	//TODO: декоратор щоб переробити нгМесаги на тултіпи
-	// $provide.decorator('ngWigEditableDirective', function($delegate) {
-	// 		var directive = $delegate[0];
-	// 		var compile = directive.compile;
-	// 		directive.compile = function(tElement, tAttrs) {
-	// 				if (tElement[0].parentElement.parentElement.parentElement.attributes[6].value) {
-	// 					tElement.toggleEditMode = function() {
-	// 						tElement.editMode = false;
-	// 					};
-	// 				}
-	// 			};
-	// 		return $delegate;
-	// 	});
-	// })
-	//
 ;
