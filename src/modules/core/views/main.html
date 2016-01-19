@@ -1,0 +1,13 @@
+<header id="header" class="header" ui-view="header"></header>
+<div id="wrapper" class="wrapper row-offcanvas row-offcanvas-left" ng-class="{'relative active' :menuStatus}">
+	<nav id="topnav" class="row row-offcanvas topnav text-center" ui-view="topnav" ng-class="{'strech' :!menuStatus}"></nav>
+	<aside id="left" class="left-side sidebar-offcanvas" ui-view="leftnav" ng-show="$state.includes('main.private')" ng-class="{'collapse-left' : !menuStatus}"></aside>
+	<main id="right" class="right-side" ng-class="{'strech' :!menuStatus}">
+		<section class="content"  ng-keyup="$event.keyCode == 45 && setAdd()" tabindex="-1">
+			<div ng-class="$state.includes('*.public.**') ? 'form-box' : 'box'" ui-view="content">
+			<!-- state view template here -->
+			</div>
+		</section>
+	</main>
+</div>
+<footer id="footer" ui-view="footer"  ng-class="{'relative active' :menuStatus}"></footer>

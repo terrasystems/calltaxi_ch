@@ -1,0 +1,13 @@
+<div ng-class="divclass" dropdown ng-disabled="btndisabled">
+	<button type="button" class="btn dropdown-toggle" ng-class="btnclass" dropdown-toggle>
+		<i class="fa fa-{{btnicon}}"></i><span class="hidden-xs"> {{ngModel.name || placeholder|translate}}</span>
+		<span class="caret"></span>
+		<span class="sr-only"></span>
+	</button>
+	<ul class="dropdown-menu" role="menu" style="max-height:300px;overflow-y:auto;">
+		<li ng-repeat="op in options track by $index" for="{{op.name}}">
+			<a href="" ng-click="select(op)"><i class="fa fa-{{optionicon}}"></i>
+				{{op.name| limitTo:30}}{{op.name.length > 30 ? '...' : ''}}</a>
+		</li>
+	</ul>
+</div>

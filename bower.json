@@ -1,0 +1,52 @@
+{
+  "name": "TaxiDealApp",
+  "version": "0.0.0",
+  "description": "Taxi Deal App provides the best taxi service in Switzerland. It also offers hassle free Airport and Railway Station transfers.",
+  "main": "src/app.js",
+  "authors": [
+    "TerraSystems LTD"
+  ],
+  "license": "FREE",
+  "homepage": "http://calltaxi.ch",
+  "dependencies": {
+    "angular": "1.4.8",
+    "angular-animate": "1.4.8",
+    "angular-base64": "2.0.5",
+    "angular-block-ui": "0.2.0",
+    "angular-bootstrap": "0.13.0",
+    "angular-bootstrap-toggle-switch": "0.5.5",
+    "angular-confirm-modal": "1.0.2",
+    "angular-cookies": "1.4.8",
+    "angular-local-storage": "0.2.2",
+    "angular-messages": "1.4.8",
+    "angular-mocks": "1.4.8",
+    "angular-moment": "1.0.0-beta.3",
+    "angular-resource": "1.4.8",
+    "angular-sanitize": "1.4.8",
+    "angular-toastr": "1.6.0",
+    "angular-translate": "2.8.1",
+    "angular-translate-loader-static-files": "2.8.1",
+    "angular-translate-storage-cookie": "2.8.1",
+    "angular-ui-router": "0.2.15",
+    "angular-ui-router-tabs": "~1.7.0",
+    "angular-ui-select": "0.13.2",
+    "bootstrap": "3.3.4",
+    "font-awesome": "4.3.0",
+    "moment": "2.11.1",
+    "ngSticky": "1.7.9",
+    "loaders.css": "~0.1.2"
+  },
+  "overrides": {
+    "moment": {
+      "main": [
+        "min/moment-with-locales.min.js"
+      ]
+    }
+  },
+  "appPath": "src/",
+  "resolutions": {
+    "angular": "1.4.8",
+    "angular-bootstrap": "0.14.3",
+    "moment": "2.11.1"
+  }
+}

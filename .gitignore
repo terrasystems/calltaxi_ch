@@ -1,0 +1,13 @@
+dist
+bower_components
+node_modules
+docular_generated
+.tmp
+.idea/
+.strong-pm
+.sass-cache
+.vagrant
+.cache
+.config
+.npm
+npm-debug.log

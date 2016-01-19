@@ -1,0 +1,16 @@
+<div class="row margin">
+		<!-- <div class="col-sm-12 col-md-3">
+			<small class="text-muted text-left" >version: {{buildInfo.svnRevision}}/{{buildInfo.tag|ltrim:'jenkins-minilisweb-'}}</small>
+		</div> -->
+	<div class="col-xs-8 col-sm-8 col-md-10 copyright text-center">
+		<span class=""><a target="_blank" title="TerraSystems" href="http://www.terrasystems.eu">TerraSystems</a> Copyright © 2010-2015, All rights reserved.</span>
+	</div>
+	<div class="col-xs-4 col-sm-4 col-md-2">
+		<div class="f32" dropdown><!-- <i class="fa fa-globe"></i> --> <!-- <span class="flag-icon" ng-class="{'flag-icon-ua' :langKey=='uk', 'flag-icon-us':langKey=='en', 'flag-icon-ru':langKey=='ru'}"></span> -->
+			<a href="" class="dropdown-toggle pull-right" dropdown-toggle><i class="flag {{langKey}}"></i>&nbsp;<span class="hidden-xs">{{'LANGSEL'|translate}}</span></a>
+			<ul class="dropdown-menu up">
+				<li ng-repeat="langKey in translations"><a href="" class="flag {{langKey}}" ng-click="langChanged(langKey)">{{langKey|translate}}</a></li>
+			</ul>
+		</div>
+	</div>
+</div>

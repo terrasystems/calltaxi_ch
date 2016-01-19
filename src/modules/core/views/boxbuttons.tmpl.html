@@ -1,0 +1,42 @@
+<div class="row center-block">
+	<div class="col-md-3 col-sm-3 col-xs-3">
+		<!-- 1st button - commonly ADD -->
+		<button ng-if="leftbutton !== 'none'" class="btn btn-success btn-sm" ng-click="setAdd()">
+		<i class="fa fa-fw fa-plus"></i><span class="hidden-xs"> {{'ADD'|translate}}</span></button>
+	</div>
+	<!-- calendar icons OR filtering field with addons -->
+	<!-- show icons instead filter input -->
+	<div ng-if="showfilter == 'period'" class="col-md-6 col-sm-7 col-xs-7 text-center">
+		<div class="btn-group">
+			<label ng-repeat="i in p.length" class="btn btn-sm btn-link" ng-model="periodfilter" btn-radio="{{i}}" title="{{p[i].trans|translate}}" role="button">
+				<i class="genericon genericon- {{p[i].icon}}"></i><span class="hidden-xs">{{p[i].trans|translate}}</span>
+			</label>
+		</div>
+	</div>
+	<!-- show filter input instead icons -->
+	<div ng-if="showfilter == 'filter'" class="col-md-6 col-sm-7 col-xs-7">
+		<div class="input-group input-group-sm">
+			<span class="input-group-addon"><i class="fa fa-fw fa-search"></i></span>
+			<input class="form-control clear" type="text" ng-model="addfilter" placeholder="{{'FILTER'|translate}}"/>
+			<span class="input-icon icon-right"><i class="fa fa-fw fa-close" ng-click="addfilter=''"></i></span>
+			<!-- forindicators ONLY-->
+			<mini-dropdown ng-if="showfilterAddon == 'forindicators'" ng-model="item" options="grplist" callback="changeGroup(op)" divclass="input-group-btn" btnclass="btn-default btn-sm" btnicon="folder" optionicon="folder-open-o" placeholder="ALLGROUPS"></mini-dropdown>
+			<!-- forqc ONLY-->
+			<span ng-if="showfilterAddon == 'forqc'" class="input-group-addon">
+			<input type="checkbox" ng-model="active.show">
+			<span class="hidden-xs hidden-sm"> {{'SHOWACTIVE'|translate}}</span>
+			</span>
+		</div>
+		<!-- close input-group -->
+	</div>
+	<!-- else if (attrs.showfilter == "none") -->
+	<!-- 2nd print or some button -->
+	<div ng-if="rightbutton == 'btn'" class="col-md-3 col-sm-1 col-xs-1 rightbutton">
+		<button class="btn btn-sm btn-{{rbclass}}" ng-click="rbclick" ng-disabled="rbdisabled">
+		<i class="fa fa-{{rbicon}}"></i>
+		<span class="hidden-xs" translate="rbname"></span></button>
+	</div>
+	<div class="col-md-3 col-sm-1 col-xs-1 rightbutton"><!-- if drop-->
+		<mini-dropdown ng-if="rightbutton == 'drop'" ng-model="item.id" options="options" callback="callback" divclass="btn-group" btnclass="{{btnclass}}" btnicon="{{btnicon}}" optionicon="{{btnicon}}" placeholder="{{placeholder|translate}}" ></mini-dropdown>
+	</div>
+</div>

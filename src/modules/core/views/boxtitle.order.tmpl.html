@@ -1,0 +1,21 @@
+<div class="box-header text-center">
+	<div class="col-md-3 col-sm-2 col-xs-2">
+	</div>
+	<div class="col-md-5 col-sm-6 col-xs-8">
+		<h3 class="box-title">
+			<i class="fa fa-fw fa-file-text"></i>&nbsp;<span translate="ORDERTITLE" translate-values="{{doc}}"></span>
+		</h3>
+	</div>
+	<div class="box-tools col-md-4 col-sm-4 col-xs-2">
+		<div ng-if="$state.includes('**.orders')" class="text-muted"><i class="fa fw fa-lg fa-money"></i>&nbsp;{{'SUM'|translate}}:&nbsp;{{doc.sum_||'0' | currency:"":2 }}</div>
+		<div ng-if="$state.includes('**.orders.editor')||$state.includes('**.orders.view')" class="pull-right" tooltip-html="{{!$stateParams.id ? '\'CANNOTDELETE\'|translate' : '\'DELETE\'|translate'}}" tooltip-append-to-body="true">
+			<button class="btn btn-danger" ng-click="delete(doc)"><i class="fa fa-lg fa-trash"></i></button>
+		</div>
+		<div ng-if="$state.includes('**.orders.result')" class="pull-right" tooltip-html="{{editmode ? '\'LOCKINPUTRESULTS\'|translate' : '\'UNLOCKINPUTRESULTS\'|translate'}}" tooltip-append-to-body="true">
+			<small class="pad text-muted visible-lg">{{'DATEVERIFIED'|translate}}: <b>{{(doc.lastedit |amDateFormat:'L HH:mm')||'...'}}</b></small>
+			<button class="btn" ng-class="{'btn-warning': !editmode}" ng-click="changeEditmode()">
+				<i class="fa fw fa-lg" ng-class="!editmode ? 'fa-lock' : 'fa-unlock'"></i>
+			</button>
+		</div>
+	</div>
+</div>

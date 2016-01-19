@@ -1,0 +1,94 @@
+<!-- Logo -->
+<a href="" ui-sref="main.private.dashboard" class="logo"><img src="/images/logo.png" alt="minilis.org" style="max-height: 50px;" title="minilis.org"></a>
+<!-- Header Navbar -->
+<nav class="navbar navbar-static-top" role="navigation">
+  <div class="navbar-left">
+    <ul class="nav navbar-nav">
+      <!-- Sidebar toggle button-->
+      <li class="left-trigger" ng-click="menuTogle($event)" title="{{'MENU'|translate}}">
+        <a href="" id="triggerMenu" ng-class="{'fa fw fa-2x fa-close':menuStatus, 'fa fw fa-2x fa-bars':!menuStatus }"></a>
+      </li>
+      <!-- search form -->
+      <!-- <li class="search-box">
+				<form class="search-container">
+					<input id="search-bo" type="text" class="search-bo" ng-click="hide3b=true" ng-blur="hide3b=false" ng-model="searchvalue" typeahead="i as i.num for i in search($viewValue)" typeahead-min-length="2" typeahead-wait-ms="350" typeahead-loading="loading" typeahead-template-url="customTemplate.html"
+					typeahead-on-select="gosearch($item); searchvalue=''" stopkeys placeholder="{{'ORDERSSEARCHVIEW'|translate}}" />
+					<label for="search-bo" class="search-bo-l"><span class="fa fa-1x fa-search search-icon hvr-grow-rotate"></span></label>
+				</form>
+				<script type="text/ng-template" id="customTemplate.html">
+					<a href="" ng-click="gosearch(match.model)">
+						<span ng-if="match.model.search" class="text-red">'{{match.model.num}}' - {{'ORDERSSEARCHVIEW'|translate}}</span>
+						<span ng-if="!match.model.search" bind-html-unsafe="match.model.num"></span><cite ng-if="match.model.patient"> , {{'PATIENT'|translate}}  {{match.model.patient}}</cite>
+					</a>
+				</script>
+			</li> -->
+      <!-- /.search form -->
+      <!-- Menu Item -->
+      <li ng-class="{'hidden' :hide3b}" class="dropdown notifications-menu" ng-style="{'margin-left:100px;' : wraperwidht>767}">
+        <a href="" ui-sref="" class="fa fa-fw fa-2x fa-user dropdown-toggle" data-toggle="dropdown" aria-expanded="false" title="{{'MENU'|translate}}">
+					<span ng-if="orderbadge>0" class="label bg-sky">{{orderbadge}}</span>
+				</a>
+        <!-- <ul class="dropdown-menu add">
+          <li>
+            <ul class="menu" style="overflow: hidden; width: 56px;">
+              <li>
+                <a href="" ui-sref="" ui-sref-opts="{inherit: false, reload: true}" title="{{'ADD'|translate}}">
+                  <i class="fa fa-plus-circle text-white"></i>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul> -->
+      </li>
+    </ul>
+  </div>
+  <div class="navbar-right">
+    <ul class="nav navbar-nav">
+      <li class="visible-md visible-lg">
+        <span href="" class="time">
+						<i class="fa fa-clock-o"></i>
+						<time>{{currenttime|amDateFormat:'lll'}}</time>
+						</span>
+      </li>
+      <li class="dropdown user user-menu" dropdown>
+        <a href="" class="dropdown-toggle" dropdown-toggle>
+          <i class="fa fa-user"></i>
+          <span class="hidden-xs hidden-sm"> {{currentuser}}</span> <i class="caret"></i> </span>
+        </a>
+        <ul class="dropdown-menu">
+          <!-- User image -->
+          <li class="user-header">
+            <img src="/images/surgeon.png" class="img-circle" alt="User Image">
+            <p>
+              {{currentuser}} - {{currentuserJob||'JOBTITLENOTSET'|translate}}
+              <small>{{'LASTLOGGEDIN'|translate}}</small> <small am-time-ago="lasttime"></small>
+            </p>
+          </li>
+          <!-- Menu Body -->
+          <!-- Menu Footer-->
+          <li class="user-footer">
+            <div class="pull-left">
+              <a href="" class="btn btn-default btn-flat" ng-click="isCollapsed = !isCollapsed; $event.stopPropagation();"> <i class="fa fw fa-support"></i> {{'SUPPORT'|translate}}</a>
+            </div>
+            <div class="pull-right">
+              <a href="" class="btn btn-default btn-flat" ng-click="logout()"> <i class="fa fw fa-sign-out"></i> {{'LOGOUT'|translate}}</a>
+            </div>
+          </li>
+					<!-- Support-->
+          <!-- <li>
+            <div class="box box-solid" collapse="isCollapsed" ng-form="supportForm" novalidate>
+              <div class="box-body">
+                <label for="RequestBody"><i class="fa fw fa-support"></i> {{'SUPPORTTEXT' |translate}}</label>
+                <textarea name="RequestBody" id="RequestBody" rows="2" ng-model="RequestBody" ng-click="$event.stopPropagation()" placeholder="{{'SUPPORTTITLE'|translate}}" required style="width: 100%; display: block;"></textarea>
+              </div>
+              <div class="box-footer text-center">
+                <button class="btn btn-primary" ng-click="support();toggleDropdown($event);isCollapsed=true;" ng-disabled="supportForm.$invalid"><i class="fa fa-send-o"></i> {{'SEND' |translate}}</button>
+              </div>
+            </div>
+          </li> -->
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+<!-- /.Heder -->

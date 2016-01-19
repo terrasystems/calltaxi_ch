@@ -1,0 +1,438 @@
+.fa-1-2x {
+  font-size: 1.2em;
+}
+/************** custom checkboxes http://codepen.io/jamesbarnett/pen/yILjk ********************************/
+
+input[type=checkbox] { display:none; }
+input[type=checkbox] + label:before {
+  font-family: FontAwesome;
+  display: inline-block;
+}
+
+.fac-checkbox-my > input[type=checkbox] + label:before { content: "\f096"; }
+.fac-checkbox-my > input[type=checkbox] + label:before {
+    letter-spacing: 10px;
+}
+.fac-checkbox-my > input[type=checkbox] + label:after {
+    content: "\f046";
+}
+.fac-checkbox-my > input[type=checkbox] + label:after {
+    opacity: 0;
+    -webkit-transition: opacity 0.3s ease-in-out;
+    -o-transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/*.fac-checkbox-my > input[type=checkbox]:checked + label:before { content: "\f046"; }
+.fac-checkbox-my > input[type=checkbox]:checked + label:before {
+    letter-spacing: 5px;
+    opacity: 1;
+    -webkit-transition: opacity 0.3s ease-in-out;
+    -o-transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.3s ease-out;
+}*/
+
+/*********************** http://maxweldsouza.github.io/font-awesome-controls/ *******************************/
+
+.fac {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 1.2em;
+    line-height: 1;
+}
+
+.fac label {
+    /*margin: 0em 1em 0em 0em;*/
+    padding-left: 1.5em;
+    cursor:pointer;
+    font-weight:inherit;
+}
+
+.fac[disabled] + label:before {
+    cursor: not-allowed;
+    color: #777;
+}
+
+.fac > input + label:before,
+.fac > span::after {
+    font-family: FontAwesome;
+    position:absolute;
+    left:0;
+    top: 0;
+}
+
+.fac > input + label:before {
+    -webkit-transition: opacity 0.3s ease-in-out;
+    -o-transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
+}
+
+input[type=checkbox], input[type=radio] {
+    display:none;
+}
+
+/********* Behavior ***********/
+
+.fac-checkbox > input + label:before,
+.fac-checkbox-round > input + label:before {
+    opacity: 1;
+}
+
+.fac-checkbox > input:checked + label:before,
+.fac > input:checked + label:before {
+    opacity: 0;
+}
+
+.fac-radio > input + label:before,
+.fac-checkbox-o > input + label:before,
+.fac-checkbox-round-o > input + label:before {
+    opacity: 0;
+}
+.fac-radio > input:checked + label:before,
+.fac-checkbox-o > input:checked + label:before,
+.fac-checkbox-round-o > input:checked + label:before {
+    opacity: 1;
+}
+/********* Sizes ***********/
+
+.fac-2x {
+    font-size: 2em;
+}
+
+/********* Colors ***********/
+
+.fac-default > input + label:before,
+.fac-default > span::after {
+    color: #444;
+}
+.fac-primary > input + label:before,
+.fac-primary > span::after {
+    color: #428bca;
+}
+.fac-success > input + label:before,
+.fac-success > span::after {
+    color: #5cb85c;
+}
+.fac-info > input + label:before,
+.fac-info > span::after {
+    color: #5bc0de;
+}
+.fac-warning > input + label:before,
+.fac-warning > span::after {
+    color: #f0ad4e;
+}
+.fac-danger > input + label:before,
+.fac-danger > span::after {
+    color: #d9534f;
+}
+
+/********* Controls ***********/
+
+.fac-checkbox > span::after {
+    content: "\f14a"; /* checked */
+}
+.fac-checkbox > input[type=checkbox] + label:before {
+    content: "\f0c8";
+}
+
+.fac-checkbox-round > span::after {
+    content: "\f058";
+}
+.fac-checkbox-round > input[type=checkbox] + label:before {
+    content: "\f111";
+}
+
+.fac-checkbox-o > span::after {
+    content: "\f096";
+}
+.fac-checkbox-o > input[type=checkbox] + label:before {
+    content: "\f046";
+}
+
+.fac-checkbox-round-o > span::after {
+    content: "\f10c";
+}
+.fac-checkbox-round-o > input[type=checkbox] + label:before {
+    content: "\f05d";
+}
+
+.fac-radio > span::after {
+    content: "\f10c";
+}
+.fac-radio > input[type=radio] + label:before {
+    content: "\f192";
+}
+
+/*************************** http://radiocheck.netcoffee.ru/ **************************************/
+input.radiocheck+label {
+  cursor: pointer;
+  position: relative
+}
+
+input.radiocheck+label:after,input.radiocheck+label:before {
+  font-family: FontAwesome;
+  position: absolute;
+  text-align: center
+}
+
+input.radiocheck+label.full {
+  background: #23b7e5;
+  border-radius: 3px;
+  color: #fff
+}
+
+input.radiocheck+label.full:after,input.radiocheck+label.full:before {
+  color: #fff;
+  background: #23b7e5
+}
+
+input.radiocheck+label.full:before {
+  content: '\f00d'
+}
+
+input.radiocheck+label.full:after {
+  content: '\f00c';
+  opacity: 0;
+  transition: all .2s
+}
+
+input[type=checkbox].radiocheck:disabled+label.full,input[type=checkbox].radiocheck:disabled+label.full:after,input[type=checkbox].radiocheck:disabled+label.full:before,input[type=radio].radiocheck:disabled+label.full,input[type=radio].radiocheck:disabled+label.full:after,input[type=radio].radiocheck:disabled+label.full:before {
+  background: #72d5f3;
+  cursor: default
+}
+
+input.radiocheck+label.full.small.right {
+  font-size: 12px;
+  padding: 6px 30px 6px 6px
+}
+
+input.radiocheck+label.full.small.left {
+  font-size: 12px;
+  padding: 6px 6px 6px 30px
+}
+
+input.radiocheck+label.full.small.right:after,input.radiocheck+label.full.small.right:before {
+  font-size: 14px;
+  top: 5px;
+  right: 5px;
+  width: 18px;
+  line-height: 18px;
+  height: 18px
+}
+
+input.radiocheck+label.full.small.left:after,input.radiocheck+label.full.small.left:before {
+  font-size: 14px;
+  top: 5px;
+  left: 5px;
+  width: 18px;
+  line-height: 18px;
+  height: 18px
+}
+
+input.radiocheck+label.full.default {
+  font-size: 16px;
+  padding: 10px 40px 10px 10px
+}
+
+input.radiocheck+label.full.default.left {
+  font-size: 16px;
+  padding: 10px 10px 10px 40px
+}
+
+input.radiocheck+label.full.default::after,input.radiocheck+label.full.default::before {
+  font-size: 22px;
+  height: 24px;
+  line-height: 24px;
+  right: 9px;
+  top: 9px;
+  width: 24px
+}
+
+input.radiocheck+label.full.default.left:after,input.radiocheck+label.full.default.left:before {
+  font-size: 22px;
+  height: 24px;
+  line-height: 24px;
+  left: 9px;
+  top: 9px;
+  width: 24px
+}
+
+input.radiocheck+label.full.big.right {
+  font-size: 26px;
+  padding: 10px 50px 10px 10px
+}
+
+input.radiocheck+label.full.big.right::after,input.radiocheck+label.full.big.right::before {
+  font-size: 30px;
+  height: 26px;
+  line-height: 26px;
+  right: 12px;
+  top: 16px;
+  width: 26px
+}
+
+input.radiocheck+label.full.big.left {
+  font-size: 26px;
+  padding: 10px 10px 10px 50px
+}
+
+input.radiocheck+label.full.big.left::after,input.radiocheck+label.full.big.left::before {
+  font-size: 30px;
+  height: 26px;
+  line-height: 26px;
+  left: 12px;
+  top: 16px;
+  width: 26px
+}
+
+input.radiocheck+label.nofull:after,input.radiocheck+label.nofull:before {
+  border: 2px solid #23b7e5;
+  border-radius: 4px;
+  text-align: center;
+  color: #23b7e5
+}
+
+input.radiocheck+label.nofull:before {
+  content: ''
+}
+
+input.radiocheck+label.nofull:after {
+  content: '\f00c';
+  background: #23b7e5;
+  color: #fff;
+  opacity: 0;
+  transition: all .2s
+}
+
+input[type=checkbox].radiocheck:disabled+label.nofull {
+  cursor: default
+}
+
+input[type=checkbox].radiocheck:disabled+label.nofull:before {
+  border: 2px solid #72d5f3;
+  cursor: default
+}
+
+input[type=checkbox].radiocheck:disabled+label.nofull:after {
+  border: 2px solid #72d5f3;
+  background: #72d5f3;
+  cursor: default
+}
+
+input[type=radio].radiocheck:disabled+label.nofull {
+  cursor: default
+}
+
+input[type=radio].radiocheck:disabled+label.nofull:before {
+  border: 2px solid #72d5f3;
+  cursor: default
+}
+
+input[type=radio].radiocheck:disabled+label.nofull:after {
+  border: 2px solid #72d5f3;
+  background: #72d5f3;
+  cursor: default
+}
+
+input.radiocheck+label.nofull.small.right {
+  font-size: 12px;
+  padding-right: 26px;
+  padding-top: 1px
+}
+
+input.radiocheck+label.nofull.small.right:after,input.radiocheck+label.nofull.small.right:before {
+  font-size: 14px;
+  top: 0;
+  right: 0;
+  width: 16px;
+  line-height: 16px;
+  height: 16px
+}
+
+input.radiocheck+label.nofull.small.left {
+  font-size: 12px;
+  padding-left: 26px;
+  padding-top: 1px
+}
+
+input.radiocheck+label.nofull.small.left:after,input.radiocheck+label.nofull.small.left:before {
+  font-size: 14px;
+  top: 0;
+  left: 0;
+  width: 16px;
+  line-height: 16px;
+  height: 16px
+}
+
+input.radiocheck+label.nofull.default.right {
+  font-size: 16px;
+  padding-right: 40px;
+  padding-top: 2px
+}
+
+input.radiocheck+label.nofull.default.right:after,input.radiocheck+label.nofull.default.right:before {
+  font-size: 22px;
+  top: 0;
+  right: 0;
+  width: 24px;
+  line-height: 24px;
+  height: 24px
+}
+
+input.radiocheck+label.nofull.default.left {
+  font-size: 16px;
+  padding-left: 40px;
+  padding-top: 2px
+}
+
+input.radiocheck+label.nofull.default.left:after,input.radiocheck+label.nofull.default.left:before {
+  font-size: 22px;
+  top: 0;
+  left: 0;
+  width: 24px;
+  line-height: 24px;
+  height: 24px
+}
+
+input.radiocheck+label.nofull.big.right {
+  font-size: 26px;
+  padding-right: 60px;
+  padding-top: 2px
+}
+
+input.radiocheck+label.nofull.big.right:after,input.radiocheck+label.nofull.big.right:before {
+  font-size: 30px;
+  top: 0;
+  right: 0;
+  width: 36px;
+  line-height: 36px;
+  height: 36px
+}
+
+input.radiocheck+label.nofull.big.left {
+  font-size: 26px;
+  padding-left: 60px;
+  padding-top: 2px
+}
+
+input.radiocheck+label.nofull.big.left:after,input.radiocheck+label.nofull.big.left:before {
+  font-size: 30px;
+  top: 0;
+  left: 0;
+  width: 36px;
+  line-height: 36px;
+  height: 36px
+}
+
+input[type=checkbox].radiocheck,input[type=radio].radiocheck {
+  display: none
+}
+
+input[type=checkbox].radiocheck:checked+label:after,input[type=radio].radiocheck:checked+label:after {
+  opacity: 1
+}

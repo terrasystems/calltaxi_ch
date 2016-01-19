@@ -1,0 +1,8 @@
+#AddDefaultCharset utf-8
+RewriteEngine On
+#MSIE - internet explorer
+RewriteCond %{HTTP_USER_AGENT} "MSIE [4-9].*"
+RewriteRule !^(.*)(index2.html) /index2.html [R=301,L]
+#Redirect 404 to root
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule . / [L,R=301]

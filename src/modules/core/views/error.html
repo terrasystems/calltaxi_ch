@@ -1,0 +1,23 @@
+<!-- error-page -->
+<section class="content">
+	<div class="error-page">
+		<div class="headline">
+			<img src="../../images/broken.png" alt="{{'ERROR'|translate}}" />
+			<!-- <h2>4<i class="fa fa-tint"></i>4</h2> -->
+			<h2>{{$stateParams.code}}</h2>
+		</div>
+		<div class="error-content text-center">
+			<h3>
+			<i class="fa fa-warning text-yellow"></i>
+			{{'ERROR404TEXT1'|translate}}
+			</h3>
+			<p>{{'ERROR404TEXT2'|translate}}</p>
+			<div class="error-footer text-center">
+				<a href="." onclick="location.reload(true)" class="btn btn-lg btn-primary">
+				<span class="fa fa-home"></span><span class="space"></span>
+				{{'HOMEPAGE'|translate}}</a>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- /.error-page -->
