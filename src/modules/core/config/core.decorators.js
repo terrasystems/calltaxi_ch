@@ -44,7 +44,7 @@ angular.module('com.module.core')
 			}
 			//check state rules
 			if (!state.abstract) {
-				if (!state.abstract && state.includes.hasOwnProperty('main.auth')) {
+				if (state.includes.hasOwnProperty('main.auth') || state.includes.hasOwnProperty('main.private')) {
 					controllerName = moduleToCtrl(moduleName[2]) + 'Controller';
 					state.url = state.url || $urlMatcherFactoryProvider.compile('/' + moduleName[2]);
 					titleName = moduleName[2].toUpperCase();
@@ -55,11 +55,6 @@ angular.module('com.module.core')
 					state.url = state.url || $urlMatcherFactoryProvider.compile('/' + moduleName[1]);
 					titleName = moduleName[1].toUpperCase();
 					templName = 'modules/' + moduleName[1] + '/views/' + moduleName[1] + '.html';
-				} else if (!state.abstract && state.includes.hasOwnProperty('main.private')) {
-					controllerName = moduleToCtrl(moduleName[2]) + 'Controller';
-					state.url = state.url || $urlMatcherFactoryProvider.compile('/' + moduleName[2]);
-					titleName = moduleName[2].toUpperCase();
-					templName = 'modules/' + moduleName[2] + '/views/' + moduleName[2] + '.html';
 				}
 				// pack state
 				state.views[viewName] = {
