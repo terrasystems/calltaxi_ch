@@ -1,13 +1,13 @@
 'use strict';
 /**
  * @ngdoc overview
- * @name miniApp
+ * @name taxiApp
  * @description
- * # miniApp
+ * # taxiApp
  *
  * Main module of the application.
  */
-angular.module('miniApp', [
+angular.module('taxiApp', [
 /* Angular modules */
 'ngMessages', 'ngAnimate', 'ngResource', 'ngCookies', 'ngSanitize',
 /* # 3rd Party Modules */
@@ -16,7 +16,7 @@ angular.module('miniApp', [
 	'toggle-switch', 'LocalStorageModule', 'ui.router.tabs',
 /* miniApp modules */
 	'com.module.core',
-	'com.module.public'
+	'com.module.auth'
 ])
 /* config */
 .config(function($httpProvider, $stateProvider, $urlRouterProvider, $translateProvider, statesList, $provide,
@@ -30,7 +30,7 @@ angular.module('miniApp', [
 	// 	$stateProvider.state(state.name, state);
 	// });
 	// send users to the form page
-	$urlRouterProvider.otherwise('/main');
+	$urlRouterProvider.otherwise('/taxi');
 	// Toaster config
 	angular.extend(toastrConfig, {
 		allowHtml: true,
@@ -61,7 +61,7 @@ angular.module('miniApp', [
 	});
 	//$translateProvider.useLocalStorage();// saves selected language to localStorage
 	// Local storage Prefix
-	localStorageServiceProvider.setPrefix('mini');
+	localStorageServiceProvider.setPrefix('taxi');
 	// Interceptors
 	$httpProvider.interceptors.push('responseErrorInterceptor');
 	$httpProvider.interceptors.push('requestInterceptor');
@@ -104,7 +104,7 @@ angular.module('miniApp', [
 		blockUIConfig.message = $translate.instant('LOADING');
 	});
 	// Проверка авторизации из куков
-	checkUserAuth();
+	//checkUserAuth();
 	// На случай лока ранее
 	blockUI.reset();
 });

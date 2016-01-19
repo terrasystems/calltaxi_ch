@@ -28,14 +28,14 @@ angular.module('com.module.core')
 		},
 		// public
 		{
-			name: 'main.public',
+			name: 'main.auth',
 			url: '/',
 			abstract: true
-		}, {
-			name: 'main.public.login',
+		},	{
+			name: 'main.auth.login',
 			url: 'login'
 		}, {
-			name: 'main.public.error',
+			name: 'main.error',
 			url: 'error/:code',
 			resolve: {
 				code: ['$stateParams', function($stateParams) {
@@ -43,26 +43,27 @@ angular.module('com.module.core')
 				}]
 			}
 		},
+		{
+			name: 'main.taxi',
+			url:'/taxi',
+			views:{
+				'header@main': {
+					templateUrl: 'modules/core/views/header.html',
+					controller: 'HeaderController'
+				}
+			}
+		},
+
 		// private
 		{
 			name: 'main.private',
 			url: '/',
 			views: {
-				'header@main': {
-					templateUrl: 'modules/core/views/header.html',
-					controller: 'HeaderController'
-				},
-				'leftnav@main': {
-					templateUrl: 'modules/core/views/leftnav.html',
-					controller: 'LeftnavController'
-				},
 				'footer@main': {
 					templateUrl: 'modules/core/views/footer.html'
 				}
 			},
 			abstract: true,
 			parent: 'main'
-		}, {
-			name: 'main.private.main'
-		},
+		}
 	]);

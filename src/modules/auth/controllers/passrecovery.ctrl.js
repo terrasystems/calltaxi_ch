@@ -1,12 +1,12 @@
 'use strict';
 /**
  * @ngdoc function
- * @name com.module.public.controller:publicController
+ * @name com.module.auth.controller:publicController
  * @description
- * # publicController
+ * # authController
  * Controller of the public Editor
  */
-angular.module('com.module.public')
+angular.module('com.module.auth')
 //
 .controller('PassrecoveryController', function($scope, publicRequest, blockUI) {
 	$scope.submitForm = function(isValid) {
