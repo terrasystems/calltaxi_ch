@@ -1,0 +1,30 @@
+<form name="passForm" ng-submit="submitForm(passForm.$valid)" novalidate>
+	<div class="header">{{'PASSRECOVERY'|translate}}</div>
+	<!-- alerts -->
+	<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg|translate:alertsParams}}
+	<a ng-if="activationlink" ng-href="{{activationlink}}">{{'ACTIVATE'|translate}}</a> </alert>
+	<div class="body" ng-hide="emailWasSent">
+		<!-- email -->
+		<div class="input-group">
+			<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+			<input type="text" name="email" id="pass.email" class="form-control" placeholder="{{'YOUR_EMAIL'|translate}}"
+			ng-model="pass.email" ng-model-options="{ updateOn: 'blur' }"
+			ng-pattern="/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}$/" required lowercase />
+		</div>
+		<!-- MMM -->
+		<div class="has-warning" ng-if="passForm.$submitted || passForm.email.$dirty || passForm.email.$touched"
+			ng-messages="passForm.email.$error" ng-messages-multiple>
+			<div ng-message="required">{{'ENTEREMAIL'|translate}}</div>
+			<div ng-message="pattern">{{'NOTVALIDEMAIL'|translate}}</div>
+		</div>
+	</div>
+	<div class="footer">
+		<button ng-disabled="emailWasSent || passForm.$invalid" type="submit" class="btn btn-block btn-primary">{{'RESETPASSWORD'|translate}}</button>
+		<p class="text-small text-center ">
+		<span class="text-muted">{{'GOBACKTEXT'|translate}}</span>
+		<span class="text-muted">
+			<a ui-sref="main.public.login">{{'GOBACK'|translate}}</a>
+		</span>
+		</p>
+	</div>
+</form>

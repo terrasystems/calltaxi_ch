@@ -1,0 +1,48 @@
+<form name="newPassForm" ng-submit="submitForm(newPassForm.$valid)" novalidate>
+	<div class="header">{{'PASSNEW'|translate}}</div>
+	<!-- alerts -->
+	<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg|translate:alertsParams}}
+		<a ng-if="activationlink" ng-href="{{activationlink}}">{{'ACTIVATE'|translate}}</a>
+	</alert>
+	<div class="body" ng-if="recoveryLinkValid" >
+		<!-- pass -->
+		<div class="input-group">
+			<span class="input-group-addon">
+				<i class="fa fa-lock"></i>
+			</span>
+			<input type="password" name="password" id="password" class="form-control"
+				placeholder="{{'NEWPASS'|translate}}" ng-model="newPass.password" required ng-minlength="5" />
+		</div>
+		<!-- MMM -->
+		<div class="has-warning" ng-if="newPassForm.$submitted || newPassForm.password.$touched"
+			ng-messages="newPassForm.password.$error" ng-messages-multiple>
+			<div ng-message="required">{{'PL_PASS'|translate}}</div>
+			<div ng-message="minlength">{{'PASSSHORT'|translate}}</div>
+			<div ng-message="maxlength">{{'PASSSLONG'|translate}}</div>
+		</div>
+		<!-- verification -->
+		<div class="input-group">
+			<span class="input-group-addon">
+				<i class="fa fa-lock"></i>
+			</span>
+			<input type="password" name="verification" id="verification" placeholder="{{'PASSCONFIRM'|translate}}"
+				ng-model="newPass.verification" required ng-minlength="5" match-pass-validator="newPass.password"
+				class="form-control" />
+		</div>
+		<!-- MMM -->
+		<div class="has-warning" ng-if="newPassForm.$submitted || newPassForm.verification.$touched"
+			ng-messages="newPassForm.verification.$error" ng-messages-multiple>
+			<div ng-message="required">{{'PASSCONFIRM'|translate}}</div>
+			<div ng-message="match">{{'PASSWORDSNOTMATCH'|translate}}</div>
+		</div>
+	</div>
+	<div class="footer">
+		<button ng-disabled="passWasSend" type="submit" class="btn btn-block btn-primary">{{'CHANGEPASS'|translate}}</button>
+		<p class="text-small text-center ">
+			<span class="text-muted">{{'GOBACKTEXT'|translate}}</span>
+			<span class="text-muted">
+				<a ui-sref="main.public.login">{{'GOBACK'|translate}}</a>
+			</span>
+		</p>
+	</div>
+</form>
