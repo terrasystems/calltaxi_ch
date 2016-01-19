@@ -1,95 +1,31 @@
-<!--Dashboard-->
-<section-box-header></section-box-header>
-<section-box-buttons leftbutton="none" showfilter="period"></section-box-buttons>
-<div class="box-body">
-	<div class="row">
-		<!-- stats row -->
-		<div class="col-md-4">
-			<!-- stats orders -->
-			<div class="databox databox-lg radius-bordered databox-shadowed fade" ng-if="periodobject">
-				<div class="databox-left bg-light-blue-gradient" tooltip="{{'PRCVERIFIED'|translate}}">
-					<h2 count-up id="prcOrdersDone" ng-model="prcOrdersDone" data-suffix="%">{{prcOrdersDone}}%</h2>
-				</div>
-				<div class="databox-right bordered-thick bordered-primary">
-					<span class="databox-number green">
-						<i class="fa fa-list-alt"></i>{{cntOrdersAll}}</span>
-					<div class="databox-text darkgray">{{'cntOrders'|translate}} {{'BYY'|translate}} {{periodobject[periodfilter].trans|translate|lowercase}}
-					</div>
-					<div class="databox-stat bg-light-blue-gradient radius-bordered" tooltip="{{'INCDOWNPRC'|translate}}">
-						<div class="stat-text" count-up id="prcOrdersLast" ng-model="prcOrdersLast" data-suffix="%" data-animation-length="1">{{prcOrdersLast}}%</div>
-						<i class="stat-icon fa " ng-class="{'fa-arrow-up':prcOrdersLast>0, 'fa-arrow-down':prcOrdersLast<=0 }"></i>
-					</div>
+<div class="container">
+	<section>
+		<div class="row">
+			<div class="col-xs-12 col-sm-12" style="background: transparent  ">
+				<div class="heading-block text-left heading-block-line">
+					<h2 class="special-heading">Features</h2>
 				</div>
 			</div>
 		</div>
-		<div class="col-md-4">
-			<!-- stats percent done -->
-			<div class="databox databox-lg radius-bordered databox-shadowed fade" ng-if="periodobject">
-				<div class="databox-left bg-yellow-gradient" tooltip="{{'PRCVERIFIED'|translate}}">
-					<h2 count-up id="prcJorProcessDone" ng-model="prcJorProcessDone" data-suffix="%">{{prcJorProcessDone}}%</h2>
+		<div class="row">
+			<div class="col-xs-12 col-sm-6" style="background: transparent  top left no-repeat scroll;">
+				<div class="text-block shortcode-container">
+					<ul class="list-triangle">
+						<li>No middle-man to take your profit, such as Other APP</li>
+						<li>Easily find the nearest Taxi</li>
+						<li>Compare prices and find the best deal</li>
+						<li>No need to create, maintain and market your own web-site. It is all taken care of. We will do the marketing for you in Google, news-papers and other media</li>
+						<li>You will get 24/7 support</li>
+						<li>Local Services in and around Switzerland</li>
+						<li>Airport /Railway Station Transfer</li>
+					</ul>
 				</div>
-				<div class="databox-right bordered-thick bordered-yellow">
-					<span class="databox-number yellow">
-						<i class="fa fa-flask"></i>{{cntJorProcessAll}}</span>
-					<div class="databox-text darkgray" >{{'CNTLABPROCESS'|translate}} {{'BYY'|translate}} {{periodobject[periodfilter].trans|translate|lowercase}}
-					</div>
-					<div class="databox-stat bg-yellow-gradient radius-bordered" tooltip="{{'INCDOWNPRC'|translate}}">
-						<div class="stat-text" count-up id="prcJorProcessLast" ng-model="prcJorProcessLast" data-suffix="%" data-animation-length="1">{{prcJorProcessLast}}%</div>
-						<i class="stat-icon fa " ng-class="{'fa-arrow-up':prcJorProcessLast>0, 'fa-arrow-down':prcJorProcessLast<=0}"></i>
-					</div>
+			</div>
+			<div class="col-xs-12 col-sm-6" style="background: transparent  top left no-repeat scroll;">
+				<div class="video-wrapper shortcode-container">
+					<iframe src="//player.vimeo.com/video/87701971" width="600" height="338" frameborder="0" title="Yosemite HD II" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
 				</div>
 			</div>
 		</div>
-		<div class="col-md-4">
-			<!-- stats labproc // ng-if="$state.includes('main.private.dashboard')" -->
-			<div class="databox databox-lg radius-bordered databox-shadowed fade" ng-if="periodobject">
-				<div class="databox-left bg-palegreen-gradient" tooltip="{{'PRCINDICSBYALL'|translate}}">
-					<h2 count-up id="prcIndicators" ng-model="prcIndicators" data-suffix="%">{{prcIndicators}}%</h2>
-				</div>
-				<div class="databox-right bordered-thick bordered-green">
-					<span class="databox-number">
-						<i class="fa fa-line-chart"></i><span>{{cntQualityControlAll}}</span></span>
-					<div class="databox-text" translate="CNTQALITYCARDS"></div>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-6">
-			<div class="box box-solid" ng-if="groupChartConfig.series[0].data.length>0">
-				<div class="box-tools pull-right"></div>
-				<div class="box-body text-center">
-					<chart-mini config="groupChartConfig" global-otions="options"></chart-mini>
-				</div>
-				<div class="box-footer text-center" ng-if="analChartConfig.series[0].data.length>0">{{'ANALISYS'|translate}}&nbsp;{{chartname|translate}}&nbsp;{{'BYY'|translate}}&nbsp;{{periodobject[periodfilter].trans|translate|lowercase}}</div>
-			</div>
-			<div class="databox databox-lg radius-bordered databox-shadowed fade" ng-if="groupChartConfig.series[0].data.length==0">
-				<div class="databox-left bg-gray">
-					<i class="fa fa-2x fa-pie-chart text-muted"></i>
-				</div>
-				<div class="databox-right bordered-thick bordered-gray">
-					<span class="databox-header">{{'ANALISYS'|translate}}&nbsp;{{chartname|translate}}&nbsp;{{'BYY'|translate}}&nbsp;{{periodobject[periodfilter].trans|translate|lowercase}}</span>
-					<div class="databox-text hidden-xs" translate="WILLBECHART"></div>
-					<div class="databox-stat bg-gray radius-bordered"></div>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-6">
-			<div class="box box-solid" ng-if="analChartConfig.series[0].data.length>0">
-				<div class="box-tools pull-right"></div>
-				<div class="box-body text-center">
-					<chart-mini config="analChartConfig" global-otions="options"></chart-mini>
-				</div>
-				<div class="box-footer text-center" ng-if="analChartConfig.series[0].data.length>0">{{'ANALISYS'|translate}}&nbsp;{{chartname2|translate}}&nbsp;{{'BYY'|translate}}&nbsp;{{periodobject[periodfilter].trans|translate|lowercase}}</div>
-			</div>
-			<div class="databox databox-lg radius-bordered databox-shadowed fade" ng-if="analChartConfig.series[0].data.length==0">
-				<div class="databox-left bg-gray">
-					<i class="fa fa-2x fa-pie-chart text-muted" ></i>
-				</div>
-				<div class="databox-right bordered-thick bordered-gray">
-					<span class="databox-header">{{'ANALISYS'|translate}}&nbsp;{{chartname2|translate}}&nbsp;{{'BYY'|translate}}&nbsp;{{periodobject[periodfilter].trans|translate|lowercase}}</span>
-					<div class="databox-text hidden-xs" translate="WILLBECHART"></div>
-					<div class="databox-stat bg-gray radius-bordered"></div>
-				</div>
-			</div>
-		</div>
-	</div>
+	</section>
 </div>

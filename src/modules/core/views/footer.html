@@ -1,16 +1,115 @@
-<div class="row margin">
-		<!-- <div class="col-sm-12 col-md-3">
-			<small class="text-muted text-left" >version: {{buildInfo.svnRevision}}/{{buildInfo.tag|ltrim:'jenkins-minilisweb-'}}</small>
-		</div> -->
-	<div class="col-xs-8 col-sm-8 col-md-10 copyright text-center">
-		<span class=""><a target="_blank" title="TerraSystems" href="http://www.terrasystems.eu">TerraSystems</a> Copyright © 2010-2015, All rights reserved.</span>
+<div class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="footer-content">
+					<div class="logo-footer"><img
+						id="logo-footer"
+						src="http://demo.ciaothemes.com/wp/everglades/main/wp-content/uploads/sites/3/2015/10/light-logo.png"
+						alt=""></div>
+					<p>Lorem ipsum dolor sit amet, consect tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ven. Lorem
+						ipsum dolor sit amet elit.</p>
+					<ul class="info">
+						<li>
+							<i class="fa fa-map-marker"></i>
+							One infinity loop, 54100</li>
+						<li>
+							<i class="fa fa-phone"></i>
+							+00 1234567890</li>
+						<li>
+							<i class="fa fa-envelope-o"></i>
+							contact@ciaothemes.com</li>
+					</ul>
+					<ul class="social-links">
+						<li>
+							<a href="http://google.com.vn" target="_blank">
+								<i class="fa fa-google"></i>
+							</a>
+						</li>
+						<li>
+							<a href="https://facebook.com" target="_blank">
+								<i class="fa fa-facebook"></i>
+							</a>
+						</li>
+						<li>
+							<a href="https://twitter.com" target="_blank">
+								<i class="fa fa-twitter"></i>
+							</a>
+						</li>
+						<li>
+							<a href="http://linkedin.com" target="_blank">
+								<i class="fa fa-linkedin"></i>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="footer-content">
+					<h2 class="heading">LATEST PROJECTS</h2>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="footer-content">
+					<h2 class="widget_twitter_tweets heading">RECENT TWEETS</h2>
+					<div class="wrap-flickr">
+						<ul class="twitter_update_list list-unstyled">
+							<li class="twitter-item">
+								<i class="fa fa-twitter"></i>
+								<span class="twitter-timestamp">
+									<abbr title="1970/01/01 00:00:00">1970/01/01</abbr>
+								</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-	<div class="col-xs-4 col-sm-4 col-md-2">
-		<div class="f32" dropdown><!-- <i class="fa fa-globe"></i> --> <!-- <span class="flag-icon" ng-class="{'flag-icon-ua' :langKey=='uk', 'flag-icon-us':langKey=='en', 'flag-icon-ru':langKey=='ru'}"></span> -->
-			<a href="" class="dropdown-toggle pull-right" dropdown-toggle><i class="flag {{langKey}}"></i>&nbsp;<span class="hidden-xs">{{'LANGSEL'|translate}}</span></a>
-			<ul class="dropdown-menu up">
-				<li ng-repeat="langKey in translations"><a href="" class="flag {{langKey}}" ng-click="langChanged(langKey)">{{langKey|translate}}</a></li>
-			</ul>
+</div>
+<div class="subfooter">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				<p>Copyright © 2016
+					<a href="http://calltaxi.ch">calltaxi.ch
+					</a>
+					All Rights Reserved</p>
+			</div>
+			<div class="col-md-8">
+				<nav class="navbar navbar-default" role="navigation">
+					<div class="navbar-collapse">
+						<ul id="menu-top-navigation-1" class="nav navbar-nav footer-nav">
+							<li class="">
+								<a href="#">About Us</a>
+							</li>
+							<li class="">
+								<a href="#">Terms of Service</a>
+							</li>
+							<li class="">
+								<a href="#">Privacy Notice</a>
+							</li>
+							<li class="">
+								<a href="#">Contact</a>
+							</li>
+							<li class="">
+								<a href="#">Help</a>
+							</li>
+							<li uib-dropdown class="dropup">
+								<a href="" class="dropdown-toggle pull-right" uib-dropdown-toggle>
+									<i class="flag {{langKey}}"></i>&nbsp;
+									<span class="hidden-xs" translate>LANGSEL</span>
+								</a>
+								<ul class="dropdown-menu" dropdown-menu>
+									<li ng-repeat="langKey in translations">
+										<a href="" class="flag {{langKey}}" ng-click="langChanged(langKey)" translate>langKey</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
 		</div>
 	</div>
 </div>

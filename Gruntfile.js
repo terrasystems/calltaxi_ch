@@ -82,7 +82,7 @@ module.exports = function(grunt) {
 				],
 				tasks: ['newer:copy:debug', 'newer:copy:dist'],
 				options: {
-					//livereload: '<%= connect.options.livereload %>'
+					livereload: '<%= connect.options.livereload %>'
 				}
 			},
 			js: {
@@ -98,10 +98,10 @@ module.exports = function(grunt) {
 			},
 			styles: {
 				files: ['<%= yeoman.src %>/css/{,*/}*.css'],
-				tasks: ['newer:copy:debug']
-			},
-			gruntfile: {
-				files: ['Gruntfile.js']
+				tasks: ['newer:copy:debug'],
+				options: {
+					livereload: '<%= connect.options.livereload %>'
+				}
 			},
 			includeSource: {
 				files: ['<%= yeoman.src %>/index.tpl.html'],
