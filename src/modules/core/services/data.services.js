@@ -23,7 +23,7 @@ angular.module('com.module.core')
 				toastr.error(msg, titleText, msgParam);
 				break;
 			default:
-				type = 'info'
+				type = 'info';
 				toastr.info(msg, titleText, msgParam);
 				break;
 		}
@@ -101,10 +101,10 @@ angular.module('com.module.core')
 		//
 		if (msg.data.responce != null) {
 			if (msg.data.alertsData != null) alertService.addAlerts(msg.data.alertsData);
-			if (msg.data.stacktrace != null) alertService.add(2, "EXCEPTION");
+			if (msg.data.stacktrace != null) alertService.add(2, 'EXCEPTION');
 			return msg.data.responce;
 		} else {
-			alertService.add(2, "NOTDEFERROR");
+			alertService.add(2, 'NOTDEFERROR');
 			return false;
 		}
 	};
@@ -170,8 +170,8 @@ angular.module('com.module.core')
 		var xmlHTTP = new XMLHttpRequest();
 		if (params != null) {
 			xmlHTTP.open('POST', url, true);
-			xmlHTTP.setRequestHeader("Accept", "application/json");
-			xmlHTTP.setRequestHeader("Content-Type", "application/json");
+			xmlHTTP.setRequestHeader('Accept', 'application/json');
+			xmlHTTP.setRequestHeader('Content-Type', 'application/json');
 			// xmlHTTP.setRequestHeader("Content-length", params.length);
 		} else xmlHTTP.open('GET', url, true);
 		xmlHTTP.setRequestHeader('X-Auth-Token', $rootScope.authToken);
@@ -188,7 +188,7 @@ angular.module('com.module.core')
 					deferred.resolve(arr);
 					break;
 				case 'raw':
-					var raw = "";
+					var raw = '';
 					for (var i = 0, l = arr.length; i < l; i++) raw += String.fromCharCode(arr[i]);
 					// blockUI.stop();
 					deferred.resolve(raw);
@@ -196,7 +196,7 @@ angular.module('com.module.core')
 				default:
 					// перевірка чи тип данних base64
 					if (datatype.indexOf(';base64,') != -1) {
-						var raw = "";
+						var raw = '';
 						for (var i = 0, l = arr.length; i < l; i++) raw += String.fromCharCode(arr[i]);
 						var b64 = btoa(raw);
 						// blockUI.stop();
@@ -241,7 +241,7 @@ angular.module('com.module.core')
 				var chLen = Object.keys(scope.checkboxes.items).length;
 				if (chLen == datLen) scope.checkboxes.items = {};
 				scope.checkboxes.notchecked = true;
-			};
+			}
 		});
 		// watch for data checkboxes
 		scope.$watch('checkboxes.items', function (values) {
@@ -260,8 +260,8 @@ angular.module('com.module.core')
 			var datLen = scope.$data.length;
 			scope.checkboxes.allchecked = (chLen == datLen) && (chLen > 0);
 			// grayed checkbox
-			angular.element(document.getElementById("select_all")).prop("indeterminate", ((chLen > 0) && (datLen > 0) && (
-			chLen != datLen)))
+			angular.element(document.getElementById('select_all')).prop('indeterminate', ((chLen > 0) && (datLen > 0) && (
+			chLen != datLen)));
 		}, true);
 	};
 	return checkBoxesService;
@@ -308,12 +308,12 @@ angular.module('com.module.core')
 //
 .service('assignDeepProperty', function () {
 	return function assign(obj, prop, value) {
-		if (typeof prop === "string") prop = prop.split(".");
+		if (typeof prop === 'string') prop = prop.split('.');
 		if (prop.length > 1) {
 			var e = prop.shift();
 			assign(obj[e] = Object.prototype.toString.call(obj[e]) === "[object Object]" ? obj[e] : {}, prop, value);
 		} else obj[prop[0]] = value;
-	}
+	};
 })
 /**
  * @name bfBuilder
@@ -404,5 +404,20 @@ angular.module('com.module.core')
 	}
 })
 
+//
+/**
+ * @ngdoc overview
+ * @name taxiRequest
+ * @module com.module.core
+ * @description for app reuquest
+ * @requires taxiApp
+ */
+	.factory('taxiRequest', function ($resource) {
+		return $resource('app/:url/:action', {url: '@url', action: '@action'}, {
+			post: {method: 'POST'},
+			get: {method: 'GET'},
+			query: {method: 'GET', isArray: true}
+		});
+	})
 //
 ;
