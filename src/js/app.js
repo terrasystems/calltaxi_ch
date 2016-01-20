@@ -14,7 +14,7 @@ angular.module('taxiApp', [
 /* # 3rd Party Modules */
 'ui.bootstrap', 'ui.router', 'pascalprecht.translate', 'base64',
 	'blockUI', 'ui.select', 'angular-confirm', 'toastr', 'angularMoment', 'sticky',
-	'toggle-switch', 'LocalStorageModule', 'ui.router.tabs',
+	'toggle-switch', 'LocalStorageModule', 'ui.router.tabs', 'uiGmapgoogle-maps',
 /* miniApp modules */
 	'com.module.core',
 	'com.module.auth',
@@ -23,15 +23,10 @@ angular.module('taxiApp', [
 ])
 /* config */
 .config(function($httpProvider, $stateProvider, $urlRouterProvider, $translateProvider, statesList, $provide,
-	blockUIConfig, uiSelectConfig, toastrConfig, localStorageServiceProvider, $compileProvider) {
-	// http://blog.thoughtram.io/angularjs/2015/01/14/exploring-angular-1.3-speed-up-with-applyAsync.html
+	blockUIConfig, uiSelectConfig, toastrConfig, localStorageServiceProvider, $compileProvider, uiGmapGoogleMapApiProvider) {
 	$httpProvider.useApplyAsync(true);
 	// you can disable this in production for a significant performance boost
 	//$compileProvider.debugInfoEnabled(false);
-	// states
-	// angular.forEach(statesList, function(state) {
-	// 	$stateProvider.state(state.name, state);
-	// });
 	// send users to the form page
 	$urlRouterProvider.otherwise('/taxi');
 	// Toaster config
@@ -59,6 +54,7 @@ angular.module('taxiApp', [
 	});
 	// Translations
 	//$translateProvider.useUrlLoader('i18n/translation.json');
+	$translateProvider.useSanitizeValueStrategy('sanitize');
 	$translateProvider.useStaticFilesLoader({ prefix: 'i18n/translation_', suffix: '.json' });
 	// Local storage Prefix
 	localStorageServiceProvider.setPrefix('taxi');
@@ -74,6 +70,12 @@ angular.module('taxiApp', [
 	// Provide a custom template to use
 	uiSelectConfig.theme = '/modules/core/views/select.tmpl.html';
 	uiSelectConfig.appendToBody = true;
+	//
+	uiGmapGoogleMapApiProvider.configure({
+      key: 'AIzaSyBK4x-FInDtXL-elyRiHxmZNaHjM-qz9TY',
+      v: '3.20', //defaults to latest 3.X anyhow
+      libraries: 'geometry,visualization'
+  });
 })
 /* run */
 .run(function($state, $stateParams, $rootScope, $location, alertService, $http, langService, menuService, checkUserAuth,

@@ -98,11 +98,11 @@
 							<li uib-dropdown class="dropup">
 								<a href="" class="dropdown-toggle pull-right" uib-dropdown-toggle>
 									<i class="flag {{langKey}}"></i>&nbsp;
-									<span class="hidden-xs" translate>LANGSEL</span>
+									<span class="hidden-xs" translate>MENU.LANG</span>
 								</a>
 								<ul class="dropdown-menu" dropdown-menu>
 									<li ng-repeat="langKey in translations">
-										<a href="" class="flag {{langKey}}" ng-click="langChanged(langKey)" translate>langKey</a>
+										<a href="" class="flag {{langKey}}" ng-click="langChanged(langKey)" translate>{{langKey}}</a>
 									</li>
 								</ul>
 							</li>

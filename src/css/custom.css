@@ -222,8 +222,11 @@ ul.pagination li.active a,
 }
 
 .header-top .navbar-nav > li > a:hover,
+.header-top .navbar-nav > li .active> a,
+.header-top .navbar-nav > li:active> a,
 .header-extras li .he-text span {
 	color: #f5bc3c;
+	background-color: transparent;
 }
 
 .header-top .info li i {
@@ -834,3 +837,5 @@ a.overlay i {
 	/*margin-right: 44px;*/
 	color: silver;
 }
+
+.angular-google-map-container { height: 400px; }
