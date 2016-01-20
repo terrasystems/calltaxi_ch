@@ -19,7 +19,7 @@ module.exports = function(grunt) {
         port: 9000,
         // Change this to '0.0.0.0' to access the server from outside.
         hostname: 'localhost',
-        livereload: 35729
+        livereload: 12345
       },
       livereload: {
         options: {
@@ -195,12 +195,12 @@ module.exports = function(grunt) {
 		},
 		// https://www.npmjs.com/package/grunt-angular-templates
 		ngtemplates: {
-			miniApp: {
+			taxiApp: {
 				cwd: '<%= yeoman.src %>',
 				src: 'modules/**/{,*/}*.html',
 				dest: '<%= yeoman.dist %>/template.js',
 				options: {
-					module: 'miniApp',
+					module: 'taxiApp',
 					append: '<%= yeoman.dist %>',
 					usemin: 'app.js',
 					htmlmin: {
