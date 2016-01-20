@@ -15,9 +15,7 @@ angular.module('com.module.core')
 	$scope.langKey = localStorageService.get('Language');
 	/* Отлогиневание пользователя */
 	$scope.logout = function() {
-		$http.post('/serv/private/logout').then(function() {
-			logoutUser();
-		});
+
 	};
 	$scope.$on('menuService.update', function(event, status) {
 		$scope.menuStatus = status;

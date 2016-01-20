@@ -315,52 +315,6 @@ angular.module('com.module.core')
 		} else obj[prop[0]] = value;
 	}
 })
-//
-/**
- * @ngdoc service
- * @name prePrintService
- * @requires privateRequest, alertService, blockUI, $translate
- */
-.service('prePrintService', function ($http, privateRequest, alertService, blockUI, $translate) {
-	return function (url, requestObj, addChart) {
-		blockUI.start($translate.instant('REPORTPROCESS'));
-		if (requestObj != null)
-			privateRequest.post({url: url}, requestObj, function (data) {
-				blockUI.stop();
-				var windowPrint = window.open("about:blank", "myPopup");
-				if (windowPrint == null || typeof(windowPrint) == 'undefined')
-					alertService.add(2, "WINDOWISBLOCKED");
-				else {
-					if (addChart) {
-						windowPrint.document.write(addChart.html);
-						windowPrint.document.getElementById(addChart.id).innerHTML = addChart.data;
-					}
-					windowPrint.document.write(data.result);
-					windowPrint.document.close();
-					windowPrint.focus();
-					alertService.add(0, "PRINTED");
-				}
-				//setTimeout(function(){ windowPrint.print(); // windowPrint.close(); }, 500);
-			});
-		else
-			privateRequest.get({url: url}, function (data) {
-				blockUI.stop();
-				var windowPrint = window.open("about:blank", "myPopup");
-				if (windowPrint == null || typeof(windowPrint) == 'undefined')
-					alertService.add(2, "WINDOWISBLOCKED");
-				else {
-					if (addChart) {
-						windowPrint.document.write(addChart.html);
-						windowPrint.document.getElementById(addChart.id).innerHTML = addChart.data;
-					}
-					windowPrint.document.write(data.result);
-					windowPrint.document.close();
-					windowPrint.focus();
-					alertService.add(0, "PRINTED");
-				}
-			});
-	}
-})
 /**
  * @name bfBuilder
  * @ngdoc service
@@ -402,69 +356,6 @@ angular.module('com.module.core')
 			return this.all({sorting: prms}, needCover);
 		}
 	}
-})
-//Country service
-.service('countryService', function (countriesList) {
-	return {
-		getList: function () {
-			return countriesList;
-		},
-		getobjbycode: function (code) {
-			var country = {
-				code: code,
-				name: ''
-			}
-			for (var i = 0, iLen = countriesList.length; i < iLen; i++) {
-				if (countriesList[i].code.toUpperCase() == country.code.toUpperCase()) {
-					country.name = countriesList[i].name;
-					break;
-				}
-			}
-			return country;
-		}
-	}
-})
-// select chart data
-.service('selectChartData', function ($q, privateRequest, bfBuilder) {
-	return function (scope, qcid) {
-		var deferred = $q.defer();
-		privateRequest.get({
-			url: 'qualitycontrol',
-			action: 'getpoints'
-		}, {backfilter: bfBuilder.filtering({id: qcid})}, function (data) {
-			//blockUI.start();
-			if (data.result) {
-				scope.chart = data.result.chart;
-				scope.legend = data.result.legend;
-				deferred.resolve(true);
-			} else {
-				deferred.reject(false);
-			}
-		});
-		//blockUI.stop();
-		return deferred.promise;
-	};
-})
-//
-.service('checkQCRules', function (privateRequest, alertService, $translate, $confirm, bfBuilder) {
-	return function (qcid) {
-		privateRequest.get({
-			url: 'qualitycontrol',
-			action: 'getQRRbyQCID'
-		}, {backfilter: bfBuilder.filtering({id: qcid})}, function (data) {
-			if ((data.result.ruleCodeList) && (data.result.ruleCodeList.length > 0)) {
-				var ruleCodeList = data.result.ruleCodeList;
-				$confirm({
-					text: $translate.instant('QCRULESERROR'),
-					detail: $translate.instant(ruleCodeList)
-				}, {
-					templateUrl: 'modules/core/views/modalconfirmQC.tmpl.html'
-				}).then(function () {
-				});
-				//scope.accepted = res.data.result.accepted;
-			}
-		});
-	};
 })
 //
 .service('confirmService', function($q, $confirm, $translate){
@@ -512,27 +403,6 @@ angular.module('com.module.core')
 		}
 	}
 })
-.service('getTimezoneStr', function (localStorageService) {
-	return {
-		add: function () {
-			var tz = jstz.determine();
-			localStorageService.cookie.set('TimeZone', tz.name());
-		}
-	}
-})
+
 //
-.service('checkPrint', function () {
-	return function (data) {
-		var enpl = false;
-		if (data.length > 0) {
-			for (var i = 0, iLen = data.length; i < iLen; i++) {
-				if (data[i].isAccepted) {
-					enpl = true;
-					break;
-				}
-			};
-		}
-		return enpl;
-	}
-})
 ;

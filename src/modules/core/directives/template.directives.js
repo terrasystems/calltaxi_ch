@@ -59,80 +59,6 @@ angular.module('com.module.core')
 			}
 		};
 	})
-	// directive for Highcharts plnkr.co/edit/mSkvBd?p=preview
-	.directive('chartMini', function() {
-		return {
-			restrict: 'E',
-			replace: true,
-			template: '<div></div>',
-			scope: {
-				globalOtions: '=',
-				config: '='
-			},
-			link: function(scope, element, attrs) {
-				var chart;
-				var process = function() {
-					var defaultOptions = {
-						chart: {
-							renderTo: element[0],
-							style: {
-								fontFamily: '\'Ubuntu\', Verdana, sans-serif', // default font
-								fontSize: '12px'
-							}
-						},
-						// localization
-						lang: {
-							months: function() {
-								// body...
-								var monthMoment = [];
-								for (var i = 0; i < 12; i += 1) {
-									monthMoment.push(moment.utc().add(i, 'months').format('MMM'));
-									return monthMoment;
-								}
-							},
-							weekdays: function() {
-								// body...
-								var dayMoment = [];
-								for (var dayNumber = 0; dayNumber < 7; dayNumber += 1) {
-									dayMoment.push(moment.utc().weekday(dayNumber).format('dd'));
-									return dayMoment;
-								}
-							}
-						}
-					};
-					var config = angular.extend(defaultOptions, scope.globalOtions, scope.config);
-					chart = new Highcharts.Chart(config);
-				};
-				process();
-				scope.$watch('config.series', function(loading) {
-					process();
-				});
-				scope.$watch('config.loading', function(loading) {
-					if (!chart) {
-						return;
-					}
-					if (loading) {
-						chart.showLoading();
-					} else {
-						chart.hideLoading();
-					}
-				});
-			}
-		};
-	})
-	/**
-	 * @ngdoc directive
-	 * @name sectionBoxHeader
-	 * @description Compile html for sections headers
-	 * @example <section-box-header></section-box-header>
-	 */
-	.directive('sectionBoxHeader', function() {
-		return {
-			restrict: 'E',
-			templateUrl: 'modules/core/views/boxhead.tmpl.html',
-			replace: true
-		};
-	})
 	/**
 	 * @ngdoc directive
 	 * @name sectionOrderHeader
@@ -281,24 +207,6 @@ angular.module('com.module.core')
 		};
 	})
 	/**
-	 * @ngdoc directive
-	 * @name tableButons
-	 * @description шоби не писать кучу текста для buttons
-	 */
-	.directive('tableButtons', function() {
-		return {
-			restrict: 'AE',
-			//require: '^ngModel',
-			replace: true,
-			link: function(scope, element, attrs) {
-				scope.tbtype = attrs.tbtype;
-				if (attrs.tbdisablededit) scope.tbdisablededit = attrs.tbdisablededit;
-				if (attrs.tbdisableddelete) scope.tbdisableddelete = attrs.tbdisableddelete;
-			},
-			templateUrl: 'modules/core/views/tablebuttons.tmpl.html'
-		};
-	})
-	/**
 	 * моя директива для чекбоксів і радіо цього чувака (без розмірів) http://maxweldsouza.github.io/font-awesome-controls/
 	 * Usage
 	 * Select a color using 'chclass': .fac-default .fac-primary .fac-success .fac-info .fac-warning .fac-danger
@@ -320,39 +228,6 @@ angular.module('com.module.core')
 				html += '<label for=\"' + attrs.chid + '\">' + (attrs.chplaceholder || '') + '</label></div>';
 				return html;
 			}
-		};
-	})
-	//
-	.directive('leftInfoButtons', function($state, $timeout) {
-		//var stateName = $state.current.name.split('.');
-		var controllerName = $state.$current.views[$state.current.name.split('.')[2] + '@content'].controller;
-		return {
-			restrict: 'E',
-			//require: '?^' + controllerName,
-			replace: true,
-			//scope: false,
-			controllerAs: controllerName,
-			scope: {
-				isActiveQ: '=',
-				editMode: '=',
-				closeDoc: '&',
-				deleteDoc: '&',
-				changeDoc: '&'
-			},
-			//bindToController: true,
-			compile: function(element, attrs) {
-				return function(scope, element, attrs) {
-// 					scope.$watch(scope.qccard, function (argument) {
-// 						console.log('Compile qccard=',scope.qccard.isActive);
-// 					});
-				};
-			},
-			link: function(scope) {
-				$timeout(function() {
-					console.log('isActiveQ=',scope.isActiveQ);
-				}, 0);
-			},
-			templateUrl: 'modules/core/views/leftinfobuttons.tmpl.html'
 		};
 	})
 	//

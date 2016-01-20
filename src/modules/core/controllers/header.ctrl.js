@@ -3,7 +3,7 @@
 /*jshint -W030 */
 angular.module('com.module.core')
 	/*  */
-	.controller('HeaderController', function($scope, privateRequest, $interval, alertService,
+	.controller('HeaderController', function($scope, $interval, alertService,
 		$stateParams) {
 		$stateParams.id;
 		$scope.isCollapsed = true;
@@ -22,12 +22,6 @@ angular.module('com.module.core')
 		$scope.gosearch = function(obj) {
 		};
 		$scope.support = function() {
-			privateRequest.post({
-				url: 'feedback'
-			}, $scope.RequestBody, function() {
-				alertService.add(3, 'SUCCESSOPERATION');
-				$scope.RequestBody = '';
-				$scope.isCollapsed = true;
-			});
+
 		};
 	});
