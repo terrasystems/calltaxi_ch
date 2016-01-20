@@ -1,4 +1,5 @@
 'use strict';
+ /*jshint -W098*/
 /**
  * @ngdoc overview
  * @name taxiApp
@@ -57,11 +58,8 @@ angular.module('taxiApp', [
 		toastClass: 'toast'
 	});
 	// Translations
-	$translateProvider.useStaticFilesLoader({
-		prefix: 'i18n/translation_',
-		suffix: '.json'
-	});
-	//$translateProvider.useLocalStorage();// saves selected language to localStorage
+	//$translateProvider.useUrlLoader('i18n/translation.json');
+	$translateProvider.useStaticFilesLoader({ prefix: 'i18n/translation_', suffix: '.json' });
 	// Local storage Prefix
 	localStorageServiceProvider.setPrefix('taxi');
 	// Interceptors

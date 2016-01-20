@@ -1,5 +1,5 @@
 'use strict';
-/**/
+/*jshint -W106 */
 
 module.exports = function(grunt) {
 	require('load-grunt-config')(grunt);
@@ -319,12 +319,13 @@ module.exports = function(grunt) {
 		translate_compile: {
 	    compile: {
 	      options: {
-					multipleObjects: true,
+					multipleObjects: false,
+					filePerLang: true, //Use with options.asJson to split the translations into separate files for each language
 	        asJson: true
 	      },
 	      files: {
 	        // post-compiling file to the left, pre-compiling files to the right
-	        '<%= yeoman.src %>/i18n/tranlsation.json': ['<%= yeoman.src %>/i18n/*.tl']
+	        '<%= yeoman.src %>/i18n/translation_{lang}.json': ['<%= yeoman.src %>/i18n/*.tl']
 	      }
 	    }
 	  }
@@ -338,6 +339,7 @@ module.exports = function(grunt) {
 		'concat',
 		'replace:dist',
 		'ngAnnotate:dist',
+		'translate_compile',
 		'copy:dist',
 		'cssmin',
 		'uglify',
