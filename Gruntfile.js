@@ -106,7 +106,14 @@ module.exports = function(grunt) {
 			includeSource: {
 				files: ['<%= yeoman.src %>/index.tpl.html'],
 				tasks: ['includeSource:debug']
-			}
+			},
+			tl: {
+		    files: ['<%= yeoman.src %>/i18n/*.tl'],
+		    tasks: ['translate_compile'],
+		    options: {
+		      livereload: true
+		    }
+		  }
 		},
 		//
 		// Make sure code styles are up to par and there are no obvious mistakes
@@ -308,7 +315,19 @@ module.exports = function(grunt) {
 					}
 				]
 			}
-		}
+		},
+		translate_compile: {
+	    compile: {
+	      options: {
+					multipleObjects: true,
+	        asJson: true
+	      },
+	      files: {
+	        // post-compiling file to the left, pre-compiling files to the right
+	        '<%= yeoman.src %>/i18n/tranlsation.json': ['<%= yeoman.src %>/i18n/*.tl']
+	      }
+	    }
+	  }
 	});
 	grunt.registerTask('build', [
 		'clean:dist',
@@ -327,6 +346,7 @@ module.exports = function(grunt) {
 		'clean:dist',
 		'includeSource:debug',
 		'wiredep:debug',
+		'translate_compile',
 		'copy:dist',
 		'copy:debug',
 		'connect:livereload',
