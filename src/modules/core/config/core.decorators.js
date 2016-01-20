@@ -45,6 +45,12 @@ angular.module('com.module.core')
 			}
 			//check state rules
 			if (!state.abstract) {
+				if (state.includes.hasOwnProperty('main.articles')) {
+					controllerName = moduleToCtrl(moduleName[1]) + 'Controller';
+					state.url = state.url || $urlMatcherFactoryProvider.compile('/' + moduleName[2]);
+					titleName = moduleName[2].toUpperCase();
+					templName = 'modules/' + moduleName[1] + '/views/' + moduleName[2] + '.html';
+				} else
 				if (state.includes.hasOwnProperty('main.auth') || state.includes.hasOwnProperty('main.private')) {
 					controllerName = moduleToCtrl(moduleName[2]) + 'Controller';
 					state.url = state.url || $urlMatcherFactoryProvider.compile('/' + moduleName[2]);

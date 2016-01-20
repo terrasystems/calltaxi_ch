@@ -8,12 +8,12 @@
  */
 angular.module('com.module.auth')
 //
-.controller('RegistrationController', function($scope, publicRequest, $state, alertService, blockUI, getGeoCountry, $rootScope) {
+.controller('RegistrationController', function($scope, publicRequest, $state, alertService, blockUI, getGeoCountry) {
 	// Вчисляем страну по IP
 	getGeoCountry();
 	$scope.submitForm = function(isValid) {
 		if (isValid) {
-			$scope.sendRegistration = true;
+/*			$scope.sendRegistration = true;
 			// Блокируем интерфейс
 			blockUI.start();
 			$scope.reg.country = $rootScope.country_code;
@@ -23,7 +23,7 @@ angular.module('com.module.auth')
 					window.location = data.result.domain + '/#/regactivation/' + data.result.authkey;
 
 				data = null;
-			});
+			});*/
 		}
 	};
 });

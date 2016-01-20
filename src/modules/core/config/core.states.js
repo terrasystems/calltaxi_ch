@@ -21,20 +21,33 @@ angular.module('com.module.core')
 					templateUrl: 'modules/core/views/main.html',
 					controller: 'MainController'
 				},
+				'header@main': {
+					templateUrl: 'modules/core/views/header.html',
+					controller: 'HeaderController'
+				},
+
 				'footer@main': {
 					templateUrl: 'modules/core/views/footer.html'
 				}
 			}
 		},
 		// public
+		//auth
 		{
 			name: 'main.auth',
-			url: '/',
+			url: '',
 			abstract: true
-		},	{
-			name: 'main.auth.login',
-			url: 'login'
-		}, {
+		},
+		//login
+		{
+			name: 'main.auth.login'
+		},
+		//Registration
+		{
+			name: 'main.auth.registration'
+		},
+		//error
+		{
 			name: 'main.error',
 			url: 'error/:code',
 			resolve: {
@@ -43,17 +56,37 @@ angular.module('com.module.core')
 				}]
 			}
 		},
+		//main page
 		{
 			name: 'main.taxi',
-			url:'/taxi',
-			views:{
-				'header@main': {
-					templateUrl: 'modules/core/views/header.html',
-					controller: 'HeaderController'
-				}
-			}
+			url:'/taxi'
 		},
-
+		//articles with contact us
+		{
+			name:'main.articles',
+			url:'',
+			abstract:true
+		},
+		//articles terms
+		{
+			name:'main.articles.terms'
+		},
+		//articles privacy_notice
+		{
+			name:'main.articles.privacy_notice'
+		},
+		//articles contactus
+		{
+			name:'main.articles.contactus'
+		},
+		//articles about
+		{
+			name:'main.articles.about'
+		},
+		//articles help
+		{
+			name:'main.articles.help'
+		},
 		// private
 		{
 			name: 'main.private',

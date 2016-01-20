@@ -17,7 +17,8 @@ angular.module('taxiApp', [
 /* miniApp modules */
 	'com.module.core',
 	'com.module.auth',
-	'com.module.taxi'
+	'com.module.taxi',
+	'com.module.articles'
 ])
 /* config */
 .config(function($httpProvider, $stateProvider, $urlRouterProvider, $translateProvider, statesList, $provide,
