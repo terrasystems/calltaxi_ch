@@ -16,7 +16,8 @@ angular.module('taxiApp', [
 	'toggle-switch', 'LocalStorageModule', 'ui.router.tabs',
 /* miniApp modules */
 	'com.module.core',
-	'com.module.auth'
+	'com.module.auth',
+	'com.module.taxi'
 ])
 /* config */
 .config(function($httpProvider, $stateProvider, $urlRouterProvider, $translateProvider, statesList, $provide,

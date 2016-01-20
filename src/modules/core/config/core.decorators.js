@@ -1,4 +1,5 @@
 'use strict';
+/*jshint -W069 */
 /**
  * @ngdoc overview
  * @name core.decorators

@@ -1,4 +1,5 @@
 'use strict';
+/*jshint -W116 */
 angular.module('com.module.taxi')
 /**
  * @ngdoc function
@@ -7,13 +8,8 @@ angular.module('com.module.taxi')
  * # TaxiController
  * Controller of the main-common form
  */
-.controller('TaxiController', function ($scope, privateRequest, $translate, $sessionStorage, periodObj) {
+.controller('TaxiController', function ($scope) {
 	/* model toggle */
 	$scope.type = 'Pie';
-	$scope.periodobject = periodObj;
-	// periodfilter
-	$scope.periodfilter = $sessionStorage.periodfilter || 0;
-	if (!$scope.backfilter) $scope.backfilter = {
-		filtering: {}
-	};
+
 });

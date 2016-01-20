@@ -95,7 +95,7 @@ angular.module('com.module.core')
 				}
 				default:
 				{
-						$injector.get('$state').go('main.public.error', {code : rejection.status});
+						$injector.get('$state').go('main.error', {code : rejection.status});
 
 				}
 			}
