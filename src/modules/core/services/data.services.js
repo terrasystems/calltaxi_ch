@@ -413,9 +413,9 @@ angular.module('com.module.core')
  * @requires taxiApp
  */
 	.factory('taxiRequest', function ($resource) {
-		return $resource('app/:url/:action', {url: '@url', action: '@action'}, {
+		return $resource('http://3.gesappuat.appspot.com/app/', {}, { //FIXME: make baseUrl
 			post: {method: 'POST'},
-			get: {method: 'GET'},
+			get: {url: ':url/:action', method: 'GET'},
 			query: {method: 'GET', isArray: true}
 		});
 	})

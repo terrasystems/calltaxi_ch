@@ -1,115 +1,15 @@
-	<form name="regForm" ng-submit="submitForm(regForm.$valid)" novalidate>
-		<div class="header">{{'REGNEWLAB'|translate}}</div>
-		<div class="body">
-			<!-- org -->
-			<div class="input-group">
-				<span class="input-group-addon" data-toggle="tooltip" data-placement="left" title="{{'LABNAME'|translate}}">
-				<i class="fa fa-fw fa-suitcase"></i>
-				</span>
-				<input type="text" name="org" id="org" class="form-control" placeholder="{{'LABNAME'|translate}}" ng-model="reg.org"
-				ng-minlength="2" ng-maxlength="100" required autofocus capitalize
-				/>
-				<!-- Pop -->
-				<!-- <span ng-if="regForm.$submitted || regForm.org.$touched" class="fa fa-fw fa-remove form-control-feedback" aria-hidden="true"></span> -->
-			</div>
-			<!-- MMM -->
-			<div class="has-warning" ng-if="regForm.$submitted || regForm.org.$touched" ng-messages="regForm.org.$error" ng-messages-multiple>
-				<div ng-message="required">{{'SETLABNAME'|translate}}</div>
-				<div ng-message="pattern">{{'BADSIMBOLS'|translate}}</div>
-				<div ng-message="minlength">{{'NAMETOOSHORT'|translate}}</div>
-				<div ng-message="maxlength">{{'NAMETOOLONG'|translate}}</div>
-			</div>
-			<!-- domain -->
-			<!-- <span class="text-info">
-				<i>{{reg.domain}}.minilis.org</i>
-			</span> -->
-			<div class="input-group ">
-				<span class="input-group-addon" data-toggle="tooltip" data-placement="left"
-				title="{{'ADDRESSTOENTERSITE'|translate}}">
-				<i class="fa fa-fw fa-globe"></i>
-				</span>
-				<input type="text" name="domain" id="domain" placeholder="{{'ADDRESSMINILIS'|translate}}"
-				ng-pattern="/^[A-Za-z0-9]+$/" ng-minlength="2" ng-maxlength="20" required="required" ng-model="reg.domain"
-				ng-model-options="{updateOn: 'blur'}" class="form-control" ng-value=""
-				unique-reg-validator lowercase />
-				<span class="input-group-addon text-info" style="width: 90px">.minilis.org</span>
-				<!-- popover-placement="right" popover="{{reg.domain | truncate: 20}}" popover-append-to-body="true" -->
-			</div>
-			<!-- MMM -->
-			<div class="has-warning" ng-if="regForm.$submitted || regForm.domain.$touched" ng-messages="regForm.domain.$error"
-				ng-messages-multiple>
-				<div ng-message="required">{{'SETDOMAIN'|translate}}</div>
-				<div ng-message="pattern">{{'BADSIMBOLS'|translate}}</div>
-				<div ng-message="minlength">{{'NAMETOOSHORT'|translate}}</div>
-				<div ng-message="maxlength">{{'NAMETOOLONG'|translate}}</div>
-				<div ng-message="unique">{{'ISTAKEN'|translate}}</div>
-			</div>
-			<div ng-messages="regForm.domain.$pending">
-				<div ng-message="unique">{{'CHEKING'|translate}}</div>
-			</div>
-			<!-- fio -->
-			<div class="input-group">
-				<span class="input-group-addon">
-				<i class="fa fa-fw fa-user"></i>
-				</span>
-				<input type="text" name="name" id="name" class="form-control" placeholder="{{'YOURNAME'|translate}}" ng-model="reg.name" />
-			</div>
-			<div class="has-warning" ng-if="regForm.$submitted || regForm.name.$dirty" ng-messages="regForm.name.$error"
-				ng-messages-multiple>
-			</div>
-			<!-- email -->
-			<div class="input-group">
-				<span class="input-group-addon">
-				<i class="fa fa-fw fa-envelope"></i>
-				</span>
-				<input type="text" name="email" id="reg.email" class="form-control" placeholder="{{'YOUR_EMAIL'|translate}}" ng-model="reg.email"
-				ng-model-options="{ updateOn: 'blur' }" ng-pattern="/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}$/"
-				unique-reg-validator lowercase
-				required />
-			</div>
-			<!-- MMM -->
-			<div class="has-warning" ng-if="regForm.$submitted || regForm.email.$dirty || regForm.email.$touched"
-				ng-messages="regForm.email.$error" ng-messages-multiple>
-				<div ng-message="required">{{'ENTEREMAIL'|translate}}</div>
-				<div ng-message="pattern">{{'NOTVALIDEMAIL'|translate}}</div>
-				<div ng-message="unique">{{'ISTAKEN'|translate}}</div>
-			</div>
-			<div ng-messages="regForm.email.$pending">
-				<div ng-message="unique">{{'CHEKING'|translate}}</div>
-			</div>
-			<!-- pass -->
-			<div class="input-group">
-				<span class="input-group-addon">
-				<i class="fa fa-fw fa-lock"></i>
-				</span>
-				<input type="password" name="password" id="password" class="form-control" placeholder="{{'PASS'|translate}}"
-				ng-model="reg.password" required ng-minlength="5" ng-model-options="{ updateOn: 'default blur', debounce : { 'default' : 200, blur : 0 } }"/>
-			</div>
-			<!-- MMM -->
-			<div class="has-warning" ng-if="regForm.$submitted || regForm.password.$dirty" ng-messages="regForm.password.$error"
-				ng-messages-multiple>
-				<div ng-message="required">{{'PASS'|translate}}</div>
-				<div ng-message="minlength">{{'PASSSHORT'|translate}}</div>
-				<div ng-message="maxlength">{{'PASSSLONG'|translate}}</div>
-			</div>
-			<!-- verification -->
-			<div class="input-group">
-				<span class="input-group-addon">
-				<i class="fa fa-fw fa-lock"></i>
-				</span>
-				<input type="password" name="verification" id="verification" class="form-control" placeholder="{{'PASSCONFIRM'|translate}}" ng-model="reg.verification"
-				match-pass-validator="reg.password" required ng-minlength="5" ng-model-options="{ updateOn: 'default blur', debounce : { 'default' : 500, blur : 0 } }"/>
-			</div>
-			<!-- MMM -->
-			<div class="has-warning" ng-if="regForm.$submitted || regForm.verification.$dirty" ng-messages="regForm.verification.$error"
-				ng-messages-multiple>
-				<div ng-message="required">{{'PASSCONFIRM'|translate}}</div>
-				<div ng-message="match">{{'PASSWORDSNOTMATCH'|translate}}</div>
-			</div>
+<div class="row row-center">
+	<div class="col-xs-12 col-sm-6 col-sm-offset-3">
+		<div class="heading-block text-left heading-block-line">
+			<h2 class="special-heading">User Registration</h2>
 		</div>
-		<div class="footer text-center">
-			<button ng-disabled="sendRegistration || regForm.$invalid" type="submit" class="btn btn-block btn-primary">{{'CREATENEWLAB'|translate}}</button>
-			<span>{{'ALREADYCREATEDDO'|translate}}</span>
-			<a ui-sref="main.public.login" class="text-center">{{'DOENTER'|translate}}</a>
-		</div>
-	</form>
+		<form ng-submit="onSubmit()" name="form" novalidate>
+			<formly-form model="model" fields="fields" options="options">
+				<button type="submit" class="btn btn-primary submit-button" ng-disabled="form.$invalid">
+					Submit</button>
+				<button type="button" class="btn btn-default" ng-click="options.resetModel()">
+					Reset</button>
+			</formly-form>
+		</form>
+	</div>
+</div>
