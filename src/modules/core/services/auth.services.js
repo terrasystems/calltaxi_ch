@@ -7,12 +7,6 @@ angular.module('com.module.core')
 		/* Проверка авторизации из куков */
 		var originalPath = $location.path();
 		$location.path("/login");
-		/*Сделано для того что бы после активации доп пользователя пользователя или получения нового пароля не проверять токен*/
-		/*if (originalPath.indexOf('/passnew/') >= 0) return;
-		/!*Токен не проверять, если осуществляется переход на страницу со вводом почты для активации. Ссылка может быть на другой домен, в итоге осуществляется перезапуск приложения и опять переход на логин...*!/
-		if (originalPath.indexOf('/activation/') >= 0) return;
-		if ((originalPath.indexOf('/regactivation/') == -1) && (originalPath.indexOf('/passnew/') == -1) && (originalPath.indexOf(
-		'/registration') == -1)) $location.path("/login");*/
 		// Пытаемся достать токен из URL в адресной строке
 		var authToken = $location.search().token;
 		// Перекодиркем токен с base64

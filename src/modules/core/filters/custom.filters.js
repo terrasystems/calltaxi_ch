@@ -1,5 +1,6 @@
 'use strict';
 /*  */
+/*jshint -W116 */
 angular.module('com.module.core')
 	/*  */
 	.filter('propsFilter', function() {
@@ -38,11 +39,11 @@ angular.module('com.module.core')
 	})
 	/* */
 	.filter('capitalize', function() {
-		return function(input, all) {
+		return function(input) {
 			return (!!input) ? input.replace(/([^\W_]+[^\s-]*) */g, function(txt) {
 				return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
 			}) : '';
-		}
+		};
 	})
 	/**
 	 * @ngdoc filter
@@ -81,5 +82,5 @@ filter('ltrim', function() {
 		else
 			return angular.isString(input) ? input.replace(new RegExp('^' + trim + '+'), '') : input;
 
-	}
+	};
 });
