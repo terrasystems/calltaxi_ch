@@ -8,7 +8,7 @@
  */
 angular.module('com.module.auth')
 //
-.controller('LoginController', function ($scope, $http, responseService, tokenRelogin, blockUI, alertService, publicRequest) {
+.controller('LoginController', function ($scope, $http, tokenRelogin, blockUI, alertService) {
 	$scope.submitForm = function (isValid) {
 		if (isValid) {
 			// Блокируем интерфейс
