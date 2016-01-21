@@ -276,7 +276,7 @@ angular.module('com.module.core')
 	factory.addSum = function (query) {
 		sums.push(query);
 		localStorageService.set('IndicatorSum', sums);
-		return localStorageService.get("IndicatorSum");
+		return localStorageService.get('IndicatorSum');
 	};
 	return factory;
 })
