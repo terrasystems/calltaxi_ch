@@ -36,3 +36,7 @@ ARTICLES
 MENU
 	LANG
 		1,2:Language
+	POINT2POINT
+		1,2:Point to Point
+	AIRPORT
+		1,2:Airport

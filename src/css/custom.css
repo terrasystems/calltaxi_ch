@@ -839,3 +839,20 @@ a.overlay i {
 }
 
 .angular-google-map-container { height: 400px; }
+
+.navbar-nav.navbar-main-menu.filters {
+	margin: 0;
+	padding: 0;
+
+}
+
+.main-navigation .filters .nav > li > a {
+	padding: 4px;
+	border-radius: 20px;
+	font-size: 14px;
+}
+
+.custom.main-navigation .navbar-main-menu > ul.nav-pills > li.active > a, .custom.main-navigation .navbar-main-menu > ul.nav-pills > li > a:hover, .custom.main-navigation .navbar-main-menu > ul.nav-pills > li > a:focus {
+	background-color: #333333;
+	color: #f5bc3c;
+}

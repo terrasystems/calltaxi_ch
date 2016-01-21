@@ -18,41 +18,21 @@ angular.module('com.module.core')
 	$templateCache.put("bootstrap/select-multiple.tpl.html","<div class=\"ui-select-container ui-select-multiple ui-select-bootstrap dropdown form-control\" ng-class=\"{open: $select.open}\"><div><div class=\"ui-select-match\"></div><input type=\"text\" autocomplete=\"off\" autocorrect=\"off\" autocapitalize=\"off\" spellcheck=\"false\" class=\"ui-select-search input-xs\" placeholder=\"{{$selectMultiple.getPlaceholder()}}\" ng-disabled=\"$select.disabled\" ng-hide=\"$select.disabled\" ng-click=\"$select.activate()\" ng-model=\"$select.search\" role=\"combobox\" aria-label=\"{{ $select.baseTitle }}\" ondrop=\"return false;\"></div><div class=\"ui-select-choices\"></div></div>");
 	$templateCache.put("bootstrap/select.tpl.html","<div class=\"ui-select-container ui-select-bootstrap dropdown\" ng-class=\"{open: $select.open}\"><div class=\"ui-select-match\"></div><input type=\"text\" autocomplete=\"off\" tabindex=\"-1\" aria-expanded=\"true\" aria-label=\"{{ $select.baseTitle }}\" aria-owns=\"ui-select-choices-{{ $select.generatedId }}\" aria-activedescendant=\"ui-select-choices-row-{{ $select.generatedId }}-{{ $select.activeIndex }}\" class=\"form-control ui-select-search\" placeholder=\"{{$select.placeholder}}\" ng-model=\"$select.search\" ng-show=\"$select.searchEnabled && $select.open\"><div class=\"ui-select-choices\"></div></div>");
 	//
-	$templateCache.put("template/typeahead/typeahead-popup.html",
-		"<ul class=\"dropdown-menu\" ng-show=\"isOpen()\" ng-style=\"{top: position.top+'px', left: position.left+'px', width: position.width+'px', 'max-height': 300+'px'}\" style=\"display: block;\" role=\"listbox\" aria-hidden=\"{{!isOpen()}}\">\n" +
-		"    <li ng-repeat=\"match in matches track by $index\" ng-class=\"{active: isActive($index) }\" ng-mouseenter=\"selectActive($index)\" ng-click=\"selectMatch($index)\" role=\"option\" id=\"{{match.id}}\">\n" +
-		"        <div typeahead-match index=\"$index\" match=\"match\" query=\"query\" template-url=\"templateUrl\"></div>\n" +
-		"    </li>\n" +
-		"</ul>\n" +
-		"");
-	// pager for labprocess
-	$templateCache.put("template/pagination/pagination.html",
-		"<ul class=\"pagination\">\n" +
-		"  <li ng-if=\"boundaryLinks\" ng-class=\"{disabled: noPrevious()}\"><a href ng-click=\"selectPage(1, $event)\">{{getText('first')}}</a></li>\n" +
-		"  <li ng-if=\"directionLinks\" ng-class=\"{disabled: noPrevious()}\"><a href ng-click=\"selectPage(page - 1, $event)\"><i class=\"fa fa-angle-double-left\"></i>&nbsp;<span class=\"hidden-xs\" translate=\"PREVIOUS\"></span></a></li>\n" +
-		"  <li ng-repeat=\"page in pages track by $index\" ng-class=\"{active: page.active}\"><a href ng-click=\"selectPage(page.number, $event)\">{{page.text}}</a></li>\n" +
-		"  <li class=\"disabled hidden-xs\" ng-transclude></li>\n" +
-		"  <li ng-if=\"directionLinks\" ng-class=\"{disabled: noNext()}\"><a href ng-click=\"selectPage(page + 1, $event)\"><span class=\"hidden-xs\" translate=\"NEXT\"></span>&nbsp;<i class=\"fa fa-angle-double-right\"></i></a></li>\n" +
-		"  <li ng-if=\"boundaryLinks\" ng-class=\"{disabled: noNext()}\"><a href ng-click=\"selectPage(totalPages, $event)\">{{getText('last')}}</a></li>\n" +
-		"</ul>");
-	// pager for labprocess
-	$templateCache.put("template/pagination/pager.html",
-		"<ul class=\"pager\">\n" +
-		"  <li ng-class=\"{disabled: noPrevious(), previous: align}\"><a href class=\"btn btn-flat\" ng-click=\"selectPage(page - 1)\"><i class=\"fa fa-angle-double-left\"></i>&nbsp;<span class=\"visible-lg\" translate=\"PREVIOUS\"></span></a></li>\n" +
-		"  <li class=\"\" ng-transclude></li>\n" +
-		"  <li ng-class=\"{disabled: noNext(), next: align}\"><a href class=\"btn btn-flat\" ng-click=\"selectPage(page + 1)\"><span class=\"visible-lg\" translate=\"NEXT\"></span>&nbsp;<i class=\"fa fa-angle-double-right\"></i></a></li>\n" +
-		"</ul>");
-	$templateCache.put("tabs_template.html",
-		"<tabset class=\"tab-container\" type=\"{{type}}\" vertical=\"{{vertical}}\" justified=\"{{justified}}\">" +
-			"<tab class=\"tab\" ng-repeat=\"tab in tabs\" heading=\"{{tab.heading|translate}}\" " +
-			"active=\"tab.active\" disable=\"tab.disabled\" ng-click=\"go(tab)\" addon=\"tab.addon\">" +
-				"<tab-heading><i class=\"fa fa-{{tab.icon}}\"></i>&nbsp;<span class=\"hidden-xs\" ng-hide=\"menuStatus\">{{tab.heading|translate}}</span></tab-heading>" +
-			"</tab> " +
-			// "<li class=\"pull-right right-li-block\">" +
-			// 	"<div  style=\"display: inline-block\">" +
-			// 		"<button class=\"btn\" ng-class=\"{'btn-success': $$childHead.qccard.isActive}\" ng-click=\"$$childHead.qccard.changeActive()\">" +
-			// 			"<i class=\"fa fa-fw\" ng-class=\"!$$childHead.qccard.isActive ? 'fa-lock' : 'fa-unlock'\"></i>" +
-			// 		"</button></div></li>" +
-			//"<left-info-buttons is-active-q=\"qccard.isActive\" delete-doc=\"deleteorder()(order)\" change-doc=\"changeActive()\"></left-info-buttons>" +
-		"</tabset>");
+	$templateCache.put("uib/template/tabs/tabset.html",
+    "<div>\n" +
+    "  <ul class=\"nav nav-{{type || 'tabs'}}\" ng-class=\"{'nav-stacked': vertical, 'nav-justified': justified}\" ng-transclude></ul>\n" +
+    "  <div class=\"tab-content\">\n" +
+    "    <div class=\"tab-pane\" \n" +
+    "         ng-repeat=\"tab in tabs\" \n" +
+    "         ng-class=\"{active: tab.active}\"\n" +
+    "         uib-tab-content-transclude=\"tab\">\n" +
+    "    </div>\n" +
+    "  </div>\n" +
+    "</div>\n" +
+    "");
+		$templateCache.put("uib/template/tabs/tab.html",
+	    "<li ng-class=\"{active: active, disabled: disabled}\" class=\"\">\n" +
+	    "  <a href ng-click=\"select()\" uib-tab-heading-transclude>{{heading}}</a>\n" +
+	    "</li>\n" +
+    "");
 });

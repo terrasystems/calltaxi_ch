@@ -70,43 +70,25 @@
 							<li class="menu-home">
 								<a class="sf-with-ul" data-touch="0" href="">Home</a>
 							</li>
-							<li class="dropdown menu-projects" uib-dropdown>
-								<a class="dropdown-toggle sf-with-ul" data-touch="0" href="" uib-dropdown-toggle>Projects</a>
-								<ul uib-dropdown-menu>
-									<li class="menu-project-style-1">
-										<a href="">Project – Style 1</a>
-									</li>
-									<li class="menu-project-style-2">
-										<a href="">Project – Style 2</a>
-									</li>
-									<li class="menu-project-style-3">
-										<a href="">Project – Style 3</a>
-									</li>
-								</ul>
-							</li>
-							<li class="dropdown menu-services">
-								<a class="dropdown-toggle sf-with-ul" data-touch="0" href="">Services</a>
-
-							</li>
-							<li class="menu-news">
-								<a href="">News</a>
-							</li>
-							<li class="menu-shop">
-								<a href="">Shop</a>
-							</li>
 						</ul>
-						<ul class="nav navbar-nav navbar-right navbar-symbols">
-							<li class="dropdown">
-								<a ui-sref="main.auth.login">
-									<i class="fa fa-login"></i> Login
-								</a>
-							</li>
-							<li class="header-top-dropdown dropdown hidden-xs">
-								<a ui-sref="main.auth.registration">
-									<i class="fa fa-user"></i> Sign Up
-								</a>
-							</li>
-						</ul>
+						<uib-tabset class="custom nav navbar-nav navbar-main-menu filters" vertical="false" type="pills">
+					    <uib-tab heading="{{'MENU.POINT2POINT'|translate}}">Vertical content 1</uib-tab>
+					    <uib-tab heading="{{'MENU.AIRPORT'|translate}}">Vertical content 2</uib-tab>
+					  </uib-tabset>
+						<div class="">
+							<ul class="nav navbar-nav navbar-right navbar-symbols">
+								<li class="dropdown">
+									<a ui-sref="main.auth.login">
+										<i class="fa fa-sign-in"></i> Login
+									</a>
+								</li>
+								<li class="header-top-dropdown dropdown hidden-xs">
+									<a ui-sref="main.auth.registration">
+										<i class="fa fa-user-plus"></i> Sign Up
+									</a>
+								</li>
+							</ul>
+						</div>
 					</div>
 				</nav>
 			</div>
