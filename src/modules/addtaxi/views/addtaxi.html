@@ -1,0 +1,12 @@
+<div class="row row-center">
+	<div class="col-xs-12 col-sm-6 col-sm-offset-3">
+		<div class="heading-block text-left heading-block-line">
+			<h2 class="special-heading" translate>BUTTON.ADDTAXI</h2>
+		</div>
+		<form ng-submit="onSubmit()" name="form1" novalidate>
+					<formly-form model="form.model" fields="form.fields" form="form1" options="form.options"></formly-form>
+					<button type="submit" class="btn btn-primary submit-button" ng-disabled="form.$invalid" translate>BUTTON.SUBMIT</button>
+					<button type="button" class="btn btn-default" ng-click="resetAllForms()" translate>BUTTON.RESET</button>
+		</form>
+	</div>
+</div>

@@ -62,6 +62,11 @@ angular.module('com.module.core')
 			url:'/taxi',
 			location: 'reload'
 		},
+		//add taxi
+		{
+			name: 'main.addtaxi',
+			url:'/addtaxi'
+		},
 		//articles with contact us
 		{
 			name:'main.articles',

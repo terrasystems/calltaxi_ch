@@ -14,6 +14,8 @@ BUTTON
 		1,2:Reset
 	SEARCH
 		1,2:Search
+	ADDTAXI
+		1,2:Add taxi
 ARTICLES
 	TITLE
 		HELP

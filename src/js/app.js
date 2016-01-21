@@ -19,7 +19,8 @@ angular.module('taxiApp', [
 	'com.module.core',
 	'com.module.auth',
 	'com.module.taxi',
-	'com.module.articles'
+	'com.module.articles',
+	'com.module.addtaxi'
 ])
 	/* config */
 	.config(function($httpProvider, $stateProvider, $urlRouterProvider, $translateProvider, statesList, $provide,
