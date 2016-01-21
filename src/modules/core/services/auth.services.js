@@ -1,12 +1,12 @@
 'use strict';
-/*  */
+/*jshint -W116*/
 angular.module('com.module.core')
 // Сервис проверки аутентификации и получения из куков
 .service('checkUserAuth', function ($location, localStorageService, $rootScope, $state, $base64) {
 	var checkUserAuth = function () {
 		/* Проверка авторизации из куков */
 		var originalPath = $location.path();
-		$location.path("/login");
+		$location.path('/login');
 		// Пытаемся достать токен из URL в адресной строке
 		var authToken = $location.search().token;
 		// Перекодиркем токен с base64
@@ -50,7 +50,7 @@ angular.module('com.module.core')
 	return {
 		'response': function (response) {
 			// Сбиваем лок интерфейса
-			if (response.data.alerts != null)  $injector.get('alertService').addAlerts(response.data.alerts);
+			if (response.data.alerts !== null)  $injector.get('alertService').addAlerts(response.data.alerts);
 			switch (response.data.status) {
 				// Не авторизирован
 				case '401':
@@ -79,11 +79,11 @@ angular.module('com.module.core')
 			switch (rejection.status) {
 				case 0:
 				{
-					var refr = $injector.get('$translate').instant("REFRESH");
+					var refr = $injector.get('$translate').instant('REFRESH');
 					var opts = {
 						timeOut: 150000
-					}
-					$injector.get('alertService').addFull(2, $injector.get('$translate').instant("ERRCONNECTIONREFUSED"),
+					};
+					$injector.get('alertService').addFull(2, $injector.get('$translate').instant('ERRCONNECTIONREFUSED'),
 					'<a href="." onclick="location.reload(true)">'+refr+'</a>', opts);
 					break;
 				}
@@ -99,29 +99,24 @@ angular.module('com.module.core')
 	};
 })
 //Сервис интерцептора запроса, вставляет токен в хедер
-.service('requestInterceptor', function ($rootScope, $q, $location) {
+.service('requestInterceptor', function ($rootScope, $q) {
 	return {
 		'request': function (config) {
-			// Проверка на вызов из бека, который подлежит проверке аутентификации
 			var isRestCall = true;
-			/*var isRestCall = ((config.url.indexOf('serv/private/') >= 0) || config.url.indexOf('accounts/') >= 0);*/
 			if (isRestCall && angular.isDefined($rootScope.authToken)) {
 				var authToken = $rootScope.authToken;
-				// Используем пересылку токена в шапке запроса
 				config.headers['X-Auth-Token'] = authToken;
-				// Пересылка офсета
 				config.headers['Client-Offset'] = new Date().getTimezoneOffset();
-				// Можно в адресной строке
 				// config.url = config.url + "?token=" + authToken;
 			}
 			return config || $q.when(config);
 		}
 	};
 })
-// Сервис отправки на прошлый стейт
+//
 .service('goStateBack', function ($rootScope, $state) {
 	var goStateBack = function () {
-		if (($rootScope.previousState === undefined) || ($rootScope.previousState === "") || ($rootScope.previousState ===
+		if (($rootScope.previousState === undefined) || ($rootScope.previousState === '') || ($rootScope.previousState ===
 		$state.current.name)) {
 			if ($rootScope.authToken === undefined) $state.go('main.public.login');
 

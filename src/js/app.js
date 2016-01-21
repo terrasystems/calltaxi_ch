@@ -1,5 +1,6 @@
 'use strict';
 /*jshint -W098*/
+/*jshint -W116*/
 /**
  * @ngdoc overview
  * @name taxiApp
