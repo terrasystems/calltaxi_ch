@@ -59,7 +59,8 @@ angular.module('com.module.core')
 		//main page
 		{
 			name: 'main.taxi',
-			url:'/taxi'
+			url:'/taxi',
+			location: 'reload'
 		},
 		//articles with contact us
 		{

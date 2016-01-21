@@ -1,7 +1,13 @@
 <div class="header-top custom">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-12 bar">
+			<!-- Logo -->
+			<div class="col-md-3">
+				<div class="logo">
+					<a ui-sref="main.taxi"><img id="logo" class="img-responsive" src="/images/logo.png" alt=""></a>
+				</div>
+			</div>
+			<div class="col-md-9 bar">
 				<ul class="nav navbar-nav top-nav left">
 					<li class="" ng-model="radioModel" uib-btn-radio="'Left'" uncheckable>
 						<a href="">
@@ -16,32 +22,17 @@
 							<i class="fa fa-bus"></i>&nbsp;Bus</a>
 					</li>
 				</ul>
-				<ul class="social-links right">
+				<ul class="nav navbar-nav top-nav right navbar-symbols">
 					<li>
-						<a target="_blank" href="">
-							<i class="fa fa-facebook"></i>
+						<a ui-sref="main.auth.login">
+							<i class="fa fa-sign-in"></i>
+							<span class="hidden-xs" translate>BUTTON.LOGIN</span>
 						</a>
 					</li>
 					<li>
-						<a target="_blank" href="">
-							<i class="fa fa-linkedin"></i>
-						</a>
-					</li>
-					<li>
-						<a target="_blank" href="/">
-							<i class="fa fa-twitter"></i>
-						</a>
-					</li>
-					<li>
-						<a
-							target="_blank"
-							href="https://m.google.com/app/plus/x/?v=compose&amp;content=About%20Us%20-%20http://demo.ciaothemes.com/wp/everglades/main/about-us/">
-							<i class="fa fa-google-plus"></i>
-						</a>
-					</li>
-					<li>
-						<a target="_blank" href="http://www.youtube.com/user/">
-							<i class="fa fa-youtube"></i>
+						<a ui-sref="main.auth.registration">
+							<i class="fa fa-user-plus"></i>
+							<span class="hidden-xs" translate>BUTTON.SIGNUP</span>
 						</a>
 					</li>
 				</ul>
@@ -49,97 +40,61 @@
 		</div>
 	</div>
 </div>
-<div class="header-style-2 main-navigation custom" sticky media-query="min-width: 768px;">
+<div class="header-style-2 main-navigation custom" sticky media-query="min-width: 768px;" ng-if="$state.includes('**.taxi')">
 	<div class="container">
 		<div class="row">
-			<!-- Logo -->
-			<div class="col-md-3">
-				<div class="logo">
-					<a ui-sref="main.taxi"><img id="logo" class="img-responsive" src="/images/logo.png" alt=""></a>
-				</div>
-			</div>
-			<div class="col-md-9">
+			<div class="col-md-12">
 				<nav class="navbar navbar-default " role="navigation">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-					</div>
-					<div class="collapse navbar-collapse" id="navbar-collapse-1">
+					<div class="">
 						<uib-tabset class="custom nav navbar-nav navbar-main-menu filters" vertical="false" type="pills">
 							<uib-tab heading="{{'MENU.POINT2POINT'|translate}}">
-								<!-- <ui-select
-									ng-model="address.selected"
-									theme="bootstrap"
-									ng-disabled="disabled"
-									reset-search-input="false"
-									style="width: 300px;">
-									<ui-select-match placeholder="Enter an address...">{{$select.selected.formatted_address}}</ui-select-match>
-									<ui-select-choices
-										repeat="address in addresses"
-										refresh="refreshAddresses($select.search)"
-										refresh-delay="0">
-										<div ng-bind-html="address.formatted_address | highlight: $select.search"></div>
-									</ui-select-choices>
-								</ui-select> -->
 								<div class="row">
-									<div class="col-md-6">
-										<input
-											type="text"
-											ng-model="point1"
-											placeholder="Locations loaded via $http"
-											uib-typeahead="address as address.formatted_address for address in getLocation($viewValue)"
-											typeahead-loading="loadingLocations"
-											typeahead-no-results="noResults"
-											typeahead-on-select="setPoint1($model)"
-											class="form-control">
-										<i ng-show="loadingLocations" class="fa fa-refresh"></i>
-										<div ng-show="noResults">
-											<i class="glyphicon glyphicon-remove"></i>
-											No Results Found
+									<div class="col-sm-5">
+										<div class="form-group">
+											<input
+												type="text"
+												ng-model="point1"
+												placeholder="Locations loaded via $http"
+												uib-typeahead="address as address.formatted_address for address in getLocation($viewValue)"
+												typeahead-loading="loadingLocations"
+												typeahead-no-results="noResults"
+												typeahead-on-select="setPoint1($model)"
+												class="form-control">
+											<i ng-show="loadingLocations" class="fa fa-refresh"></i>
+											<div ng-show="noResults">
+												<i class="fa fa-remove"></i>
+												No Results Found
+											</div>
 										</div>
 										<br>
 									</div>
-									<div class="col-md-6">
-										<input
-											type="text"
-											ng-model="point2"
-											placeholder="Locations loaded via $http"
-											uib-typeahead="address as address.formatted_address for address in getLocation($viewValue)"
-											typeahead-loading="loadingLocations2"
-											typeahead-no-results="noResults2"
-											typeahead-on-select="setPoint2($model)"
-											class="form-control">
-										<i ng-show="loadingLocations2" class="fa fa-refresh"></i>
-										<div ng-show="noResults2">
-											<i class="glyphicon glyphicon-remove"></i>
-											No Results Found
+									<div class="col-sm-5">
+										<div class="form-group">
+											<input
+												type="text"
+												ng-model="point2"
+												placeholder="Locations loaded via $http"
+												uib-typeahead="address as address.formatted_address for address in getLocation($viewValue)"
+												typeahead-loading="loadingLocations2"
+												typeahead-no-results="noResults2"
+												typeahead-on-select="setPoint2($model)"
+												class="form-control">
+											<i ng-show="loadingLocations2" class="fa fa-refresh"></i>
+											<div ng-show="noResults2">
+												<i class="fa fa-remove"></i>
+												No Results Found
+											</div>
 										</div>
 										<br>
 									</div>
+									<div class="col-sm-2">
+										<button type="submit" name="button" class="btn btn-primary btn-block" style="margin:0" ng-click="doSearch(point1)"><i class="fa fa-search"> </i><span translate> BUTTON.SEARCH</span></button>
+									</div>
+									<!-- .row>.col-xs-12.col -->
 								</div>
 							</uib-tab>
 							<uib-tab heading="{{'MENU.AIRPORT'|translate}}"></uib-tab>
 						</uib-tabset>
-						<div class="">
-							<ul class="nav navbar-nav navbar-right navbar-symbols">
-								<li class="dropdown">
-									<a ui-sref="main.auth.login">
-										<i class="fa fa-sign-in"></i>
-										Login
-									</a>
-								</li>
-								<li class="header-top-dropdown dropdown hidden-xs">
-									<a ui-sref="main.auth.registration">
-										<i class="fa fa-user-plus"></i>
-										Sign Up
-									</a>
-								</li>
-							</ul>
-						</div>
 					</div>
 				</nav>
 			</div>

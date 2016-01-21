@@ -4519,9 +4519,12 @@ select.form-control {
 /* Small devices (tablets, phones less than 767px) */
 @media (max-width: 991px) {
     .header-top ul {
-        display: list-item;
+        display: inline-block;
+    }
+    .header-top ul > li {
     }
     .bar .left {
+			padding-right: 20px;;
         float: none;
     }
     .bar .right{

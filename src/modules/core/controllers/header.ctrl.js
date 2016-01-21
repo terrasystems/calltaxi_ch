@@ -13,7 +13,12 @@ angular.module('com.module.core')
 		// search
 		$scope.search = function(obj) {};
 		// go search
-		$scope.gosearch = function(obj) {};
+		$scope.doSearch = function(address) {
+			$rootScope.$broadcast('search', {
+				latitude: address.geometry.location.lat,
+				longitude: address.geometry.location.lng
+			});
+		};
 		$scope.address = {};
 		$scope.setPoint1 = function(address) {
 			$rootScope.$broadcast('point1', {

@@ -50,6 +50,7 @@ angular.module('com.module.core')
 					state.url = state.url || $urlMatcherFactoryProvider.compile('/' + moduleName[2]);
 					titleName = moduleName[2].toUpperCase();
 					templName = 'modules/' + moduleName[1] + '/views/' + moduleName[2] + '.html';
+					state.location = 'reload';
 				} else
 				if (state.includes.hasOwnProperty('main.auth') || state.includes.hasOwnProperty('main.private')) {
 					controllerName = moduleToCtrl(moduleName[2]) + 'Controller';

@@ -221,6 +221,10 @@ ul.pagination li.active a,
 	border-color: #f5bc3c;
 }
 
+.header-top .navbar-nav > li > a {
+	padding: 15px !important;
+}
+
 .header-top .navbar-nav > li > a:hover,
 .header-top .navbar-nav > li .active> a,
 .header-top .navbar-nav > li:active> a,
@@ -677,7 +681,8 @@ a.overlay i {
 	.navbar.navbar-default,
 	.custom.main-navigation .navbar.navbar-default {
 		background-color: #f5bc3c;
-		border-color: #333333;
+		/*border-color: #333333;*/
+		height: 100%;
 	}
 	.dark.main-navigation a.navbar-toggle.shopping-cart i {
 		color: #f5bc3c;
