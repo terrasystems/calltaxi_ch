@@ -49,8 +49,6 @@ angular.module('com.module.core')
 .service('responseErrorInterceptor', function ($rootScope, $q, $injector, logoutUser, blockUI) {
 	return {
 		'response': function (response) {
-			// Сбиваем лок интерфейса
-			if (response.data.alerts !== null)  $injector.get('alertService').addAlerts(response.data.alerts);
 			switch (response.data.status) {
 				// Не авторизирован
 				case '401':

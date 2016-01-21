@@ -4,7 +4,7 @@
  * @name com.module.auth.controller:publicController
  * @description
  * # authController
- * Controller of the public Editor
+ * Controller of the Registration
  */
 angular.module('com.module.auth').controller('RegistrationController', function($scope, taxiRequest, $state,
 	alertService, blockUI, $rootScope, $translate, $log) {
@@ -13,7 +13,7 @@ angular.module('com.module.auth').controller('RegistrationController', function(
 		formState: {}
 	};
 	//
-	$scope.fields = [
+	var userFields = [
 		{
 			key: 'firstName',
 			type: 'input',
@@ -24,24 +24,16 @@ angular.module('com.module.auth').controller('RegistrationController', function(
 				addonLeft: {
 					class: 'fa fa-user'
 				}
-			},
-			expressionProperties: {
-				'templateOptions.label': '"FIRSTNAME" | translate',
-				'templateOptions.placeholder': '"FIRSTNAME" | translate'
 			}
-      },
+			},
 		{
 			key: 'lastName',
 			type: 'input',
 			templateOptions: {
 				label: $translate.instant('LASTNAME'),
 				placeholder: $translate.instant('LASTNAME')
-			},
-			expressionProperties: {
-				'templateOptions.label': '"LASTNAME" | translate',
-				'templateOptions.placeholder': '"LASTNAME" | translate'
 			}
-      },
+			},
 		{
 			key: 'email',
 			type: 'input',
@@ -49,10 +41,6 @@ angular.module('com.module.auth').controller('RegistrationController', function(
 				label: $translate.instant('EMAIL'),
 				placeholder: $translate.instant('EMAIL'),
 				type: 'email'
-			},
-			expressionProperties: {
-				'templateOptions.label': '"EMAIL" | translate',
-				'templateOptions.placeholder': '"EMAIL" | translate'
 			}
 		},
 		{
@@ -62,10 +50,6 @@ angular.module('com.module.auth').controller('RegistrationController', function(
 				label: $translate.instant('PASSWORD'),
 				placeholder: $translate.instant('PASSWORD'),
 				type: 'password'
-			},
-			expressionProperties: {
-				'templateOptions.label': '"PASSWORD" | translate',
-				'templateOptions.placeholder': '"PASSWORD" | translate'
 			}
 		},
 		{
@@ -75,21 +59,143 @@ angular.module('com.module.auth').controller('RegistrationController', function(
 				label: $translate.instant('PHONENUMBER'),
 				placeholder: $translate.instant('PHONENUMBER'),
 				type: 'tel'
-			},
-			expressionProperties: {
-				'templateOptions.label': '"PHONENUMBER" | translate',
-				'templateOptions.placeholder': '"PHONENUMBER" | translate'
 			}
-      }
+			}
+		];
+	var suplFields = []; //driverFields = [];
+	suplFields = userFields.concat([
+		{
+			key: 'address',
+			type: 'input',
+			templateOptions: {
+				label: $translate.instant('ADDRESS'),
+				placeholder: $translate.instant('ADDRESS'),
+				type: 'text'
+			}
+		},
+		{
+			key: 'companyName',
+			type: 'input',
+			templateOptions: {
+				label: $translate.instant('COMPANYNAME'),
+				placeholder: $translate.instant('COMPANYNAME'),
+				type: 'text'
+			}
+		},
+		{
+			key: 'website', //className: 'col-xs-6',
+			type: 'input',
+			templateOptions: {
+				label: $translate.instant('WEBSITE'),
+				placeholder: $translate.instant('WEBSITE'),
+				type: 'url'
+			}
+		},
+		{
+			className: 'row',
+			fieldGroup: [
+				{
+					key: 'latit',
+					className: 'col-xs-6',
+					type: 'input',
+					templateOptions: {
+						label: $translate.instant('LATIT'),
+						placeholder: $translate.instant('LATIT'),
+						type: 'number'
+					}
+				},
+				{
+					key: 'longit',
+					className: 'col-xs-6',
+					type: 'input',
+					templateOptions: {
+						label: $translate.instant('LONGIT'),
+						placeholder: $translate.instant('LONGIT'),
+						type: 'number'
+					}
+				}
+			]
+		},
+		{
+			className: 'row',
+			fieldGroup: [
+				{
+					key: 'vehicleNumber',
+					className: 'col-xs-6',
+					type: 'input',
+					templateOptions: {
+						label: $translate.instant('VEHICLENUMBER'),
+						placeholder: $translate.instant('VEHICLENUMBER'),
+						type: 'number'
+					}
+				},
+				{
+					key: 'driverName',
+					className: 'col-xs-6',
+					type: 'input',
+					templateOptions: {
+						label: $translate.instant('DRIVERNAME'),
+						placeholder: $translate.instant('DRIVERNAME'),
+						type: 'text'
+					}
+				}
+			]
+		}
+	]);
+	//angular.copy(suplFields, driverFields);
+	//
+	$scope.tabs = [
+		//user tab
+		{
+			title: $translate.instant('USER'),
+			active: true,
+			form: {
+				options: {},
+				model: $scope.model,
+				fields: userFields
+			}
+    },
+		// supl tab
+		{
+			title: $translate.instant('SUPPLIER'),
+			form: {
+				options: {},
+				model: $scope.model,
+				fields: suplFields
+			}
+	},
+		// supl tab
+		{
+			title: $translate.instant('DRIVER'),
+			form: {
+				options: {},
+				model: $scope.model,
+				fields: suplFields
+			}
+	}
     ];
-	$scope.originalFields = angular.copy($scope.fields);
+	//$scope.originalTabs = angular.copy($scope.form);
+	//$scope.originalFields = angular.copy($scope.fields);
+	$scope.resetAllForms = invokeOnAllFormOptions.bind(null, 'resetModel');
 	$scope.onSubmit = function() {
-		angular.extend($scope.model, {url:'user', action:'signup'});
-		taxiRequest.get($scope.model, function (res) {
+		angular.extend($scope.model, {
+			url: 'user',
+			action: 'signup'
+		});
+		taxiRequest.get($scope.model, function(res) {
 			$log.info(res);
-		}, function (err) {
+		}, function(err) {
 			$log.error(err);
 		});
-		$scope.options.updateInitialValue();
+		//$scope.options.updateInitialValue();
+		invokeOnAllFormOptions('updateInitialValue');
 	};
+
+	function invokeOnAllFormOptions(fn) {
+		angular.forEach($scope.tabs, function(tab) {
+			if (tab.form.options && tab.form.options[fn]) {
+				tab.form.options[fn]();
+			}
+		});
+	}
 });

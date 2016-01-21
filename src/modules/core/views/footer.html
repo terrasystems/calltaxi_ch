@@ -102,7 +102,7 @@
 								</a>
 								<ul class="dropdown-menu" dropdown-menu>
 									<li ng-repeat="langKey in translations">
-										<a href="" class="flag {{langKey}}" ng-click="langChanged(langKey)" translate>{{langKey}}</a>
+										<a href="" class="flag {{langKey}}" ng-click="langChanged(langKey);" onclick="location.reload(true)" translate>{{langKey}}</a>
 									</li>
 								</ul>
 							</li>

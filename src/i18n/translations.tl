@@ -3,6 +3,17 @@ LANGUAGES
 	2:uk
 LABEL
 	1,2:<b>Acceptance through Use</b><br>This website (the “Site”) is operated by Mytalk.
+BUTTON
+	LOGIN
+		1,2:Login
+	SIGNUP
+		1,2:Sign Up
+	SUBMIT
+		1,2:Submit
+	RESET
+		1,2:Reset
+	SEARCH
+		1,2:Search
 ARTICLES
 	TITLE
 		HELP
