@@ -18,15 +18,43 @@ module.exports = function(grunt) {
       options: {
         port: 9000,
         // Change this to '0.0.0.0' to access the server from outside.
-        hostname: 'localhost',
-        livereload: 12345
+	      debug: true,
+        hostname: '*',
+        //livereload: 12345
+	      middleware: function (connect, options, defaultMiddleware) {
+		      // Setup the proxy
+		      var proxy = require('grunt-connect-proxy/lib/utils').proxyRequest;
+		      return [
+			      proxy,
+			      connect().use(
+				      '/bower_components',
+				      serveStatic('./bower_components')
+			      ),
+			      serveStatic(srcConfig.dist)
+		      ].concat(defaultMiddleware);
+	      }
       },
+			proxies: [
+				{
+					context: '/app/',
+					host: '3.gesappuat.appspot.com',
+					port: 80,
+					https: false,
+					//xforward: false,
+					//changeOrigin: true,
+		      rewrite: {
+					 '^/app': '/app'
+					 }
+				}
+			],
       livereload: {
         options: {
           open: true,
           middleware: function (connect) {
+	          var proxy = require('grunt-connect-proxy/lib/utils').proxyRequest;
             return [
               //connect.static('.tmp'),
+	            proxy,
               connect().use(
                 '/bower_components',
                 serveStatic('./bower_components')
@@ -351,6 +379,14 @@ module.exports = function(grunt) {
 		'translate_compile',
 		'copy:dist',
 		'copy:debug',
-		'connect:livereload',
+		'configureProxies',
+		'connect:dist',
 		'watch']);
+	grunt.registerTask('debugA', [
+		'clean:dist',
+		'includeSource:debug',
+		'wiredep:debug',
+		'translate_compile',
+		'copy:dist',
+		'copy:debug']);
 };
