@@ -73,7 +73,7 @@ angular.module('taxiApp', [
 		blockUIConfig.template =
 			'<div class="block-ui-overlay"></div><div class="block-ui-message-container" aria-live="assertive" aria-atomic="true"><div class="block-ui-message" ng-class="$_blockUiMessageClass"><div class="loader"><div class="loader-inner ball-grid-pulse"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div></div></div>';
 		// Provide a custom template to use
-		uiSelectConfig.theme = '/modules/core/views/select.tmpl.html';
+		uiSelectConfig.theme = 'bootstrap';
 		uiSelectConfig.appendToBody = true;
 		//
 		uiGmapGoogleMapApiProvider.configure({

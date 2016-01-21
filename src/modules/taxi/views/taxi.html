@@ -1,26 +1,20 @@
 <div class="row">
 	<div class="col-xs-12 col-sm-12">
 		<div class="heading-block text-left heading-block-line">
-			<h2 class="special-heading">Features</h2>
+			<h2 class="special-heading" translate>ARTICLES.TITLE.FEATURES</h2>
 		</div>
 	</div>
 </div>
 <div class="row">
 	<div class="col-xs-12 col-sm-6">
-		<div class="text-block shortcode-container">
-			<ul class="list-triangle">
-				<li>No middle-man to take your profit, such as Other APP</li>
-				<li>Easily find the nearest Taxi</li>
-				<li>Compare prices and find the best deal</li>
-				<li>No need to create, maintain and market your own web-site. It is all taken care of. We will do the marketing for you
-					in Google, news-papers and other media</li>
-				<li>You will get 24/7 support</li>
-				<li>Local Services in and around Switzerland</li>
-				<li>Airport /Railway Station Transfer</li>
-			</ul>
+		<div class="text-block shortcode-container" translate>
+			ARTICLES.CONTENT.FEATURES
 		</div>
 	</div>
 	<div class="col-xs-12 col-sm-6">
-		<ui-gmap-google-map center="map.center" zoom="map.zoom" options="options"></ui-gmap-google-map>
+		<ui-gmap-google-map center="map.center" zoom="map.zoom" options="options" events="map.events">
+			<ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id"></ui-gmap-marker>
+			<ui-gmap-marker coords="marker2.coords" options="marker2.options" events="marker2.events" idkey="marker.id"></ui-gmap-marker>
+		</ui-gmap-google-map>
 	</div>
 </div>

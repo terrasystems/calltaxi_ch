@@ -856,3 +856,7 @@ a.overlay i {
 	background-color: #333333;
 	color: #f5bc3c;
 }
+
+input[type="text"].form-control  {
+	background-color: #fff;
+}
