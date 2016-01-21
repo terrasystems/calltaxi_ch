@@ -98,14 +98,14 @@ angular.module('com.module.auth').controller('RegistrationController', function(
 			templateOptions: {
 				label: $translate.instant('WEBSITE'),
 				placeholder: $translate.instant('WEBSITE'),
-				type: 'url'
+				type: 'text'
 			}
 		},
 		{
 			className: 'row',
 			fieldGroup: [
 				{
-					key: 'latit',
+					key: 'latitude',
 					className: 'col-xs-6',
 					type: 'input',
 					templateOptions: {
@@ -115,7 +115,7 @@ angular.module('com.module.auth').controller('RegistrationController', function(
 					}
 				},
 				{
-					key: 'longit',
+					key: 'longitude',
 					className: 'col-xs-6',
 					type: 'input',
 					templateOptions: {
@@ -188,17 +188,44 @@ angular.module('com.module.auth').controller('RegistrationController', function(
 	//$scope.originalFields = angular.copy($scope.fields);
 	$scope.resetAllForms = invokeOnAllFormOptions.bind(null, 'resetModel');
 	$scope.onSubmit = function() {
+
 		angular.extend($scope.model, {
-			url: 'user',
 			action: 'signup'
-		});
-		taxiRequest.post($scope.model, {}, function(res) {
-			$log.info(res);
+			});
+		switch ($scope.tabIndex) {
+			case 0:
+				angular.extend($scope.model, {
+					url: 'user',
+					role: 'ROLE_USER'
+				});
+			  break;
+			case 1:
+				angular.extend($scope.model, {
+					url: 'supplier',
+					role: 'ROLE_SUPPLIER'
+				});
+				break;
+			case 2:
+				angular.extend($scope.model, {
+					url: 'driver',
+					role: 'ROLE_DRIVER'
+				});
+				break;
+		}
+
+		taxiRequest.post($scope.model, null, function(res) {
+			//$log.info(res);
+			if (res.data)
+			 alertService.add(3, res.data);
 		}, function(err) {
 			$log.error(err);
 		});
 		//$scope.options.updateInitialValue();
 		invokeOnAllFormOptions('updateInitialValue');
+	};
+	$scope.getindex = function(index)
+	{
+		$scope.tabIndex = index;
 	};
 
 	function invokeOnAllFormOptions(fn) {
