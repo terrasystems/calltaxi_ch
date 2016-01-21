@@ -66,6 +66,15 @@ angular.module('com.module.auth').controller('RegistrationController', function(
 	var suplFields = []; //driverFields = [];
 	suplFields = userFields.concat([
 		{
+			key: 'licenseNumber',
+			type: 'input',
+			templateOptions: {
+				label: $translate.instant('LICENSENUMBER'),
+				placeholder: $translate.instant('LICENSENUMBER'),
+				type: 'text'
+			}
+		},
+		{
 			key: 'address',
 			type: 'input',
 			templateOptions: {
@@ -183,7 +192,7 @@ angular.module('com.module.auth').controller('RegistrationController', function(
 			url: 'user',
 			action: 'signup'
 		});
-		taxiRequest.get($scope.model, function(res) {
+		taxiRequest.post($scope.model, {}, function(res) {
 			$log.info(res);
 		}, function(err) {
 			$log.error(err);

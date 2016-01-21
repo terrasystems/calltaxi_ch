@@ -14,60 +14,32 @@ module.exports = function(grunt) {
 		pkg: grunt.file.readJSON('package.json'),
 		yeoman: srcConfig,
 		// The actual grunt server settings
-    connect: {
-      options: {
-        port: 9000,
-        // Change this to '0.0.0.0' to access the server from outside.
-	      debug: true,
-        hostname: '*',
-        //livereload: 12345
-	      middleware: function (connect, options, defaultMiddleware) {
-		      // Setup the proxy
-		      var proxy = require('grunt-connect-proxy/lib/utils').proxyRequest;
-		      return [
-			      proxy,
-			      connect().use(
-				      '/bower_components',
-				      serveStatic('./bower_components')
-			      ),
-			      serveStatic(srcConfig.dist)
-		      ].concat(defaultMiddleware);
-	      }
-      },
-			proxies: [
-				{
-					context: '/app/',
-					host: '3.gesappuat.appspot.com',
-					port: 80,
-					https: false,
-					//xforward: false,
-					//changeOrigin: true,
-		      rewrite: {
-					 '^/app': '/app'
-					 }
+		connect: {
+			options: {
+				port: 9000,
+				// Change this to '0.0.0.0' to access the server from outside.
+				hostname: 'localhost',
+				livereload: 35729
+			},
+			livereload: {
+				options: {
+					open: true,
+					middleware: function (connect) {
+						return [
+							//connect.static('.tmp'),
+							connect().use(
+								'/bower_components',
+								serveStatic('./bower_components')
+							),
+							connect().use(
+								'/src/css',
+								serveStatic('./src/css')
+							),
+							serveStatic(srcConfig.dist)
+						];
+					}
 				}
-			],
-      livereload: {
-        options: {
-          open: true,
-          middleware: function (connect) {
-	          var proxy = require('grunt-connect-proxy/lib/utils').proxyRequest;
-            return [
-              //connect.static('.tmp'),
-	            proxy,
-              connect().use(
-                '/bower_components',
-                serveStatic('./bower_components')
-              ),
-              connect().use(
-                '/src/css',
-                serveStatic('./src/css')
-              ),
-              serveStatic(srcConfig.dist)
-            ];
-          }
-        }
-      },
+			},
 			dist: {
 				options: {
 					open: true,
