@@ -352,7 +352,7 @@ module.exports = function(grunt) {
 		'copy:dist',
 		'copy:debug',
 		'configureProxies',
-		'connect:dist',
+		'connect:livereload',
 		'watch']);
 	grunt.registerTask('debugA', [
 		'clean:dist',
