@@ -38,6 +38,7 @@
     "lodash": "v3.10.1",
     "angular-simple-logger": "~0.1.5",
     "angular-google-maps": "~2.2.1",
+	"angular-google-places-autocomplete": "0.2.7",
     "api-check": "~7.5.5",
     "angular-formly": "~7.3.9",
     "angular-formly-templates-bootstrap": "~6.2.0"

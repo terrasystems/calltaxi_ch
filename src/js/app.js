@@ -20,7 +20,8 @@ angular.module('taxiApp', [
 	'com.module.auth',
 	'com.module.taxi',
 	'com.module.articles',
-	'com.module.addtaxi'
+	'com.module.addtaxi',
+	'google.places'
 ])
 	/* config */
 	.config(function($httpProvider, $stateProvider, $urlRouterProvider, $translateProvider, statesList, $provide,
@@ -78,9 +79,9 @@ angular.module('taxiApp', [
 		uiSelectConfig.appendToBody = true;
 		//
 		uiGmapGoogleMapApiProvider.configure({
-			key: 'AIzaSyBK4x-FInDtXL-elyRiHxmZNaHjM-qz9TY',
+			//key: 'AIzaSyBK4x-FInDtXL-elyRiHxmZNaHjM-qz9TY',
 			v: '3.20', //defaults to latest 3.X anyhow
-			libraries: 'geometry,visualization'
+			//libraries: 'geometry,visualization,places'
 		});
 	})
 	/* run */

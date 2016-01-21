@@ -51,44 +51,18 @@
 								<div class="row">
 									<div class="col-sm-5">
 										<div class="form-group">
-											<input
-												type="text"
-												ng-model="point1"
-												placeholder="Locations loaded via $http"
-												uib-typeahead="address as address.formatted_address for address in getLocation($viewValue)"
-												typeahead-loading="loadingLocations"
-												typeahead-no-results="noResults"
-												typeahead-on-select="setPoint1($model)"
-												class="form-control">
-											<i ng-show="loadingLocations" class="fa fa-refresh"></i>
-											<div ng-show="noResults">
-												<i class="fa fa-remove"></i>
-												No Results Found
-											</div>
+											<input type="text" g-places-autocomplete options="autocompleteOptions" ng-model="address.point1" class="form-control"/>
 										</div>
 										<br>
 									</div>
 									<div class="col-sm-5">
 										<div class="form-group">
-											<input
-												type="text"
-												ng-model="point2"
-												placeholder="Locations loaded via $http"
-												uib-typeahead="address as address.formatted_address for address in getLocation($viewValue)"
-												typeahead-loading="loadingLocations2"
-												typeahead-no-results="noResults2"
-												typeahead-on-select="setPoint2($model)"
-												class="form-control">
-											<i ng-show="loadingLocations2" class="fa fa-refresh"></i>
-											<div ng-show="noResults2">
-												<i class="fa fa-remove"></i>
-												No Results Found
-											</div>
+											<input type="text" g-places-autocomplete options="autocompleteOptions" ng-model="address.point2" class="form-control"/>
 										</div>
 										<br>
 									</div>
 									<div class="col-sm-2">
-										<button type="submit" name="button" class="btn btn-primary btn-block" style="margin:0" ng-click="doSearch(point1)"><i class="fa fa-search"> </i><span translate> BUTTON.SEARCH</span></button>
+										<button type="submit" name="button" class="btn btn-primary btn-block" style="margin:0" ng-click="doSearch(address.point1)"><i class="fa fa-search"> </i><span translate> BUTTON.SEARCH</span></button>
 									</div>
 									<!-- .row>.col-xs-12.col -->
 								</div>
