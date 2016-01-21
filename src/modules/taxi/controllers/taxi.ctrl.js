@@ -19,18 +19,22 @@ angular.module('com.module.taxi')
 				suppressMarkers: true
 			});
 			var dirService = new maps.DirectionsService();
+
 			$scope.map = {
 				center: {
 					latitude: 47.36865,
 					longitude: 8.539182
 				},
-				zoom: 14,
+				zoom: 8,
 				events: {
 					tilesloaded: function (map) { //https://github.com/angular-ui/angular-google-maps/issues/1680#issuecomment-170588984
 						dirDisplay.setMap(map);
 					}
 				}
 			};
+
+			//$scope.map.bounds = {northeast: {}, southwest: {}};
+
 			$scope.options = {
 				scrollwheel: false
 			};
@@ -65,6 +69,10 @@ angular.module('com.module.taxi')
 							//var duration = Math.round(response['routes'][0]['legs'][0]['duration']['value'] / 60); // Converting to mins
 							// ERROR ON THIS
 							//dirDisplay.setMap($scope.map);
+							$scope.map.center = {
+								latitude: ($scope.marker1.coords.latitude + $scope.marker2.coords.latitude) / 2,
+								longitude: ($scope.marker1.coords.longitude + $scope.marker2.coords.longitude) / 2
+							}
 						} else {
 							$log.error('Directions request failed due to ' + status);
 						}
