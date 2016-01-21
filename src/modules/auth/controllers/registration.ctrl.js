@@ -9,6 +9,7 @@
 angular.module('com.module.auth').controller('RegistrationController', function($scope, taxiRequest, $state,
 	alertService, blockUI, $rootScope, $translate, $log) {
 	//
+	$scope.model = {};
 	$scope.options = {
 		formState: {}
 	};
@@ -174,7 +175,7 @@ angular.module('com.module.auth').controller('RegistrationController', function(
 			}
 	}
     ];
-	//$scope.originalTabs = angular.copy($scope.form);
+	$scope.originalTabs = angular.copy($scope.form);
 	//$scope.originalFields = angular.copy($scope.fields);
 	$scope.resetAllForms = invokeOnAllFormOptions.bind(null, 'resetModel');
 	$scope.onSubmit = function() {
