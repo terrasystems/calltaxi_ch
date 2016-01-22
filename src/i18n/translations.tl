@@ -20,6 +20,8 @@ LABEL
 		1,2:AC Vehicle
 	MEETINGPOINT
 		1,2:Meeting Point Address
+	ADDITIONALINFORMATION
+		1,2:Additional Information
 	EMAIL
 		1,2:Email
 	PASSWORD
