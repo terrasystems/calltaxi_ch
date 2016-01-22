@@ -113,20 +113,20 @@ ul.pagination li.active a,
 }
 
 .nav-tabs {
-	border-bottom: 1px solid #f5bc3c;
+	border-bottom: 1px solid #f5bc3c !important;
 }
 
 .nav-tabs > li > a:hover {
-	background-color: #f5bc3c;
-	border-color: #f5bc3c;
+	background-color: #f5bc3c !important;
+	border-color: #f5bc3c !important;
 }
 
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
-	background-color: #f5bc3c;
-	border-color: #f5bc3c;
-	border-bottom: 1px solid #f5bc3c;
+	background-color: #f5bc3c !important;
+	border-color: #f5bc3c !important;
+	border-bottom: 1px solid #f5bc3c !important;
 }
 
 .nav-pills > li.active > a,
@@ -875,4 +875,9 @@ address {
 	font-style: normal;
 	line-height: 1.42857143;
 	font-size: 14px;
+}
+
+.btn.focus, .btn:focus, .btn:hover {
+	border: none;
+	outline: none;
 }

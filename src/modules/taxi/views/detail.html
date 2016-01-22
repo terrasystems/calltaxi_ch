@@ -1,27 +1,72 @@
 <div class="row">
 	<div class="col-xs-12 col-sm-12">
 		<div class="heading-block text-left heading-block-line">
-			<h2 class="special-heading" translate>ARTICLES.TITLE.DETAILS</h2>
+			<h2 class="special-heading" translate>DETAILS</h2>
 		</div>
 	</div>
 </div>
 <div class="row">
-	<div class="col-xs-12 col-sm-6">
-		<div class="text-block shortcode-container" translate>
-			<uib-tabset class="custom nav navbar-nav navbar-main-menu filters" vertical="false" type="pills">
-				<uib-tab heading="{{'MENU.POINT2POINT'|translate}}">
-					<div class="row">
-						<div class="col-md-12">
-							<pre>
-								{{detail|json}}
-							</pre>
-						</div>
-					</div>
+	<div class="col-xs-12 col-sm-8">
+		<div class="">
+			<uib-tabset class="custom">
+				<uib-tab heading="{{'REVIEWS'|translate}}">
+					{{'REVIEWS'|translate}}
+					<pre>{{detail|json}}</pre>
+				</uib-tab>
+				<uib-tab heading="{{'DESCRIPTION'|translate}}">
+					<table class="table">
+						<tr><td style="width:50%" translate>LABEL.ACVEHICLE</td><td style="width:50%">{{detail.supplierDTO}}</td></tr>
+						<tr><td style="width:50%" translate>LABEL.MAXPASSENGERCAPACITY</td><td style="width:50%">{{detail.supplierDTO}}</td></tr>
+						<tr><td style="width:50%" translate>LABEL.MAXLUGGAGECAPACITY</td><td style="width:50%">{{detail.supplierDTO}}</td></tr>
+						<tr><td style="width:50%" translate>LABEL.MEETINGPOINT</td><td style="width:50%">{{detail.supplierDTO}}</td></tr>
+						<tr><td style="width:50%" translate>LABEL.ADDITIONALINFORMATION</td><td style="width:50%">{{detail.supplierDTO}}</td></tr>
+					</table>
+				</uib-tab>
+				<uib-tab heading="{{'IMPORTANTINFO'|translate}}">
+					{{'IMPORTANTINFO'|translate}}
 				</uib-tab>
 			</uib-tabset>
 		</div>
 	</div>
-	<div class="col-xs-12 col-sm-6">
-
+	<div class="col-xs-12 col-sm-4">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Exclusions</h3>
+			</div>
+			<div class="panel-body">
+				Panel content
+			</div>
+		</div>
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Supplier Info</h3>
+			</div>
+			<div class="panel-body">
+				<table class="table">
+					<tr><td style="width:50%">Company Name</td><td style="width:50%">{{detail.supplierDTO}}</td></tr>
+					<tr><td style="width:50%">Phone Number</td><td style="width:50%">{{detail.supplierDTO}}</td></tr>
+					<tr><td style="width:50%">Website</td><td style="width:50%">{{detail.supplierDTO}}</td></tr>
+					<tr><td style="width:50%">Contact Person</td><td style="width:50%">{{detail.supplierDTO}}</td></tr>
+					<tr><td style="width:50%">Email</td><td style="width:50%">{{detail.supplierDTO}}</td></tr>
+				</table>
+			</div>
+		</div>
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Contact Service Provider</h3>
+			</div>
+			<div class="panel-body">
+				<form novalidate>
+					<formly-form model="contactForm.model" fields="contactForm.fields" form="contactForm"></formly-form>
+					<button
+						type="submit"
+						class="btn btn-primary submit-button"
+						ng-disabled="contactForm.$invalid"
+						ng-click="onSubmit()"
+						translate>BUTTON.SUBMIT</button>
+					<button type="button" class="btn btn-default" ng-click="resetAllForms()" translate>BUTTON.RESET</button>
+				</form>
+			</div>
+		</div>
 	</div>
 </div>

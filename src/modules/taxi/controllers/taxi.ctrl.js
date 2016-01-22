@@ -11,7 +11,7 @@ angular.module('com.module.taxi')
  * Controller of the main-common form
  */
 	.controller('TaxiController', function($scope, uiGmapGoogleMapApi, uiGmapLogger, $log, $timeout, $http, $rootScope,
-		$state, $stateParams) {
+		$state, $stateParams, $translate) {
 		//
 		uiGmapLogger.currentLevel = uiGmapLogger.LEVELS.warn;
 		// uiGmapGoogleMapApi is a promise. The 'then' callback function provides the google.maps object.
@@ -138,5 +138,53 @@ angular.module('com.module.taxi')
 			}, function(err) {
 				$log.error(err);
 			});
+		}
+		$scope.contact = {};
+		$scope.contactForm = {
+			options: {},
+			model: $scope.contact,
+			fields: [
+				{
+					key: 'name',
+					type: 'input',
+					templateOptions: {
+						label: $translate.instant('LABEL.NAME'),
+						placeholder: $translate.instant('LABEL.NAME')
+					}
+				},
+				{
+					key: 'email',
+					type: 'input',
+					templateOptions: {
+						label: $translate.instant('LABEL.EMAIL'),
+						placeholder: $translate.instant('LABEL.EMAIL'),
+						type: 'email'
+					}
+				},
+				{
+					key: 'subject',
+					type: 'input',
+					templateOptions: {
+						label: $translate.instant('LABEL.SUBJECT'),
+						placeholder: $translate.instant('LABEL.SUBJECT')
+					}
+				},
+				{
+					key: 'message',
+					type: 'input',
+					templateOptions: {
+						label: $translate.instant('LABEL.MESSAGE'),
+						placeholder: $translate.instant('LABEL.MESSAGE'),
+						type: 'textarea'
+					}
+				}
+			]
+		};
+		$scope.resetAllForms = invokeOnAllFormOptions.bind(null, 'resetModel');
+
+		function invokeOnAllFormOptions(fn) {
+			if ($scope.form.options && $scope.form.options[fn]) {
+				$scope.form.options[fn]();
+			}
 		}
 	});
