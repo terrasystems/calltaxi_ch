@@ -20,8 +20,8 @@ angular.module('com.module.auth').controller('RegistrationController', function(
 			type: 'input',
 			templateOptions: {
 				labelSrOnly: true,
-				label: $translate.instant('FIRSTNAME'),
-				placeholder: $translate.instant('FIRSTNAME'),
+				label: $translate.instant('LABEL.FIRSTNAME'),
+				placeholder: $translate.instant('LABEL.FIRSTNAME'),
 				addonLeft: {
 					class: 'fa fa-user'
 				}
@@ -31,16 +31,16 @@ angular.module('com.module.auth').controller('RegistrationController', function(
 			key: 'lastName',
 			type: 'input',
 			templateOptions: {
-				label: $translate.instant('LASTNAME'),
-				placeholder: $translate.instant('LASTNAME')
+				label: $translate.instant('LABEL.LASTNAME'),
+				placeholder: $translate.instant('LABEL.LASTNAME')
 			}
 			},
 		{
 			key: 'email',
 			type: 'input',
 			templateOptions: {
-				label: $translate.instant('EMAIL'),
-				placeholder: $translate.instant('EMAIL'),
+				label: $translate.instant('LABEL.EMAIL'),
+				placeholder: $translate.instant('LABEL.EMAIL'),
 				type: 'email'
 			}
 		},
@@ -48,8 +48,8 @@ angular.module('com.module.auth').controller('RegistrationController', function(
 			key: 'password',
 			type: 'input',
 			templateOptions: {
-				label: $translate.instant('PASSWORD'),
-				placeholder: $translate.instant('PASSWORD'),
+				label: $translate.instant('LABEL.PASSWORD'),
+				placeholder: $translate.instant('LABEL.PASSWORD'),
 				type: 'password'
 			}
 		},
@@ -57,8 +57,8 @@ angular.module('com.module.auth').controller('RegistrationController', function(
 			key: 'phoneNumber',
 			type: 'input',
 			templateOptions: {
-				label: $translate.instant('PHONENUMBER'),
-				placeholder: $translate.instant('PHONENUMBER'),
+				label: $translate.instant('LABEL.PHONENUMBER'),
+				placeholder: $translate.instant('LABEL.PHONENUMBER'),
 				type: 'tel'
 			}
 			}
@@ -69,8 +69,8 @@ angular.module('com.module.auth').controller('RegistrationController', function(
 			key: 'licenseNumber',
 			type: 'input',
 			templateOptions: {
-				label: $translate.instant('LICENSENUMBER'),
-				placeholder: $translate.instant('LICENSENUMBER'),
+				label: $translate.instant('LABEL.LICENSENUMBER'),
+				placeholder: $translate.instant('LABEL.LICENSENUMBER'),
 				type: 'text'
 			}
 		},
@@ -78,8 +78,8 @@ angular.module('com.module.auth').controller('RegistrationController', function(
 			key: 'address',
 			type: 'input',
 			templateOptions: {
-				label: $translate.instant('ADDRESS'),
-				placeholder: $translate.instant('ADDRESS'),
+				label: $translate.instant('LABEL.ADDRESS'),
+				placeholder: $translate.instant('LABEL.ADDRESS'),
 				type: 'text'
 			}
 		},
@@ -87,8 +87,8 @@ angular.module('com.module.auth').controller('RegistrationController', function(
 			key: 'companyName',
 			type: 'input',
 			templateOptions: {
-				label: $translate.instant('COMPANYNAME'),
-				placeholder: $translate.instant('COMPANYNAME'),
+				label: $translate.instant('LABEL.COMPANYNAME'),
+				placeholder: $translate.instant('LABEL.COMPANYNAME'),
 				type: 'text'
 			}
 		},
@@ -96,8 +96,8 @@ angular.module('com.module.auth').controller('RegistrationController', function(
 			key: 'website', //className: 'col-xs-6',
 			type: 'input',
 			templateOptions: {
-				label: $translate.instant('WEBSITE'),
-				placeholder: $translate.instant('WEBSITE'),
+				label: $translate.instant('LABEL.WEBSITE'),
+				placeholder: $translate.instant('LABEL.WEBSITE'),
 				type: 'text'
 			}
 		},
@@ -109,8 +109,8 @@ angular.module('com.module.auth').controller('RegistrationController', function(
 					className: 'col-xs-6',
 					type: 'input',
 					templateOptions: {
-						label: $translate.instant('LATIT'),
-						placeholder: $translate.instant('LATIT'),
+						label: $translate.instant('LABEL.LATIT'),
+						placeholder: $translate.instant('LABEL.LATIT'),
 						type: 'number'
 					}
 				},
@@ -119,8 +119,8 @@ angular.module('com.module.auth').controller('RegistrationController', function(
 					className: 'col-xs-6',
 					type: 'input',
 					templateOptions: {
-						label: $translate.instant('LONGIT'),
-						placeholder: $translate.instant('LONGIT'),
+						label: $translate.instant('LABEL.LONGIT'),
+						placeholder: $translate.instant('LABEL.LONGIT'),
 						type: 'number'
 					}
 				}
@@ -134,8 +134,8 @@ angular.module('com.module.auth').controller('RegistrationController', function(
 					className: 'col-xs-6',
 					type: 'input',
 					templateOptions: {
-						label: $translate.instant('VEHICLENUMBER'),
-						placeholder: $translate.instant('VEHICLENUMBER'),
+						label: $translate.instant('LABEL.VEHICLENUMBER'),
+						placeholder: $translate.instant('LABEL.VEHICLENUMBER'),
 						type: 'number'
 					}
 				},
@@ -144,8 +144,8 @@ angular.module('com.module.auth').controller('RegistrationController', function(
 					className: 'col-xs-6',
 					type: 'input',
 					templateOptions: {
-						label: $translate.instant('DRIVERNAME'),
-						placeholder: $translate.instant('DRIVERNAME'),
+						label: $translate.instant('LABEL.DRIVERNAME'),
+						placeholder: $translate.instant('LABEL.DRIVERNAME'),
 						type: 'text'
 					}
 				}
@@ -157,7 +157,7 @@ angular.module('com.module.auth').controller('RegistrationController', function(
 	$scope.tabs = [
 		//user tab
 		{
-			title: $translate.instant('USER'),
+			title: $translate.instant('LABEL.USER'),
 			active: true,
 			form: {
 				options: {},
@@ -167,7 +167,7 @@ angular.module('com.module.auth').controller('RegistrationController', function(
     },
 		// supl tab
 		{
-			title: $translate.instant('SUPPLIER'),
+			title: $translate.instant('LABEL.SUPPLIER'),
 			form: {
 				options: {},
 				model: $scope.model,
@@ -176,7 +176,7 @@ angular.module('com.module.auth').controller('RegistrationController', function(
 	},
 		// supl tab
 		{
-			title: $translate.instant('DRIVER'),
+			title: $translate.instant('LABEL.DRIVER'),
 			form: {
 				options: {},
 				model: $scope.model,
