@@ -50,7 +50,6 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 			key: 'name',
 			type: 'input',
 			templateOptions: {
-				labelSrOnly: true,
 				label: $translate.instant('NAME'),
 				placeholder: $translate.instant('NAME')
 			}
@@ -288,11 +287,9 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 	};
 
 	function invokeOnAllFormOptions(fn) {
-		angular.forEach($scope.tabs, function(tab) {
-			if (tab.form.options && tab.form.options[fn]) {
-				tab.form.options[fn]();
+			if ($scope.form.options && $scope.form.options[fn]) {
+				$scope.form.options[fn]();
 			}
-		});
 	}
 
 	// for multiple files:

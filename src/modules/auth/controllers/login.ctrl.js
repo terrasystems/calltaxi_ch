@@ -8,8 +8,40 @@
  */
 angular.module('com.module.auth')
 //
-.controller('LoginController', function ($scope, $http, tokenRelogin, blockUI, $state, alertService) {
-	$scope.submitForm = function (isValid) {
+.controller('LoginController', function ($scope, $http, $state, $translate, alertService) {
+	$scope.model = {};
+		var userFields = [
+			{
+				key: 'email',
+				type: 'input',
+				templateOptions: {
+					label: $translate.instant('LABEL.EMAIL'),
+					placeholder: $translate.instant('LABEL.EMAIL')
+				}
+			},
+			{
+				key: 'password',
+				type: 'input',
+				templateOptions: {
+					label: $translate.instant('LABEL.PASSWORD'),
+					placeholder: $translate.instant('LABEL.PASSWORD'),
+					type: 'password'
+				}
+			}
+		];
+		$scope.form = {
+			options: {},
+			model: $scope.model,
+			fields: userFields
+		};
+		$scope.resetAllForms = invokeOnAllFormOptions.bind(null, 'resetModel');
+
+		function invokeOnAllFormOptions(fn) {
+				if ($scope.form.options && $scope.form.options[fn]) {
+					$scope.form.options[fn]();
+				}
+		}
+		$scope.onSubmit = function (isValid) {
 		$state.go('main.addtaxi');
 		/*if (isValid) {
 			// Блокируем интерфейс
