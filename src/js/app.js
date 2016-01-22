@@ -62,6 +62,7 @@ angular.module('taxiApp', [
 			prefix: 'i18n/translation_',
 			suffix: '.json'
 		});
+		$translateProvider.preferredLanguage('en');
 		// Local storage Prefix
 		localStorageServiceProvider.setPrefix('taxi');
 		// Interceptors

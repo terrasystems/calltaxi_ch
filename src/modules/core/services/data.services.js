@@ -30,7 +30,7 @@ angular.module('com.module.core')
 	})
 	/**/
 	.service('langService', function($translate, localStorageService, amMoment, $location) {
-		var translations = ['en', 'ru', 'uk'];
+		var translations = ['en'];
 		var langService = function(langKey) {
 			if (langKey === null) {
 				langKey = $location.search().lang;

@@ -4,7 +4,7 @@ angular.module('com.module.core')
 /*  */
 .controller('MainController', function($http, $scope, langService, menuService, logoutUser, localStorageService) {
 	/* Translations */
-	$scope.translations = ['en', 'ru', 'uk'];
+	$scope.translations = ['en'];
 	$scope.langChanged = function(langKey) {
 		langService(langKey);
 		$scope.langKey = langKey;
