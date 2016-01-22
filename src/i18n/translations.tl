@@ -2,7 +2,6 @@ LANGUAGES
 	1:en
 	2:uk
 LABEL
-	1,2:<b>Acceptance through Use</b><br>This website (the “Site”) is operated by Mytalk.
 	FIRSTNAME
 		1,2:First Name
 	LASTNAME
@@ -67,6 +66,18 @@ LABEL
 		1,2:New user
 	REGISTRATION
 		1,2:Registration Here
+	SUBJECT
+		1,2:Subject
+	MESSAGE
+		1,2:Message
+	REVIEWS
+		1,2:Reviews
+	DESCRIPTION
+		1,2:Description
+	IMPORTATNTINFO
+		1,2:Importatnt info
+	EXCLUSIONS
+		1,2:Exclusions
 BUTTON
 	LOGIN
 		1,2:Login
@@ -122,5 +133,3 @@ MENU
 		1,2:Point to Point
 	AIRPORT
 		1,2:Airport
-
-
