@@ -5,11 +5,13 @@
 		</div>
 		<form name="form1" novalidate>
 					<formly-form model="form.model" fields="form.fields" form="form1" options="form.options"></formly-form>
+					<button type="button" class="btn btn-default" ngf-select="uploadFiles($files, $invalidFiles)" multiple
+							accept="image/*" ngf-max-height="4000" ngf-max-size="10MB" translate>BUTTON.SELECTFILES</button>
+					<br/>
 					<button type="submit" class="btn btn-primary submit-button" ng-disabled="form.$invalid" ng-click="onSubmit()" translate>BUTTON.SUBMIT</button>
 					<button type="button" class="btn btn-default" ng-click="resetAllForms()" translate>BUTTON.RESET</button>
-					<button type="button" class="btn btn-default" ngf-select="uploadFiles($files, $invalidFiles)" multiple
-						accept="image/*" ngf-max-height="4000" ngf-max-size="10MB">Select Files</button>
-					<br><br>
+
+					<!--<br><br>
 					<div> Files:
 					<ul>
 					<li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$errorParam}}
@@ -22,7 +24,7 @@
 					</li>
 					</ul>
 					{{errorMsg}}
-					</div>
+					</div>-->
 		</form>
 	</div>
 </div>

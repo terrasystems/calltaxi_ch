@@ -19,12 +19,8 @@ angular.module('com.module.auth').controller('RegistrationController', function(
 			key: 'firstName',
 			type: 'input',
 			templateOptions: {
-				labelSrOnly: true,
 				label: $translate.instant('LABEL.FIRSTNAME'),
-				placeholder: $translate.instant('LABEL.FIRSTNAME'),
-				addonLeft: {
-					class: 'fa fa-user'
-				}
+				placeholder: $translate.instant('LABEL.FIRSTNAME')
 			}
 			},
 		{

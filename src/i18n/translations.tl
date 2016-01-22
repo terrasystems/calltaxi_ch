@@ -7,6 +7,20 @@ LABEL
 		1,2:First Name
 	LASTNAME
 		1,2:Last Name
+	NAME
+		1,2:Name
+	DESCRIPTION
+		1,2:Description
+	CARTYPE
+		1,2:Car Type
+	MAXPASSENGERCAPACITY
+		1,2:Max Passenger Capacity
+	MAXLUGGAGECAPACITY
+		1,2:Max Luggage Capacity
+	ACVEHICLE
+		1,2:AC Vehicle
+	MEETINGPOINT
+		1,2:Meeting Point Address
 	EMAIL
 		1,2:Email
 	PASSWORD
@@ -27,6 +41,16 @@ LABEL
 		1,2:Latitude
 	LONGIT
 		1,2:Longitude
+	CANCELLATIONPOLICY
+		1,2:Cancellation Policy
+	ADDITIONALINFORMATION
+		1,2:Additional Information
+	COUNTRYNAME
+		1,2:Country Name
+	CITYNAME
+		1,2:City Name
+	CURRENCY
+		1,2:Currency
 	VEHICLENUMBER
 		1,2:Vehicle number
 	DRIVERNAME
@@ -46,6 +70,8 @@ LABEL
 BUTTON
 	LOGIN
 		1,2:Login
+	CANCEL
+		1,2:Cancel
 	SIGNUP
 		1,2:Sign Up
 	SUBMIT
@@ -58,6 +84,8 @@ BUTTON
 		1,2:Add taxi
 	ENTER
 		1,2:Enter
+	SELECTFILES
+		1,2:Select Files
 VALIDATORS
 	REQUIRED
 		1,2:Required

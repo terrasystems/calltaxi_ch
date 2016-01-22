@@ -50,16 +50,16 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 			key: 'name',
 			type: 'input',
 			templateOptions: {
-				label: $translate.instant('NAME'),
-				placeholder: $translate.instant('NAME')
+				label: $translate.instant('LABEL.NAME'),
+				placeholder: $translate.instant('LABEL.NAME')
 			}
 			},
 		{
 			key: 'description',
 			type: 'textarea',
 			templateOptions: {
-				label: $translate.instant('DESCR'),
-				placeholder: $translate.instant('DESCR')
+				label: $translate.instant('LABEL.DESCRIPTION'),
+				placeholder: $translate.instant('LABEL.DESCRIPTION')
 			}
 			},
 		{
@@ -67,8 +67,8 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 			type: 'select',
 			defaultValue: 0,
 			templateOptions: {
-				label: $translate.instant('CARTYPE'),
-				placeholder: $translate.instant('CARTYPE'),
+				label: $translate.instant('LABEL.CARTYPE'),
+				placeholder: $translate.instant('LABEL.CARTYPE'),
 				options:[
 					{	name: 'taxi',value: 0},
 					{	name: 'van',value: 1},
@@ -81,8 +81,8 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 			type: 'select',
 			defaultValue: 1,
 			templateOptions: {
-				label: $translate.instant('MAXPASSENGERCAPACITY'),
-				placeholder: $translate.instant('MAXPASSENGERCAPACITY'),
+				label: $translate.instant('LABEL.MAXPASSENGERCAPACITY'),
+				placeholder: $translate.instant('LABEL.MAXPASSENGERCAPACITY'),
 				options:[
 					{	name: '1',value: 1},
 					{	name: '2',value: 2},
@@ -102,8 +102,8 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 			type: 'select',
 			defaultValue: 1,
 			templateOptions: {
-				label: $translate.instant('MAXLUGGAGECAPACITY'),
-				placeholder: $translate.instant('MAXLUGGAGECAPACITY'),
+				label: $translate.instant('LABEL.MAXLUGGAGECAPACITY'),
+				placeholder: $translate.instant('LABEL.MAXLUGGAGECAPACITY'),
 				options:[
 					{	name: '1',value: 1},
 					{	name: '2',value: 2},
@@ -119,24 +119,11 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 			}
 			},
 		{
-			key: 'acVehicle',
-			type: 'select',
-			defaultValue: true,
-			templateOptions: {
-				label: $translate.instant('ACVEHICLE'),
-				placeholder: $translate.instant('ACVEHICLE'),
-				options:[
-					{	name: 'yes',value: true},
-					{	name: 'no',value: false}
-				]
-			}
-		},
-		{
 			key: 'meetingPoint',
 			type: 'textarea',
 			templateOptions: {
-				label: $translate.instant('MEETINGPOINT'),
-				placeholder: $translate.instant('MEETINGPOINT'),
+				label: $translate.instant('LABEL.MEETINGPOINT'),
+				placeholder: $translate.instant('LABEL.MEETINGPOINT'),
 				type: 'text'
 			}
 		},
@@ -144,8 +131,8 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 			key: 'latitude',
 			type: 'input',
 			templateOptions: {
-				label: $translate.instant('LATITUDE'),
-				placeholder: $translate.instant('LATITUDE'),
+				label: $translate.instant('LABEL.LATIT'),
+				placeholder: $translate.instant('LABEL.LATIT'),
 				type: 'number'
 			}
 		},
@@ -153,8 +140,8 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 			key: 'longitude',
 			type: 'input',
 			templateOptions: {
-				label: $translate.instant('LONGITUDE'),
-				placeholder: $translate.instant('LONGITUDE'),
+				label: $translate.instant('LABEL.LONGIT'),
+				placeholder: $translate.instant('LABEL.LONGIT'),
 				type: 'number'
 			}
 		},
@@ -162,8 +149,8 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 			key: 'cancellationPolicy',
 			type: 'textarea',
 			templateOptions: {
-				label: $translate.instant('CANCELLATIONPOLICY'),
-				placeholder: $translate.instant('CANCELLATIONPOLICY'),
+				label: $translate.instant('LABEL.CANCELLATIONPOLICY'),
+				placeholder: $translate.instant('LABEL.CANCELLATIONPOLICY'),
 				type: 'text'
 			}
 		},
@@ -171,42 +158,18 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 			key: 'additionalInformation',
 			type: 'textarea',
 			templateOptions: {
-				label: $translate.instant('ADDITIONALINFORMATION'),
-				placeholder: $translate.instant('ADDITIONALINFORMATION'),
+				label: $translate.instant('LABEL.ADDITIONALINFORMATION'),
+				placeholder: $translate.instant('LABEL.ADDITIONALINFORMATION'),
 				type: 'text'
-			}
-		},
-		{
-			key: 'inclusions',
-			type: 'ui-select-multiple',
-			templateOptions: {
-				optionsAttr: 'bs-options',
-				ngOptions: 'option as option in to.options | filter: $select.search',
-				label: 'Multiple Select',
-				placeholder: 'Select options',
-				options: []
-			}
-		},
-		{
-			key: 'exclusions',
-			type: 'ui-select-multiple',
-			templateOptions: {
-				optionsAttr: 'bs-options',
-				ngOptions: 'option as option in to.options | filter: $select.search',
-				label: 'Multiple Select',
-				placeholder: 'Select options',
-				options: []
 			}
 		},
 		{
 			key: 'countryDTO',
 			type: 'select',
-			defaultValue: 'CHOUSECOUNTRY',
 			templateOptions: {
-				label: $translate.instant('COUNTRYNAME'),
-				placeholder: $translate.instant('COUNTRYNAME'),
+				label: $translate.instant('LABEL.COUNTRYNAME'),
+				placeholder: $translate.instant('LABEL.COUNTRYNAME'),
 				options:[
-					{	name: 'CHOUSECOUNTRY',value: 'CHOUSECOUNTRY'},
 					{	name: 'Switzerland',value: 'Switzerland'}
 				]
 			}
@@ -216,8 +179,8 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 			type: 'select',
 			defaultValue: 'Basel',
 			templateOptions: {
-				label: $translate.instant('CITYNAME'),
-				placeholder: $translate.instant('CITYNAME'),
+				label: $translate.instant('LABEL.CITYNAME'),
+				placeholder: $translate.instant('LABEL.CITYNAME'),
 				options:[
 					{	name: 'Basel',value: 'Basel'},
 					{	name: 'Bern',value: 'Bern'}
@@ -229,8 +192,8 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 			type: 'select',
 			defaultValue: 'CHF',
 			templateOptions: {
-				label: $translate.instant('CURRENCY'),
-				placeholder: $translate.instant('CURRENCY'),
+				label: $translate.instant('LABEL.CURRENCY'),
+				placeholder: $translate.instant('LABEL.CURRENCY'),
 				options:[
 					{	name: 'CHF',value: 'CHF'},
 					{	name: 'EUR',value: 'EUR'},
@@ -238,7 +201,42 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 				]
 			}
 		}
-		/*,
+		/*
+		 {
+		 key: 'acVehicle',
+		 type: 'select',
+		 defaultValue: true,
+		 templateOptions: {
+		 label: $translate.instant('LABEL.ACVEHICLE'),
+		 placeholder: $translate.instant('LABEL.ACVEHICLE'),
+		 options:[
+		 {	name: 'yes',value: true},
+		 {	name: 'no',value: false}
+		 ]
+		 }
+		 },
+		 {
+		 key: 'inclusions',
+		 type: 'ui-select-multiple',
+		 templateOptions: {
+		 optionsAttr: 'bs-options',
+		 ngOptions: 'option as option in to.options | filter: $select.search',
+		 label: 'Multiple Select',
+		 placeholder: 'Select options',
+		 options: []
+		 }
+		 },
+		 {
+		 key: 'exclusions',
+		 type: 'ui-select-multiple',
+		 templateOptions: {
+		 optionsAttr: 'bs-options',
+		 ngOptions: 'option as option in to.options | filter: $select.search',
+		 label: 'Multiple Select',
+		 placeholder: 'Select options',
+		 options: []
+		 }
+		 },
 		{
 			key: 'transporttypeAirport',
 			type: 'checkbox',
