@@ -32,9 +32,7 @@ angular.module('com.module.taxi')
 					}
 				}
 			};
-
-			//$scope.map.bounds = {northeast: {}, southwest: {}};
-
+			//
 			$scope.options = {
 				scrollwheel: false
 			};
@@ -46,12 +44,35 @@ angular.module('com.module.taxi')
 				id: 1,
 				coords: {}
 			};
-
+			$scope.data = [{
+				'acVehicle': null,
+				'address': 'Route de la Maladière 4,  1022 Chavannes-près-Renens',
+				'blobkey': null,
+				'cartype': null,
+				'currency': null,
+				'description': 'Taxi & Navette Léman vous propose ses services',
+				'dropOffLocation': null,
+				'id': 4808361379889152,
+				'imageUrl': null,
+				'latitude': 46.207764,
+				'longitude': 4.835022,
+				'name': 'Navetee Taxi',
+				'phoneNumber': '0800107107',
+				'pickUpLocation': null,
+				'price': '3.6',
+				'starRating': 3.5,
+				'supplierId': null,
+				'transporttype': null,
+				'type': 1,
+				'website': 'www.navetteleman.ch'
+			}];
 			$scope.$on('search', function (event, loc) {
 				$http.post('/app/taxi/listByGeoLocation.json?latitude=' + loc.latitude + '&longitude=' + loc.longitude + '&distance=10&radius=1000')
 					.then(function (res) {
-						$log.info(res);
-					})
+						if (res.data.length) {
+							$scope.data = res.data;
+						}
+					});
 			});
 
 			$scope.buildRote = function () {
@@ -72,7 +93,7 @@ angular.module('com.module.taxi')
 							$scope.map.center = {
 								latitude: ($scope.marker1.coords.latitude + $scope.marker2.coords.latitude) / 2,
 								longitude: ($scope.marker1.coords.longitude + $scope.marker2.coords.longitude) / 2
-							}
+							};
 						} else {
 							$log.error('Directions request failed due to ' + status);
 						}

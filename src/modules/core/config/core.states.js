@@ -67,11 +67,12 @@ angular.module('com.module.core')
 		},
 		//main page
 		{
-			name: 'main.taxi.list',
+			name: 'main.taxi.list'
 		},
 		//main page
 		{
 			name: 'main.taxi.detail',
+			url: '/taxi/detail/:id'
 		},
 		//add taxi
 		{
