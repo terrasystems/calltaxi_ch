@@ -6,15 +6,29 @@
 	</div>
 </div>
 <div class="row">
-	<div class="col-xs-12 col-sm-6">
-		<div class="text-block shortcode-container" translate>
-			RESULT
+	<div class="col-xs-12 col-sm-8">
+		<div class="row" ng-repeat="item in data">
+			<div class="col-md-2 gallery-item center-block">
+				<a ui-sref="main.taxi.detail({id:item.id})" class="mask-wrapper popup-img" title="{{item.description}}"><img ng-src="{{item.imageUrl || 'images/noimage.png'}}" alt="{{item.description}}" class="attachment-shop_catalog size-shop_catalog wp-post-image"></a>
+			</div>
+			<div class="col-md-7">
+				<!-- <h4 class="title"><a ui-sref="main.taxi.detail({id:item.id})">{{item.name}}</a></h4> -->
+				<address>
+					<strong><a ui-sref="main.taxi.detail({id:item.id})">{{item.name}}</a></strong><br>
+					{{item.address}}<br>
+					<a href="{{item.website}}">{{item.website}}</a><br>
+					{{item.phoneNumber}}
+				</address>
+			</div>
+			<div class="col-md-3">
+				<uib-rating ng-model="item.starRating" max="5" readonly="true" aria-labelledby="default-rating" class="star-rating  pull-right"></uib-rating><br>
+				<abbr class="pull-right" title="Distance: {{item.distance || '0.59 km'}}">0.59 km</abbr>
+			</div>
 		</div>
 	</div>
-	<div class="col-xs-12 col-sm-6">
+	<div class="col-xs-12 col-sm-4">
 		<ui-gmap-google-map center="map.center" zoom="map.zoom" options="options" events="map.events">
-			<ui-gmap-marker coords="marker1.coords" options="marker1.options" events="marker1.events" idkey="marker1.id"></ui-gmap-marker>
-			<ui-gmap-marker coords="marker2.coords" options="marker2.options" events="marker2.events" idkey="marker2.id"></ui-gmap-marker>
+			<ui-gmap-marker coords="" options="marker1.options" events="marker1.events" idkey="marker1.id"></ui-gmap-marker><!-- {{'latitude:'+item.latitude, 'longitude:'+item.longitude}} -->
 		</ui-gmap-google-map>
 	</div>
 </div>

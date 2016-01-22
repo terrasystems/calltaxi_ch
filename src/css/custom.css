@@ -865,3 +865,10 @@ a.overlay i {
 input[type="text"].form-control  {
 	background-color: #fff;
 }
+
+address {
+	margin-bottom: 0;
+	font-style: normal;
+	line-height: 1.42857143;
+	font-size: 14px;
+}

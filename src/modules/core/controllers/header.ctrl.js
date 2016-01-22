@@ -22,14 +22,14 @@ angular.module('com.module.core')
 		// go search
 		$scope.doSearch = function (model) {
 			$rootScope.$broadcast('search', $scope.getCoords(model));
-			$state.go('main.results');
+			$state.go('main.taxi.list');
 		};
 
 		$scope.address = {point1: {}, point2: {}};
 		$scope.autocompleteOptions = {
 			componentRestrictions: { country: 'ch' },
 			types: ['geocode']
-		}
+		};
 
 		// Point 1 select
 		$scope.$watch('address.point1', function (model) {

@@ -3,6 +3,46 @@ LANGUAGES
 	2:uk
 LABEL
 	1,2:<b>Acceptance through Use</b><br>This website (the “Site”) is operated by Mytalk.
+	FIRSTNAME
+		1,2:First Name
+	LASTNAME
+		1,2:Last Name
+	EMAIL
+		1,2:Email
+	PASSWORD
+		1,2:Password
+	PASSSFOGOT
+		1,2:Forgot your password
+	PHONENUMBER
+		1,2:Phone Number
+	LICENSENUMBER
+		1,2:License Number
+	ADDRESS
+		1,2:Address
+	COMPANYNAME
+		1,2:Company Name
+	WEBSITE
+		1,2:Website
+	LATIT
+		1,2:Latitude
+	LONGIT
+		1,2:Longitude
+	VEHICLENUMBER
+		1,2:Vehicle number
+	DRIVERNAME
+		1,2:Driver name
+	USER
+		1,2:User
+	SUPPLIER
+		1,2:Supplier
+	DRIVER
+		1,2:Driver
+	LOGIN
+		1,2:Login
+	NEWUSER
+		1,2:New user
+	REGISTRATION
+		1,2:Registration Here
 BUTTON
 	LOGIN
 		1,2:Login
@@ -16,6 +56,14 @@ BUTTON
 		1,2:Search
 	ADDTAXI
 		1,2:Add taxi
+	ENTER
+		1,2:Enter
+VALIDATORS
+	REQUIRED
+		1,2:Required
+	NOTVALIDEMAIL
+		1,2:Not valid email
+
 ARTICLES
 	TITLE
 		HELP
@@ -46,3 +94,5 @@ MENU
 		1,2:Point to Point
 	AIRPORT
 		1,2:Airport
+
+
