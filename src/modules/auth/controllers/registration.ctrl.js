@@ -57,7 +57,16 @@ angular.module('com.module.auth').controller('RegistrationController', function(
 				placeholder: $translate.instant('LABEL.PHONENUMBER'),
 				type: 'tel'
 			}
+			},
+		{
+			key: 'address',
+			type: 'input',
+			templateOptions: {
+				label: $translate.instant('LABEL.ADDRESS'),
+				placeholder: $translate.instant('LABEL.ADDRESS'),
+				type: 'text'
 			}
+		}
 		];
 	var suplFields = []; //driverFields = [];
 	suplFields = userFields.concat([
@@ -67,15 +76,6 @@ angular.module('com.module.auth').controller('RegistrationController', function(
 			templateOptions: {
 				label: $translate.instant('LABEL.LICENSENUMBER'),
 				placeholder: $translate.instant('LABEL.LICENSENUMBER'),
-				type: 'text'
-			}
-		},
-		{
-			key: 'address',
-			type: 'input',
-			templateOptions: {
-				label: $translate.instant('LABEL.ADDRESS'),
-				placeholder: $translate.instant('LABEL.ADDRESS'),
 				type: 'text'
 			}
 		},
@@ -192,7 +192,7 @@ angular.module('com.module.auth').controller('RegistrationController', function(
 			case 0:
 				angular.extend($scope.model, {
 					url: 'user',
-					role: 'ROLE_USER'
+					isSocialUser: false
 				});
 			  break;
 			case 1:
