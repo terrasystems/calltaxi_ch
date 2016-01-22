@@ -30,7 +30,6 @@ angular.module('com.module.auth')
 			}
 		];
 		$scope.form = {
-			options: {},
 			model: $scope.model,
 			fields: userFields
 		};
