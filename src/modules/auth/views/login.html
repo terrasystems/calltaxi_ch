@@ -1,17 +1,14 @@
 <!-- Login Form-->
 <form name="loginForm" ng-submit="submitForm(loginForm.$valid)" id="loginForm">
-	<div class="header">{{'LOGIN'|translate}}</div>
+	<div class="header">{{'LABEL.LOGIN'|translate}}</div>
 	<div class="body">
-		<alert ng-if="activationlink" type="info">{{ACTIVATIONTIMEOUT}}
-			<a ng-href="{{activationlink}}">{{'ACTIVATE'|translate}}</a>
-		</alert>
 		<!-- email -->
 		<div class="input-group ng-valid-email">
 			<span class="input-group-addon"> <i
 			class="fa fa-fw fa-envelope"></i>
 			</span> <input type="text" ng-model="login.email" name="email"
 			id="email" class="form-control"
-			placeholder="{{'YOUR_EMAIL'|translate}}" required
+			placeholder="{{'LABEL.EMAIL'|translate}}" required
 
 			ng-pattern="/^([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6})|demo$/"
 
@@ -21,34 +18,34 @@
 		<div class="animate"
 			ng-if="loginForm.$submitted || loginForm.password.$touched"
 			ng-messages="loginForm.email.$error" ng-messages-multiple>
-			<div ng-message="required">{{'REQUIRED'|translate}}</div>
-			<div ng-message="pattern">{{'NOTVALIDEMAIL'|translate}}</div>
+			<div ng-message="required">{{'VALIDATORS.REQUIRED'|translate}}</div>
+			<div ng-message="pattern">{{'VALIDATORS.NOTVALIDEMAIL'|translate}}</div>
 		</div>
 		<!-- password -->
 		<div class="input-group">
 			<span class="input-group-addon"> <i
 			class="fa fa-fw fa-lock"></i>
 			</span> <input type="password" name="password" class="form-control"
-			placeholder="{{'PASS'|translate}}"
+			placeholder="{{'LABEL.PASSWORD'|translate}}"
 			ng-model="login.password" required />
 		</div>
 		<!-- pass validation -->
 		<div class="has-warning"
 			ng-if="loginForm.$submitted || loginForm.password.$touched"
 			ng-messages="loginForm.password.$error" ng-messages-multiple>
-			<div ng-message="required">{{'REQUIRED'|translate}}</div>
+			<div ng-message="required">{{'VALIDATORS.REQUIRED'|translate}}</div>
 		</div>
 		<br /> <span class="text-small"> <a
-		ui-sref="main.public.passrecovery">{{'PASSSFOGOT'|translate}}</a>
+		ui-sref="main.public.passrecovery">{{'LABEL.PASSSFOGOT'|translate}}</a>
 		</span>
 	</div>
 	<div class="footer">
 		<button type="submit" ng-disabled="loginWasSent"
-		class="btn btn-block btn-primary">{{'ENTER'|translate}}</button>
+		class="btn btn-block btn-primary">{{'BUTTON.ENTER'|translate}}</button>
 		<p>
-		<span class="text-small text-center">{{'NOTREG'|translate}}</span>
+		<span class="text-small text-center">{{'LABEL.NEWUSER'|translate}}</span>
 		<span class="text-small text-center"> <a
-		ui-sref="main.public.registration">{{'REGISTRATION'|translate}}</a>
+		ui-sref="main.auth.registration">{{'LABEL.REGISTRATION'|translate}}</a>
 		</span>
 		</p>
 	</div>

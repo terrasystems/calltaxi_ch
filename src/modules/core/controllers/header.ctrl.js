@@ -29,7 +29,7 @@ angular.module('com.module.core')
 		$scope.autocompleteOptions = {
 			componentRestrictions: { country: 'ch' },
 			types: ['geocode']
-		}
+		};
 
 		// Point 1 select
 		$scope.$watch('address.point1', function (model) {
