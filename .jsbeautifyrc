@@ -2,7 +2,7 @@
   "indent_size": 1,
   "indent_level": 0,
   "indent_with_tabs": true,
-  "preserve_newlines": false,
+  "preserve_newlines": true,
   "max_preserve_newlines": 1,
   "jslint_happy": false,
   "space_after_anon_function": false,

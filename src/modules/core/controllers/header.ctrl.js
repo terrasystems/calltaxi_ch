@@ -3,17 +3,13 @@
 /*jshint -W106 */
 angular.module('com.module.core')
 	/*  */
-	.controller('HeaderController', function ($scope, $interval, alertService, $http, $stateParams, $rootScope) {
+	.controller('HeaderController', function ($scope, $interval, alertService, $http, $state, $stateParams, $rootScope) {
 		$scope.isCollapsed = true;
 		// clock
 		$scope.currenttime = Date.now();
 		$interval(function () {
 			$scope.currenttime = Date.now();
 		}, 5000);
-		// search
-		$scope.search = function (obj) {
-		};
-
 		$scope.getCoords = function (model) {
 			var obj = {};
 			if (model.geometry) obj = {
@@ -26,6 +22,7 @@ angular.module('com.module.core')
 		// go search
 		$scope.doSearch = function (model) {
 			$rootScope.$broadcast('search', $scope.getCoords(model));
+			$state.go('main.results');
 		};
 
 		$scope.address = {point1: {}, point2: {}};

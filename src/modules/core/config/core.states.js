@@ -62,6 +62,11 @@ angular.module('com.module.core')
 			url:'/taxi',
 			location: 'reload'
 		},
+		//search page
+		{
+			name: 'main.results',
+			url:'/results'
+		},
 		//add taxi
 		{
 			name: 'main.addtaxi',

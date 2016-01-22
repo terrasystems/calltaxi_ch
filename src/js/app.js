@@ -14,14 +14,14 @@ angular.module('taxiApp', [
 	'ngMessages', 'ngAnimate', 'ngResource', 'ngCookies', 'ngSanitize',
 	'ui.bootstrap', 'ui.router', 'pascalprecht.translate', 'base64', 'blockUI', 'ui.select', 'angular-confirm', 'toastr',
 	'angularMoment', 'sticky', 'toggle-switch', 'LocalStorageModule', 'ui.router.tabs', 'uiGmapgoogle-maps', 'formly',
-	'formlyBootstrap',
+	'formlyBootstrap', 'google.places',
 /* miniApp modules */
 	'com.module.core',
 	'com.module.auth',
 	'com.module.taxi',
 	'com.module.articles',
 	'com.module.addtaxi',
-	'google.places'
+	'com.module.results'
 ])
 	/* config */
 	.config(function($httpProvider, $stateProvider, $urlRouterProvider, $translateProvider, statesList, $provide,
@@ -63,6 +63,7 @@ angular.module('taxiApp', [
 			suffix: '.json'
 		});
 		$translateProvider.preferredLanguage('en');
+		$translateProvider.fallbackLanguage('en');
 		// Local storage Prefix
 		localStorageServiceProvider.setPrefix('taxi');
 		// Interceptors
@@ -87,7 +88,7 @@ angular.module('taxiApp', [
 	})
 	/* run */
 	.run(function($state, $stateParams, $rootScope, $location, alertService, $http, langService, menuService,
-		checkUserAuth, $templateCache, $confirmModalDefaults, blockUIConfig, $translate, blockUI, $window) {
+		checkUserAuth, $templateCache, $confirmModalDefaults, blockUIConfig, $translate, blockUI, $window, $log) {
 		// Начальный язык
 		langService(null);
 		// confirm
@@ -112,6 +113,12 @@ angular.module('taxiApp', [
 		$rootScope.$on('$translateChangeSuccess', function(event, a) {
 			// Переопределяем сообщение для загрузки
 			blockUIConfig.message = $translate.instant('LOADING');
+		});
+		$rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
+			$log.error('$stateChangeError', error);
+		});
+		$rootScope.$on('$stateNotFound', function (event, unfoundState, unfoundStateParams, fromState, fromParams, error) {
+			$log.error('$stateNotFound', unfoundState, unfoundStateParams, fromState, fromParams);
 		});
 		// Проверка авторизации из куков
 		//checkUserAuth();
