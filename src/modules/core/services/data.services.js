@@ -86,12 +86,12 @@ angular.module('com.module.core')
 	 * @requires taxiApp
 	 */
 	.factory('taxiRequest', function($resource) {
-		return $resource('app/:url/:action', {}, { //FIXME: make baseUrl
+		return $resource('app/:url/:version/:action', {}, { //FIXME: make baseUrl
 			post: {
 				method: 'POST'
 			},
 			get: {
-				url: 'app/:url/:action',
+				url: 'app/:url/:version/:action',
 				method: 'GET'
 			},
 			query: {

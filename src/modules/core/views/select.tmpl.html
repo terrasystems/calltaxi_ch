@@ -1,12 +1,7 @@
-<button class="ui-select-bootstrap dropdown" ng-class="{open: $select.open}">
-  <span class="ui-select-match"></span>
-  <span type="text" autocomplete="off" aria-expanded="true" aria-label="{{ $select.baseTitle }}"
-    aria-owns="ui-select-choices-{{ $select.generatedId }}"
-    aria-activedescendant="ui-select-choices-row-{{ $select.generatedId }}-{{ $select.activeIndex }}"
-    class=" ui-select-search" placeholder="{{$select.placeholder}}" ng-model="$select.search"
-    ng-show="$select.searchEnabled && $select.open"></span>
-  <div class="ui-select-choices"></div>
-</button>
-<!--
-<span class=\"ui-select-match ui-select-toggle\"  ng-disabled=\"$select.disabled\" ng-click=\"$select.activate()\"><span ng-show=\"$select.isEmpty()\" class=\"ui-select-placeholder \">{{$select.placeholder}}</span><span ng-hide=\"$select.isEmpty()\" class=\"ui-select-match-text pull-left\" ng-class=\"{\'ui-select-allow-clear\': $select.allowClear && !$select.isEmpty()}\" ng-transclude=\"\"></span><a class=\"pull-right dropdown-toggle\" ng-click=\"$select.toggle($event)\"><i class=\"fa fa-angle-down\"></i></a><a ng-show=\"$select.allowClear && !$select.isEmpty()\" aria-label=\"{{ $select.baseTitle }} clear\" style=\"margin-right: 10px\" ng-click=\"$select.clear($event)\" class=\"btn btn-xspull-right\"><i class=\"fa fa-close\" aria-hidden=\"true\"></i></a></span>
--->
+<ui-select multiple tagging="true" data-ng-model="model[options.key]" data-required="{{to.required}}" data-disabled="{{to.disabled}}"
+		   theme="bootstrap">
+	<ui-select-match placeholder="{{to.placeholder}}">{{$item}}</ui-select-match>
+	<ui-select-choices data-repeat="{{to.ngOptions}}">
+		<div ng-bind-html="option | highlight: $select.search"></div>
+	</ui-select-choices>
+</ui-select>

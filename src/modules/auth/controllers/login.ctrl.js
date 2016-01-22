@@ -8,9 +8,10 @@
  */
 angular.module('com.module.auth')
 //
-.controller('LoginController', function ($scope, $http, tokenRelogin, blockUI, alertService) {
+.controller('LoginController', function ($scope, $http, tokenRelogin, blockUI, $state, alertService) {
 	$scope.submitForm = function (isValid) {
-		if (isValid) {
+		$state.go('main.addtaxi');
+		/*if (isValid) {
 			// Блокируем интерфейс
 			blockUI.start();
 			// Вызываем логин на сервере
@@ -25,6 +26,6 @@ angular.module('com.module.auth')
 			}, function (response) {
 				if ((response.data.result) && (response.data.result.activationlink)) $scope.activationlink = response.data.result.activationlink;
 			});
-		}
+		}*/
 	};
 });

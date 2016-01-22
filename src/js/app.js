@@ -14,7 +14,7 @@ angular.module('taxiApp', [
 	'ngMessages', 'ngAnimate', 'ngResource', 'ngCookies', 'ngSanitize',
 	'ui.bootstrap', 'ui.router', 'pascalprecht.translate', 'base64', 'blockUI', 'ui.select', 'angular-confirm', 'toastr',
 	'angularMoment', 'sticky', 'toggle-switch', 'LocalStorageModule', 'ui.router.tabs', 'uiGmapgoogle-maps', 'formly',
-	'formlyBootstrap', 'google.places',
+	'formlyBootstrap', 'google.places', 'ngFileUpload',
 /* miniApp modules */
 	'com.module.core',
 	'com.module.auth',
@@ -87,7 +87,7 @@ angular.module('taxiApp', [
 	})
 	/* run */
 	.run(function($state, $stateParams, $rootScope, $location, alertService, $http, langService, menuService,
-		checkUserAuth, $templateCache, $confirmModalDefaults, blockUIConfig, $translate, blockUI, $window, $log) {
+		checkUserAuth, $templateCache, $confirmModalDefaults, blockUIConfig, $translate, blockUI, $window, $log, formlyConfig) {
 		// Начальный язык
 		langService(null);
 		// confirm
@@ -118,6 +118,11 @@ angular.module('taxiApp', [
 		});
 		$rootScope.$on('$stateNotFound', function (event, unfoundState, unfoundStateParams, fromState, fromParams, error) {
 			$log.error('$stateNotFound', unfoundState, unfoundStateParams, fromState, fromParams);
+		});
+		formlyConfig.setType({
+			name: 'ui-select-multiple',
+			extends: 'select',
+			templateUrl: 'modules/core/views/select.tmpl.html'
 		});
 		// Проверка авторизации из куков
 		//checkUserAuth();
