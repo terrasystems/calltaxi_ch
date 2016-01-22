@@ -12,16 +12,21 @@ angular.module('com.module.core')
 		}, 5000);
 		$scope.getCoords = function (model) {
 			var obj = {};
-			if (model.geometry) obj = {
-				latitude: model.geometry.location.lat(),
-				longitude: model.geometry.location.lng()
-			};
+			if (angular.isDefined(model.geometry) && model.geometry) {
+				obj = {
+					latitude: model.geometry.location.lat(),
+					longitude: model.geometry.location.lng()
+				};
+			}
 			return obj;
 		};
 
 		// go search
-		$scope.doSearch = function (model) {
-			$rootScope.$broadcast('search', $scope.getCoords(model));
+		$scope.doSearch = function (address) {
+			if (angular.isUndefined(address.geometry)) {
+				return;
+			}
+			$rootScope.$broadcast('search', $scope.getCoords(address));
 			$state.go('main.taxi.list');
 		};
 
@@ -29,8 +34,10 @@ angular.module('com.module.core')
 		$scope.autocompleteOptions = {
 			componentRestrictions: { country: 'ch' },
 			types: ['geocode']
-		}
-
+		};
+		$scope.$on('travelData', function (event, data) {
+			$scope.travelData = data;
+		});
 		// Point 1 select
 		$scope.$watch('address.point1', function (model) {
 			$rootScope.$broadcast('point1', $scope.getCoords(model));

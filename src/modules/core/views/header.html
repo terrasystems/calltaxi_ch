@@ -48,23 +48,25 @@
 					<div class="">
 						<uib-tabset class="custom nav navbar-nav navbar-main-menu filters" vertical="false" type="pills">
 							<uib-tab heading="{{'MENU.POINT2POINT'|translate}}">
-								<div class="row">
+								<div class="row" ng-form name="searchform" novalidate>
 									<div class="col-sm-5">
 										<div class="form-group">
-											<input type="text" g-places-autocomplete options="autocompleteOptions" ng-model="address.point1" class="form-control"/>
+											<input type="text" name="point1" g-places-autocomplete options="autocompleteOptions" ng-model="address.point1" class="form-control" required/>
 										</div>
 										<br>
 									</div>
 									<div class="col-sm-5">
 										<div class="form-group">
-											<input type="text" g-places-autocomplete options="autocompleteOptions" ng-model="address.point2" class="form-control"/>
+											<input type="text" name="point2" g-places-autocomplete options="autocompleteOptions" ng-model="address.point2" class="form-control" required/>
 										</div>
 										<br>
 									</div>
 									<div class="col-sm-2">
-										<button type="submit" name="button" class="btn btn-primary btn-block" style="margin:0" ng-click="doSearch(address.point1)"><i class="fa fa-search"> </i><span translate> BUTTON.SEARCH</span></button>
+										<button type="submit" class="btn btn-primary btn-block" style="margin:0" ng-click="doSearch(address.point1)" ng-disabled="searchForm.point1.$invalid"><i class="fa fa-search"> </i><span translate> BUTTON.SEARCH</span></button>
 									</div>
-									<!-- .row>.col-xs-12.col -->
+									<div class="col-md-12 text-center" ng-show="travelData.distance">
+										<span>Approx. Distance: <b>{{travelData.distance}} km</b>, and Travel Time: <b>{{travelData.duration}} min.</b></span>
+									</div>
 								</div>
 							</uib-tab>
 							<uib-tab heading="{{'MENU.AIRPORT'|translate}}"></uib-tab>

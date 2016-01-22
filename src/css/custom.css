@@ -862,6 +862,10 @@ a.overlay i {
 	color: #f5bc3c;
 }
 
+.form-group  {
+	margin-bottom: 4px;
+}
+
 input[type="text"].form-control  {
 	background-color: #fff;
 }

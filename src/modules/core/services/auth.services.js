@@ -100,13 +100,8 @@ angular.module('com.module.core')
 .service('requestInterceptor', function ($rootScope, $q) {
 	return {
 		'request': function (config) {
-			var isRestCall = true;
-			if (isRestCall && angular.isDefined($rootScope.authToken)) {
-				var authToken = $rootScope.authToken;
-				config.headers['X-Auth-Token'] = authToken;
-				config.headers['Client-Offset'] = new Date().getTimezoneOffset();
-				// config.url = config.url + "?token=" + authToken;
-			}
+			config.headers['Cache-Control'] = 'no-cache';
+			config.headers['Pragma'] = 'no-cache';
 			return config || $q.when(config);
 		}
 	};
