@@ -59,13 +59,19 @@ angular.module('com.module.core')
 		//main page
 		{
 			name: 'main.taxi',
-			url:'/taxi',
-			location: 'reload'
+			abstract: 'true'
 		},
-		//search page
+		//main page
 		{
-			name: 'main.results',
-			url:'/results'
+			name: 'main.taxi.start',
+		},
+		//main page
+		{
+			name: 'main.taxi.list',
+		},
+		//main page
+		{
+			name: 'main.taxi.detail',
 		},
 		//add taxi
 		{

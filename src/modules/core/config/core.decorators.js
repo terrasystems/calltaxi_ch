@@ -45,9 +45,9 @@ angular.module('com.module.core')
 			}
 			//check state rules
 			if (!state.abstract) {
-				if (state.includes.hasOwnProperty('main.articles')) {
+				if (state.includes.hasOwnProperty('main.articles') || state.includes.hasOwnProperty('main.taxi')) {
 					controllerName = moduleToCtrl(moduleName[1]) + 'Controller';
-					state.url = state.url || $urlMatcherFactoryProvider.compile('/' + moduleName[2]);
+					state.url = state.url || $urlMatcherFactoryProvider.compile('/' + moduleName[1] + '/' + moduleName[2]);
 					titleName = moduleName[2].toUpperCase();
 					templName = 'modules/' + moduleName[1] + '/views/' + moduleName[2] + '.html';
 					state.location = 'reload';

@@ -20,8 +20,7 @@ angular.module('taxiApp', [
 	'com.module.auth',
 	'com.module.taxi',
 	'com.module.articles',
-	'com.module.addtaxi',
-	'com.module.results'
+	'com.module.addtaxi'
 ])
 	/* config */
 	.config(function($httpProvider, $stateProvider, $urlRouterProvider, $translateProvider, statesList, $provide,
@@ -31,7 +30,7 @@ angular.module('taxiApp', [
 		// you can disable this in production for a significant performance boost
 		//$compileProvider.debugInfoEnabled(false);
 		// send users to the form page
-		$urlRouterProvider.otherwise('/taxi');
+		$urlRouterProvider.otherwise('/taxi/start');
 		// Toaster config
 		angular.extend(toastrConfig, {
 			allowHtml: true,
