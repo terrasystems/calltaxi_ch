@@ -431,28 +431,24 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 		//
 	})
 //
-.directive('uploadFile', function(taxiRequest) {
+.directive('uploadFile', function(taxiRequest, $http) {
   return {
     restrict: 'A',
     link: function(scope, element, attrs) {
 			var options = {
-				multiple: true,
-				maxFileCount:5,
-				maxFileSize: 5000*1024,
 				fileName:"myFile",
-				acceptFiles:"image/*",
-				showFileSize:true,
-				showPreview:true,
-				previewHeight: "100px",
-				previewWidth: "100px"
+				multiple:true,
+				autoSubmit:true,
+				showAbort:false,
+				showDone:false,
+				maxFileCount : 5,
+				allowedTypes : "jpg,jpeg,gif,png",
+				showStatusAfterSuccess:false
 			};
 			// GET URL
-			taxiRequest.get({
-				url: 'taxi',
-				action: 'uploadurl.json'
-			}, function(resp) {
+			$http.get('/app/taxi/uploadurl.json').then(function(resp) {
 				if (resp.data) {
-					options.url = resp.data.replace('http://3.gesappuat.appspot.com/', '');
+					options.url = (resp.data.data+'').replace('http://3.gesappuat.appspot.com/', '');
 					// init upload div
 					$(element).uploadFile(options);
 				}
