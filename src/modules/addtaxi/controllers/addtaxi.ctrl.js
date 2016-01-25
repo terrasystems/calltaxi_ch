@@ -281,7 +281,10 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 						key: 'currency',
 						className: 'col-sm-4',
 						type: 'select',
-						defaultValue: 'CHF',
+						defaultValue: {
+							name: 'CHF',
+							value: 'CHF'
+						},
 						templateOptions: {
 							label: $translate.instant('LABEL.CURRENCY'),
 							placeholder: $translate.instant('LABEL.CURRENCY'),
@@ -424,47 +427,34 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 				$log.error(err);
 			});
 		};
+
 		//
-		taxiRequest.get({
-			url: 'taxi',
-			action: 'uploadurl'
-		}, function(resp) {
-			if (resp.data) {
-				$scope.UPoptions = {
-					maxFileSize: 5000000,
-					type: "POST",
-					url: resp.data.replace('http://3.gesappuat.appspot.com/', ''),
-					acceptFileTypes: /(\.|\/)(jpe?g|png)$/i
-				};
-			}
-		});
 	})
-	.controller('FileDestroyController',
-		function($scope, $http) {
-			var file = $scope.file,
-				state;
-			if (file.url) {
-				file.$state = function() {
-					return state;
-				};
-				file.$destroy = function() {
-					state = 'pending';
-					return $http({
-						url: file.deleteUrl,
-						method: file.deleteType
-					}).then(
-						function() {
-							state = 'resolved';
-							$scope.clear(file);
-						},
-						function() {
-							state = 'rejected';
-						}
-					);
-				};
-			} else if (!file.$cancel && !file._index) {
-				file.$cancel = function() {
-					$scope.clear(file);
-				};
-			}
-		});
+//
+.directive('uploadFile', function(taxiRequest) {
+  return {
+    restrict: 'A',
+    link: function(scope, element, attrs) {
+			var options = {};
+			// GET URL
+			taxiRequest.get({
+				url: 'taxi',
+				action: 'uploadurl'
+			}, function(resp) {
+				if (resp.data) {
+					options = {
+						maxFileSize: 5000000,
+						fileName:"myFile",
+						multiple: true,
+						url: resp.data.replace('http://3.gesappuat.appspot.com/', ''),
+						allowedTypes : "jpg,jpeg,gif,png"
+					};
+					//$scope.url = resp.data.replace('http://3.gesappuat.appspot.com/', '');
+					$(element).uploadFile(options);
+				}
+			});
+    }
+  };
+})
+//
+;

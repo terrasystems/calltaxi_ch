@@ -14,7 +14,7 @@ angular.module('taxiApp', [
 	'ngMessages', 'ngAnimate', 'ngResource', 'ngCookies', 'ngSanitize',
 	'ui.bootstrap', 'ui.router', 'pascalprecht.translate', 'base64', 'blockUI', 'ui.select', 'angular-confirm', 'toastr',
 	'angularMoment', 'sticky', 'toggle-switch', 'LocalStorageModule', 'ui.router.tabs', 'uiGmapgoogle-maps', 'formly',
-	'formlyBootstrap', 'google.places', 'ngFileUpload', 'blueimp.fileupload',
+	'formlyBootstrap', 'google.places', 'ngFileUpload',
 /* miniApp modules */
 	'com.module.core',
 	'com.module.auth',

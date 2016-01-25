@@ -10,7 +10,6 @@
   "homepage": "http://calltaxi.ch",
   "dependencies": {
     "jquery": "1.11.3",
-    "jquery-ui": "1.11.3",
     "angular": "1.4.8",
     "angular-animate": "1.4.8",
     "angular-base64": "2.0.5",
@@ -44,8 +43,7 @@
     "api-check": "~7.5.5",
     "angular-formly": "~7.3.9",
     "angular-formly-templates-bootstrap": "~6.2.0",
-    "ng-file-upload": "~11.2.1",
-    "blueimp-file-upload": "jquery-file-upload#~9.11.2"
+    "ng-file-upload": "~11.2.1"
   },
   "devDependencies": {
     "angular-mocks": "1.4.8"
@@ -59,18 +57,6 @@
     "bootstrap": {
       "main": [
         "dist/css/bootstrap.min.css"
-      ]
-    },
-    "blueimp-file-upload": {
-      "main": [
-        "../blueimp-load-image/js/load-image.all.min.js",
-        "js/jquery.iframe-transport.js",
-        "js/jquery.fileupload.js",
-        "css/jquery.fileupload.css",
-        "js/jquery.fileupload-process.js",
-        "js/jquery.fileupload-image.js",
-        "js/jquery.fileupload-validate.js",
-        "js/jquery.fileupload-angular.js"
       ]
     }
   },
