@@ -3,6 +3,7 @@ bower_components
 node_modules
 docular_generated
 .tmp
+tmp
 .idea/
 .strong-pm
 .sass-cache
