@@ -13,7 +13,7 @@ LABEL
 	CARTYPE
 		1,2:Car Type
 	MAXPASSENGERCAPACITY
-		1,2:Max Passenger Capacity
+		1,2:Max Pass. Capacity
 	MAXLUGGAGECAPACITY
 		1,2:Max Luggage Capacity
 	ACVEHICLE

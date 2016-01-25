@@ -1,4 +1,6 @@
 'use strict';
+/*jshint -W109 */
+/*jshint -W098 */
 /**
  * @ngdoc function
  * @name com.module.addtaxi.controller:publicController
@@ -7,200 +9,299 @@
  * Controller of the Registration
  */
 angular.module('com.module.addtaxi').controller('AddtaxiController', function($scope, taxiRequest, $state,
-	alertService, blockUI, $rootScope, $translate, $log, Upload, $timeout) {
-	//
-	$scope.model = {
-		id: null,
-		name: '',
-		description: '',
-		acVehicle: null,
-		maxPassengerCapacity: null,
-		maxLuggageCapacity: null,
-		meetingPoint: null,
-		cancellationPolicy: null,
-		additionalInformation: null,
-		latitude: 1,
-		longitude: 1,
-		inclusions: [],
-		exclusions: [],
-		imageInfos: [],
-		currency: null,
-		transporttype: null,
-		cartype: null,
-		pickUpLocation: null,
-		dropOffLocation: null,
-		source: null,
-		destination: null,
-		price: null,
-		taxiBookingOptions: [],
-		starRating: null,
-		active: null,
-		updatedOn: null,
-		countryDTO: null,
-		cityDTO: null,
-		supplierDTO: null,
-		reviews: null
-	};
-	$scope.options = {
-		formState: {}
-	};
-	//
-	var userFields = [
-		{
-			key: 'name',
-			type: 'input',
-			templateOptions: {
-				label: $translate.instant('LABEL.NAME'),
-				placeholder: $translate.instant('LABEL.NAME')
-			}
+		alertService, blockUI, $rootScope, $translate, $log, Upload, $timeout) {
+		//
+		$scope.model = {
+			id: null,
+			name: '',
+			description: '',
+			acVehicle: null,
+			maxPassengerCapacity: null,
+			maxLuggageCapacity: null,
+			meetingPoint: null,
+			cancellationPolicy: null,
+			additionalInformation: null,
+			latitude: 1,
+			longitude: 1,
+			inclusions: [],
+			exclusions: [],
+			imageInfos: [],
+			currency: null,
+			transporttype: null,
+			cartype: null,
+			pickUpLocation: null,
+			dropOffLocation: null,
+			source: null,
+			destination: null,
+			price: null,
+			taxiBookingOptions: [],
+			starRating: null,
+			active: null,
+			updatedOn: null,
+			countryDTO: null,
+			cityDTO: null,
+			supplierDTO: null,
+			reviews: null
+		};
+		$scope.options = {
+			formState: {}
+		};
+		//
+		var userFields = [
+			{
+				key: 'name',
+				type: 'input',
+				templateOptions: {
+					label: $translate.instant('LABEL.NAME'),
+					placeholder: $translate.instant('LABEL.NAME')
+				}
 			},
-		{
-			key: 'description',
-			type: 'textarea',
-			templateOptions: {
-				label: $translate.instant('LABEL.DESCRIPTION'),
-				placeholder: $translate.instant('LABEL.DESCRIPTION')
-			}
+			{
+				key: 'description',
+				type: 'textarea',
+				templateOptions: {
+					label: $translate.instant('LABEL.DESCRIPTION'),
+					placeholder: $translate.instant('LABEL.DESCRIPTION')
+				}
 			},
-		{
-			key: 'cartype',
-			type: 'select',
-			defaultValue: 0,
-			templateOptions: {
-				label: $translate.instant('LABEL.CARTYPE'),
-				placeholder: $translate.instant('LABEL.CARTYPE'),
-				options:[
-					{	name: 'taxi',value: 0},
-					{	name: 'van',value: 1},
-					{	name: 'bus',value: 2}
+			{
+				className: 'row',
+				fieldGroup: [{
+						key: 'cartype',
+						className: 'col-sm-4',
+						type: 'select',
+						defaultValue: 0,
+						templateOptions: {
+							label: $translate.instant('LABEL.CARTYPE'),
+							placeholder: $translate.instant('LABEL.CARTYPE'),
+							options: [
+								{
+									name: 'taxi',
+									value: 0
+								},
+								{
+									name: 'van',
+									value: 1
+								},
+								{
+									name: 'bus',
+									value: 2
+								}
 				]
-			}
+						}
 		},
-		{
-			key: 'maxPassengerCapacity',
-			type: 'select',
-			defaultValue: 1,
-			templateOptions: {
-				label: $translate.instant('LABEL.MAXPASSENGERCAPACITY'),
-				placeholder: $translate.instant('LABEL.MAXPASSENGERCAPACITY'),
-				options:[
-					{	name: '1',value: 1},
-					{	name: '2',value: 2},
-					{	name: '3',value: 3},
-					{	name: '4',value: 4},
-					{	name: '5',value: 5},
-					{	name: '6',value: 6},
-					{	name: '7',value: 7},
-					{	name: '8',value: 8},
-					{	name: '9',value: 9},
-					{	name: '10',value: 10}
+					{
+						key: 'maxPassengerCapacity',
+						className: 'col-sm-4',
+						type: 'select',
+						defaultValue: 1,
+						templateOptions: {
+							label: $translate.instant('LABEL.MAXPASSENGERCAPACITY'),
+							placeholder: $translate.instant('LABEL.MAXPASSENGERCAPACITY'),
+							options: [
+								{
+									name: '1',
+									value: 1
+								},
+								{
+									name: '2',
+									value: 2
+								},
+								{
+									name: '3',
+									value: 3
+								},
+								{
+									name: '4',
+									value: 4
+								},
+								{
+									name: '5',
+									value: 5
+								},
+								{
+									name: '6',
+									value: 6
+								},
+								{
+									name: '7',
+									value: 7
+								},
+								{
+									name: '8',
+									value: 8
+								},
+								{
+									name: '9',
+									value: 9
+								},
+								{
+									name: '10',
+									value: 10
+								}
 				]
-			}
+						}
 		},
-		{
-			key: 'maxLuggageCapacity',
-			type: 'select',
-			defaultValue: 1,
-			templateOptions: {
-				label: $translate.instant('LABEL.MAXLUGGAGECAPACITY'),
-				placeholder: $translate.instant('LABEL.MAXLUGGAGECAPACITY'),
-				options:[
-					{	name: '1',value: 1},
-					{	name: '2',value: 2},
-					{	name: '3',value: 3},
-					{	name: '4',value: 4},
-					{	name: '5',value: 5},
-					{	name: '6',value: 6},
-					{	name: '7',value: 7},
-					{	name: '8',value: 8},
-					{	name: '9',value: 9},
-					{	name: '10',value: 10}
+					{
+						key: 'maxLuggageCapacity',
+						className: 'col-sm-4',
+						type: 'select',
+						defaultValue: 1,
+						templateOptions: {
+							label: $translate.instant('LABEL.MAXLUGGAGECAPACITY'),
+							placeholder: $translate.instant('LABEL.MAXLUGGAGECAPACITY'),
+							options: [
+								{
+									name: '1',
+									value: 1
+								},
+								{
+									name: '2',
+									value: 2
+								},
+								{
+									name: '3',
+									value: 3
+								},
+								{
+									name: '4',
+									value: 4
+								},
+								{
+									name: '5',
+									value: 5
+								},
+								{
+									name: '6',
+									value: 6
+								},
+								{
+									name: '7',
+									value: 7
+								},
+								{
+									name: '8',
+									value: 8
+								},
+								{
+									name: '9',
+									value: 9
+								},
+								{
+									name: '10',
+									value: 10
+								}
 				]
-			}
-			},
-		{
-			key: 'meetingPoint',
-			type: 'textarea',
-			templateOptions: {
-				label: $translate.instant('LABEL.MEETINGPOINT'),
-				placeholder: $translate.instant('LABEL.MEETINGPOINT'),
-				type: 'text'
-			}
+						}
+		}]
+	},
+			{
+				key: 'meetingPoint',
+				type: 'textarea',
+				templateOptions: {
+					label: $translate.instant('LABEL.MEETINGPOINT'),
+					placeholder: $translate.instant('LABEL.MEETINGPOINT'),
+					type: 'text'
+				}
 		},
-		{
-			key: 'latitude',
-			type: 'input',
-			templateOptions: {
-				label: $translate.instant('LABEL.LATIT'),
-				placeholder: $translate.instant('LABEL.LATIT'),
-				type: 'number'
-			}
+			{
+				key: 'latitude',
+				type: 'input',
+				templateOptions: {
+					label: $translate.instant('LABEL.LATIT'),
+					placeholder: $translate.instant('LABEL.LATIT'),
+					type: 'number'
+				}
 		},
-		{
-			key: 'longitude',
-			type: 'input',
-			templateOptions: {
-				label: $translate.instant('LABEL.LONGIT'),
-				placeholder: $translate.instant('LABEL.LONGIT'),
-				type: 'number'
-			}
+			{
+				key: 'longitude',
+				type: 'input',
+				templateOptions: {
+					label: $translate.instant('LABEL.LONGIT'),
+					placeholder: $translate.instant('LABEL.LONGIT'),
+					type: 'number'
+				}
 		},
-		{
-			key: 'cancellationPolicy',
-			type: 'textarea',
-			templateOptions: {
-				label: $translate.instant('LABEL.CANCELLATIONPOLICY'),
-				placeholder: $translate.instant('LABEL.CANCELLATIONPOLICY'),
-				type: 'text'
-			}
+			{
+				key: 'cancellationPolicy',
+				type: 'textarea',
+				templateOptions: {
+					label: $translate.instant('LABEL.CANCELLATIONPOLICY'),
+					placeholder: $translate.instant('LABEL.CANCELLATIONPOLICY'),
+					type: 'text'
+				}
 		},
-		{
-			key: 'additionalInformation',
-			type: 'textarea',
-			templateOptions: {
-				label: $translate.instant('LABEL.ADDITIONALINFORMATION'),
-				placeholder: $translate.instant('LABEL.ADDITIONALINFORMATION'),
-				type: 'text'
-			}
+			{
+				key: 'additionalInformation',
+				type: 'textarea',
+				templateOptions: {
+					label: $translate.instant('LABEL.ADDITIONALINFORMATION'),
+					placeholder: $translate.instant('LABEL.ADDITIONALINFORMATION'),
+					type: 'text'
+				}
 		},
-		{
-			key: 'countryDTO',
-			type: 'select',
-			templateOptions: {
-				label: $translate.instant('LABEL.COUNTRYNAME'),
-				placeholder: $translate.instant('LABEL.COUNTRYNAME'),
-				options:[
-					{	name: 'Switzerland',value: 'Switzerland'}
+			{
+				className: 'row',
+				fieldGroup: [{
+						key: 'countryDTO',
+						className: 'col-sm-4',
+						type: 'select',
+						templateOptions: {
+							label: $translate.instant('LABEL.COUNTRYNAME'),
+							placeholder: $translate.instant('LABEL.COUNTRYNAME'),
+							options: [
+								{
+									name: 'Switzerland',
+									value: 'Switzerland'
+								}
 				]
-			}
+						}
 		},
-		{
-			key: 'cityDTO',
-			type: 'select',
-			defaultValue: 'Basel',
-			templateOptions: {
-				label: $translate.instant('LABEL.CITYNAME'),
-				placeholder: $translate.instant('LABEL.CITYNAME'),
-				options:[
-					{	name: 'Basel',value: 'Basel'},
-					{	name: 'Bern',value: 'Bern'}
+					{
+						key: 'cityDTO',
+						className: 'col-sm-4',
+						type: 'select',
+						defaultValue: 'Basel',
+						templateOptions: {
+							label: $translate.instant('LABEL.CITYNAME'),
+							placeholder: $translate.instant('LABEL.CITYNAME'),
+							options: [
+								{
+									name: 'Basel',
+									value: 'Basel'
+								},
+								{
+									name: 'Bern',
+									value: 'Bern'
+								}
 				]
-			}
+						}
 		},
-		{
-			key: 'currency',
-			type: 'select',
-			defaultValue: 'CHF',
-			templateOptions: {
-				label: $translate.instant('LABEL.CURRENCY'),
-				placeholder: $translate.instant('LABEL.CURRENCY'),
-				options:[
-					{	name: 'CHF',value: 'CHF'},
-					{	name: 'EUR',value: 'EUR'},
-					{	name: 'USD',value: 'USD'}
+					{
+						key: 'currency',
+						className: 'col-sm-4',
+						type: 'select',
+						defaultValue: 'CHF',
+						templateOptions: {
+							label: $translate.instant('LABEL.CURRENCY'),
+							placeholder: $translate.instant('LABEL.CURRENCY'),
+							options: [
+								{
+									name: 'CHF',
+									value: 'CHF'
+								},
+								{
+									name: 'EUR',
+									value: 'EUR'
+								},
+								{
+									name: 'USD',
+									value: 'USD'
+								}
 				]
-			}
-		}
+						}
+		}]
+	}
 		/*
 		 {
 		 key: 'acVehicle',
@@ -259,66 +360,111 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 			}
 		}*/
 		];
+		//angular.copy(suplFields, driverFields);
+		//
+		$scope.form = {
+			options: {},
+			model: $scope.model,
+			fields: userFields
+		};
+		$scope.resetAllForms = invokeOnAllFormOptions.bind(null, 'resetModel');
+		$scope.onSubmit = function() {
+			//angular.extend($scope.model, {id: null});
+			taxiRequest.post({
+				url: 'taxi',
+				version: 'v1',
+				action: 'create'
+			}, $scope.model, function(res) {
+				//$log.info(res);
+				if (res.data) {
+					alertService.add(3, res.data);
+				}
+			}, function(err) {
+				$log.error(err);
+			});
+			//$scope.options.updateInitialValue();
+			invokeOnAllFormOptions('updateInitialValue');
+		};
 
-	//angular.copy(suplFields, driverFields);
-	//
-
-	$scope.form = {
-				options: {},
-				model: $scope.model,
-				fields: userFields
-			};
-	$scope.resetAllForms = invokeOnAllFormOptions.bind(null, 'resetModel');
-	$scope.onSubmit = function() {
-
-		//angular.extend($scope.model, {id: null});
-
-		taxiRequest.post({url:'taxi',version:'v1',action: 'create'}, $scope.model, function(res) {
-			//$log.info(res);
-			if (res.data)
-			 alertService.add(3, res.data);
-		}, function(err) {
-			$log.error(err);
-		});
-		//$scope.options.updateInitialValue();
-		invokeOnAllFormOptions('updateInitialValue');
-	};
-
-	function invokeOnAllFormOptions(fn) {
+		function invokeOnAllFormOptions(fn) {
 			if ($scope.form.options && $scope.form.options[fn]) {
 				$scope.form.options[fn]();
 			}
-	}
-
-	// for multiple files:
-	$scope.uploadFiles = function(files, errFiles) {
-		$scope.files = files;
-		$scope.errFiles = errFiles;
-		taxiRequest.get({url: 'taxi', action: 'uploadurl'}, function (resp) {
-			if (resp.data) {
-				var tmp = resp.data.replace('http://3.gesappuat.appspot.com/', '');
-				angular.forEach(files, function (file) {
-					file.upload = Upload.upload({
-						url: tmp,
-						data: {file: file}
-					});
-					file.upload.then(function (response) {
-						$timeout(function () {
-							file.result = response.data;
+		}
+		// for multiple files:
+		$scope.uploadFiles = function(files, errFiles) {
+			taxiRequest.get({
+				url: 'taxi',
+				action: 'uploadurl'
+			}, function(resp) {
+				if (resp.data) {
+					var tmp = resp.data.replace('http://3.gesappuat.appspot.com/', '');
+					Upload.upload({
+							url: tmp,
+							data: {
+								myFile: files
+							},
+							arrayKey: '[]',
+							headers: {
+								'X-Requested-With': 'XMLHttpRequest'
+							},
+						})
+						.then(function(resp) {
+							//console.log('file ' + resp.config.data.file.name + 'is uploaded successfully. Response: ' + resp.data);
+							console.log(resp.data);
+						}, function(resp) {
+							console.log(resp.data);
+						}, function(evt) {
+							//console.log('progress: ' + parseInt(100.0 * evt.loaded / evt.total) + '% file :'+ evt.config.data.file.name);
 						});
-					}, function (response) {
-						$log.error(response);
-						if (response.status > 0)
-							$scope.errorMsg = response.status + ': ' + response.data;
-					}, function (evt) {
-						file.progress = Math.min(100, parseInt(100.0 *
-							evt.loaded / evt.total));
-					});
-				});
+					//.catch(errorCallback);
+					//finally(callback, notifyCallback);
+				}
+			}, function(err) {
+				$log.error(err);
+			});
+		};
+		//
+		taxiRequest.get({
+			url: 'taxi',
+			action: 'uploadurl'
+		}, function(resp) {
+			if (resp.data) {
+				$scope.UPoptions = {
+					maxFileSize: 5000000,
+					type: "POST",
+					url: resp.data.replace('http://3.gesappuat.appspot.com/', ''),
+					acceptFileTypes: /(\.|\/)(jpe?g|png)$/i
+				};
 			}
-		}, function (err) {
-			$log.error(err);
 		});
-		//end
-	};
-});
+	})
+	.controller('FileDestroyController',
+		function($scope, $http) {
+			var file = $scope.file,
+				state;
+			if (file.url) {
+				file.$state = function() {
+					return state;
+				};
+				file.$destroy = function() {
+					state = 'pending';
+					return $http({
+						url: file.deleteUrl,
+						method: file.deleteType
+					}).then(
+						function() {
+							state = 'resolved';
+							$scope.clear(file);
+						},
+						function() {
+							state = 'rejected';
+						}
+					);
+				};
+			} else if (!file.$cancel && !file._index) {
+				file.$cancel = function() {
+					$scope.clear(file);
+				};
+			}
+		});

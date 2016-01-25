@@ -168,13 +168,13 @@ module.exports = function(grunt) {
 			debug: {
 				src: ['<%= yeoman.dist %>/index.html'],
 				ignorePath: '../',
-				exclude: ['<%= yeoman.bowercomp %>/rome/', '<%= yeoman.bowercomp %>/jquery/',
+				exclude: ['<%= yeoman.bowercomp %>/rome/', //'<%= yeoman.bowercomp %>/jquery/',
 					'<%= yeoman.bowercomp %>/requirejs/', '<%= yeoman.bowercomp %>/bootstrap/dist/js/']
 			},
 			dist: {
 				src: ['<%= yeoman.dist %>/index.html'],
 				//ignorePath: '/src',
-				exclude: ['<%= yeoman.bowercomp %>/rome/', '<%= yeoman.bowercomp %>/jquery/',
+				exclude: ['<%= yeoman.bowercomp %>/rome/', //'<%= yeoman.bowercomp %>/jquery/',
 					'<%= yeoman.bowercomp %>/requirejs/', '<%= yeoman.bowercomp %>/bootstrap/dist/js/']
 			}
 		},

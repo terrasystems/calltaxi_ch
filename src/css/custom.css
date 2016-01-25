@@ -878,6 +878,6 @@ address {
 }
 
 .btn.focus, .btn:focus, .btn:hover {
-	border: none;
+	/*border: none;*/
 	outline: none;
 }

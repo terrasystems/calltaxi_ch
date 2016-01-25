@@ -14,7 +14,7 @@ angular.module('taxiApp', [
 	'ngMessages', 'ngAnimate', 'ngResource', 'ngCookies', 'ngSanitize',
 	'ui.bootstrap', 'ui.router', 'pascalprecht.translate', 'base64', 'blockUI', 'ui.select', 'angular-confirm', 'toastr',
 	'angularMoment', 'sticky', 'toggle-switch', 'LocalStorageModule', 'ui.router.tabs', 'uiGmapgoogle-maps', 'formly',
-	'formlyBootstrap', 'google.places', 'ngFileUpload',
+	'formlyBootstrap', 'google.places', 'ngFileUpload', 'blueimp.fileupload',
 /* miniApp modules */
 	'com.module.core',
 	'com.module.auth',
@@ -84,6 +84,21 @@ angular.module('taxiApp', [
 			v: '3.20', //defaults to latest 3.X anyhow
 			//libraries: 'geometry,visualization,places'
 		});
+		delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    // fileUploadProvider.defaults.redirect = window.location.href.replace(
+    //   /\/[^\/]*$/,
+    //   '/cors/result.html?%s'
+    // );
+		// // Demo settings:
+		// angular.extend(fileUploadProvider.defaults, {
+    //   // Enable image resizing, except for Android and Opera,
+    //   // which actually support image resizing, but fail to
+    //   // send Blob objects via XHR requests:
+    //   disableImageResize: /Android(?!.*Chrome)|Opera/
+    //     .test(window.navigator.userAgent),
+    //   maxFileSize: 999000,
+    //   acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i
+    // });
 	})
 	/* run */
 	.run(function($state, $stateParams, $rootScope, $location, alertService, $http, langService, menuService,
