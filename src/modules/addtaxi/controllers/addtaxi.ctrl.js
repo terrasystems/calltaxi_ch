@@ -435,21 +435,25 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
   return {
     restrict: 'A',
     link: function(scope, element, attrs) {
-			var options = {};
+			var options = {
+				multiple: true,
+				maxFileCount:5,
+				maxFileSize: 5000*1024,
+				fileName:"myFile",
+				acceptFiles:"image/*",
+				showFileSize:true,
+				showPreview:true,
+				previewHeight: "100px",
+				previewWidth: "100px"
+			};
 			// GET URL
 			taxiRequest.get({
 				url: 'taxi',
-				action: 'uploadurl'
+				action: 'uploadurl.json'
 			}, function(resp) {
 				if (resp.data) {
-					options = {
-						maxFileSize: 5000000,
-						fileName:"myFile",
-						multiple: true,
-						url: resp.data.replace('http://3.gesappuat.appspot.com/', ''),
-						allowedTypes : "jpg,jpeg,gif,png"
-					};
-					//$scope.url = resp.data.replace('http://3.gesappuat.appspot.com/', '');
+					options.url = resp.data.replace('http://3.gesappuat.appspot.com/', '');
+					// init upload div
 					$(element).uploadFile(options);
 				}
 			});
