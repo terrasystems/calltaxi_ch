@@ -102,6 +102,7 @@ angular.module('com.module.core')
 		'request': function (config) {
 			config.headers['Cache-Control'] = 'no-cache';
 			config.headers['Pragma'] = 'no-cache';
+			config.headers['X-Requested-With'] = 'XMLHttpRequest';
 			return config || $q.when(config);
 		}
 	};

@@ -22,13 +22,15 @@
 			</div>
 			<div class="col-md-3">
 				<uib-rating ng-model="item.starRating" max="5" readonly="true" aria-labelledby="default-rating" class="star-rating  pull-right"></uib-rating><br>
-				<abbr class="pull-right" title="Distance: {{item.distance || '0.59 km'}}">0.59 km</abbr>
+				<abbr class="pull-right" title="Distance: {{item.distance || '0.59 km'}}">{{item.distance}} km</abbr>
 			</div>
 		</div>
 	</div>
 	<div class="col-xs-12 col-sm-4">
 		<ui-gmap-google-map center="map.center" zoom="map.zoom" options="options" events="map.events">
-			<ui-gmap-marker coords="" options="marker1.options" events="marker1.events" idkey="marker1.id"></ui-gmap-marker><!-- {{'latitude:'+item.latitude, 'longitude:'+item.longitude}} -->
+			<ui-gmap-marker coords="marker1.coords" options="marker1.options" events="marker1.events" idkey="marker1.id"></ui-gmap-marker><!-- {{'latitude:'+item.latitude, 'longitude:'+item.longitude}} -->
+			<ui-gmap-marker coords="marker2.coords" options="marker2.options" events="marker2.events" idkey="marker2.id"></ui-gmap-marker><!-- {{'latitude:'+item.latitude, 'longitude:'+item.longitude}} -->
+			<ui-gmap-markers models="markers" coords="'self'" icon="'icon'">
 		</ui-gmap-google-map>
 	</div>
 </div>

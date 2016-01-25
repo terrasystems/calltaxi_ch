@@ -67,7 +67,8 @@ angular.module('com.module.core')
 		},
 		//main page
 		{
-			name: 'main.taxi.list'
+			name: 'main.taxi.list',
+			url: '/taxi/list/:address'
 		},
 		//main page
 		{

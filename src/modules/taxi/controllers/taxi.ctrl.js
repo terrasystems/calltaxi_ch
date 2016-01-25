@@ -11,7 +11,7 @@ angular.module('com.module.taxi')
  * Controller of the main-common form
  */
 	.controller('TaxiController', function($scope, uiGmapGoogleMapApi, uiGmapLogger, $log, $timeout, $http, $rootScope,
-		$state, $stateParams, $translate) {
+		$state, $stateParams, $translate, mapsG) {
 		//
 		uiGmapLogger.currentLevel = uiGmapLogger.LEVELS.warn;
 		// uiGmapGoogleMapApi is a promise. The 'then' callback function provides the google.maps object.
@@ -20,6 +20,7 @@ angular.module('com.module.taxi')
 				preserveViewport: true,
 				suppressMarkers: true
 			});
+
 			var dirService = new maps.DirectionsService();
 			$scope.map = {
 				center: {
@@ -28,7 +29,7 @@ angular.module('com.module.taxi')
 				},
 				zoom: 8,
 				events: {
-					tilesloaded: function(map) { //https://github.com/angular-ui/angular-google-maps/issues/1680#issuecomment-170588984
+					tilesloaded: function (map) { //https://github.com/angular-ui/angular-google-maps/issues/1680#issuecomment-170588984
 						dirDisplay.setMap(map);
 					}
 				}
@@ -37,6 +38,7 @@ angular.module('com.module.taxi')
 			$scope.options = {
 				scrollwheel: false
 			};
+
 			$scope.marker1 = {
 				id: 0,
 				coords: {}
@@ -45,16 +47,42 @@ angular.module('com.module.taxi')
 				id: 1,
 				coords: {}
 			};
+			$scope.markers = [];
+			$scope.idx = 2;
+
 			$scope.data = [];
-			$scope.$on('search', function(event, loc) {
-				$http.post('/app/taxi/listByGeoLocation.json?latitude=' + loc.latitude + '&longitude=' + loc.longitude +
-						'&distance=10&radius=1000')
-					.then(function(res) {
-						if (res.data.length > 0) {
-							$scope.data = res.data;
+			//$scope.$on('search', function(event, address) {
+			if ($stateParams.address) {
+				var address = JSON.parse($stateParams.address);
+			var loc1 = {};
+			if (address.point1)
+				loc1 = address.point1;
+			$http.post('/app/taxi/listByGeoLocation.json?latitude=' + loc1.latitude + '&longitude=' + loc1.longitude +
+				'&distance=10&radius=1000')
+				.then(function (res) {
+
+					if (res.data.length > 0) {
+						$scope.data = res.data;
+
+						//angular.forEach($scope.data, function(value){
+							for (var i = 0; i < $scope.data.length; i++) {
+
+								$scope.data[i]['distance'] = mapsG.distancekm(address.point1.latitude,address.point1.longitude, $scope.data[i].latitude, $scope.data[i].longitude, 'k');
+						var marker = {id: $scope.idx, latitude: $scope.data[i].latitude, longitude: $scope.data[i].longitude};
+							$scope.markers.push(marker);
+								$scope.idx += 1;
 						}
-					});
-			});
+
+						if (address.point1) {
+							$rootScope.$broadcast('point1', address.point1);
+						}
+						if (address.point2) {
+							$rootScope.$broadcast('point2', address.point2);
+						}
+					}
+				});
+		}
+			//});
 			$scope.buildRote = function() {
 				if (($scope.marker1.coords.latitude) && ($scope.marker2.coords.latitude)) {
 					dirService.route({
@@ -73,6 +101,13 @@ angular.module('com.module.taxi')
 								'distance': distance,
 								'duration': duration
 							});
+		/*					$scope.markers = $scope.markers.concat([$scope.marker1, $scope.marker2]);
+							var bounds = new google.maps.LatLngBounds();
+							angular.forEach($scope.markers, function(marker){
+								bounds.extend(marker.coords); // your marker position, must be a LatLng instance
+							});
+
+							$scope.map.fitBounds(bounds);*/
 							$scope.map.center = {
 								latitude: ($scope.marker1.coords.latitude + $scope.marker2.coords.latitude) / 2,
 								longitude: ($scope.marker1.coords.longitude + $scope.marker2.coords.longitude) / 2
