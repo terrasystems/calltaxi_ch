@@ -864,6 +864,7 @@ a.overlay i {
 
 .form-group  {
 	margin-bottom: 4px;
+	margin-right: 8px;
 }
 
 input[type="text"].form-control  {
@@ -880,4 +881,13 @@ address {
 .btn.focus, .btn:focus, .btn:hover {
 	/*border: none;*/
 	outline: none;
+}
+
+.row.formly {
+	margin: 0;
+}
+
+.row.formly>.formly-field {
+	padding-left: 0;
+	padding-right: 0;
 }
