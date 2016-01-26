@@ -5,31 +5,39 @@
 		</div>
 		<form name="form1" novalidate>
 			<formly-form model="form.model" fields="form.fields" form="form1" options="form.options"></formly-form>
+			<div class="form-group">
+				<!-- <div class="col-sm-12"> -->
+					<label for="up" class="control-label" translate>LABEL.TAXIIMAGES</label>
+					<div class="text-center">
+						<button id="up" type="button" class="btn btn-success" ngf-select="uploadFiles($files, $invalidFiles)" multiple
+						accept="image/*" ngf-max-height="4000" ngf-max-size="10MB" ng-model="images">
+							<i class="fa fa-plus"></i><span translate>BUTTON.SELECTFILES</span>
+						</button>
+					</div>
+					<div class="row" ng-repeat="img in images track by $index">
+						<div class="col-sm-4 mask-wrapper popup-img">
+							<img ngf-src="img || 'images/noimage.png'" class="attachment-shop_catalog size-shop_catalog">
+							<!-- <div ngf-thumbnail="img" class="attachment-shop_catalog size-shop_catalog"></div> -->
+						</div>
+						<div class="col-sm-6">
+							<span>{{img.name}} ({{img.size}}b)</span>
+							<!-- <uib-progressbar ng-show="img.progress > 0" class="progress-striped active" max="100" value="img.progress" type="warning"><i>{{img.progress}}% / 100</i></uib-progressbar> -->
+						</div>
+						<div class="col-sm-2">
+							<button class="btn btn-danger btn-symb" ng-click="removeImage($index)" ng-show="img"><i class="fa fa-remove"></i></button>
+						</div>
+		      </div>
+					<uib-alert type="danger" ng-show="errorMsg">{{errorMsg}}</uib-alert>
+				<!-- </div> -->
+			</div>
 			<div class="row">
 				<div class="col-sm-12 text-center">
-					<!-- <button type="button" class="btn btn-success" ngf-select="uploadFiles($files, $invalidFiles)" multiple
-									accept="image/*" ngf-max-height="4000" ngf-max-size="10MB">
-									<i class="fa fa-plus"></i><span translate>BUTTON.SELECTFILES</span></button> -->
 					<button type="submit" class="btn btn-primary submit-button" ng-disabled="form.$invalid" ng-click="onSubmit()" translate> BUTTON.SUBMIT</button>
 					<button type="button" class="btn btn-default" ng-click="resetAllForms()" translate>BUTTON.RESET</button>
 					<br>
-					<div upload-file>Upload</div>
+					<!-- <div upload-file>Upload</div> -->
 				</div>
 			</div>
-
-			<!--<br><br>
-					<div> Files:
-					<ul>
-					<li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$errorParam}}
-      				<span class="progress" ng-show="f.progress >= 0">
-        			<div style="width:{{f.progress}}%"
-			 			ng-bind="f.progress + '%'"></div>
-      				</span>
-					</li>
-						<li ng-repeat="f in errFiles" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}
-					</li>
-					</ul>
-					{{errorMsg}}
-					</div>-->
 		</form>
+	</div>
 </div>

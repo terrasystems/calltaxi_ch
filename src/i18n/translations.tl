@@ -78,8 +78,9 @@ LABEL
 		1,2:Description
 	IMPORTATNTINFO
 		1,2:Importatnt info
-	EXCLUSIONS
+	TAXIIMAGES
 		1,2:Exclusions
+		1,2:Taxi Images
 BUTTON
 	LOGIN
 		1,2:Login

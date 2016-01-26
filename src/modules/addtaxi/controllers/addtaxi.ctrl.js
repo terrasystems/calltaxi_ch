@@ -9,15 +9,15 @@
  * Controller of the Registration
  */
 angular.module('com.module.addtaxi').controller('AddtaxiController', function($scope, taxiRequest, $state,
-		alertService, blockUI, $rootScope, $translate, $log, Upload, $timeout) {
+		alertService, blockUI, $rootScope, $translate, $log, Upload, $timeout, $http) {
 		//
 		$scope.model = {
 			id: null,
 			name: '',
 			description: '',
 			acVehicle: null,
-			maxPassengerCapacity: null,
-			maxLuggageCapacity: null,
+			//maxPassengerCapacity: null,
+			//maxLuggageCapacity: null,
 			meetingPoint: null,
 			cancellationPolicy: null,
 			additionalInformation: null,
@@ -26,9 +26,9 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 			inclusions: [],
 			exclusions: [],
 			imageInfos: [],
-			currency: null,
+			//currency: null,
 			transporttype: null,
-			cartype: null,
+			//cartype: null,
 			pickUpLocation: null,
 			dropOffLocation: null,
 			source: null,
@@ -38,8 +38,8 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 			starRating: null,
 			active: null,
 			updatedOn: null,
-			countryDTO: null,
-			cityDTO: null,
+			//countryDTO: null,
+			//cityDTO: null,
 			supplierDTO: null,
 			reviews: null
 		};
@@ -246,6 +246,7 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 						key: 'countryDTO',
 						className: 'col-sm-4',
 						type: 'select',
+						defaultValue: 'Switzerland',
 						templateOptions: {
 							label: $translate.instant('LABEL.COUNTRYNAME'),
 							placeholder: $translate.instant('LABEL.COUNTRYNAME'),
@@ -281,10 +282,7 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 						key: 'currency',
 						className: 'col-sm-4',
 						type: 'select',
-						defaultValue: {
-							name: 'CHF',
-							value: 'CHF'
-						},
+						defaultValue: 'CHF',
 						templateOptions: {
 							label: $translate.instant('LABEL.CURRENCY'),
 							placeholder: $translate.instant('LABEL.CURRENCY'),
@@ -372,7 +370,9 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 		};
 		$scope.resetAllForms = invokeOnAllFormOptions.bind(null, 'resetModel');
 		$scope.onSubmit = function() {
-			//angular.extend($scope.model, {id: null});
+			angular.forEach($scope.resFiles, function (value) {
+				$scope.model.imageInfos.push(value.imageUrl);
+			});
 			taxiRequest.post({
 				url: 'taxi',
 				version: 'v1',
@@ -396,12 +396,14 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 		}
 		// for multiple files:
 		$scope.uploadFiles = function(files, errFiles) {
+			blockUI.start();
 			taxiRequest.get({
 				url: 'taxi',
-				action: 'uploadurl'
+				action: 'uploadurl.json'
 			}, function(resp) {
 				if (resp.data) {
-					var tmp = resp.data.replace('http://3.gesappuat.appspot.com/', '');
+					var tmp = resp.data.replace('http://taxi2gui.appspot.com/', '');
+					//Upload.isUploadInProgress()
 					Upload.upload({
 							url: tmp,
 							data: {
@@ -412,13 +414,15 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 								'X-Requested-With': 'XMLHttpRequest'
 							},
 						})
-						.then(function(resp) {
-							//console.log('file ' + resp.config.data.file.name + 'is uploaded successfully. Response: ' + resp.data);
-							console.log(resp.data);
-						}, function(resp) {
-							console.log(resp.data);
+						.then(function(res) {
+							$scope.resFiles = res.data;
+							blockUI.stop();
+						}, function(res) {
+							$log.error(res.data);
+							$scope.errorMsg = res.status + ': ' + res.data;
 						}, function(evt) {
-							//console.log('progress: ' + parseInt(100.0 * evt.loaded / evt.total) + '% file :'+ evt.config.data.file.name);
+							// Math.min is to fix IE which reports 200% sometimes
+      				Upload.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
 						});
 					//.catch(errorCallback);
 					//finally(callback, notifyCallback);
@@ -427,9 +431,18 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 				$log.error(err);
 			});
 		};
-
-		//
-	})
+		$scope.removeImage = function (ind) {
+			$http.post('/app/deleteimage.json').then(function(res) {
+				// if (res.data) { //TODO: is there SUCCESS status
+					$scope.images.splice(ind, 1);
+					$scope.resFiles.splice(ind, 1);
+				// }
+			}, function (err) {
+				$scope.errorMsg = err.status + ': ' + err.data;
+				$log.error($scope.errorMsg);
+			});
+		};
+})
 //
 .directive('uploadFile', function(taxiRequest) {
   return {
@@ -437,6 +450,7 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
     link: function(scope, element, attrs) {
 			var options = {
 				multiple: true,
+				serialize: false,
 				maxFileCount:5,
 				maxFileSize: 5000*1024,
 				fileName:"myFile",
@@ -444,7 +458,12 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 				showFileSize:true,
 				showPreview:true,
 				previewHeight: "100px",
-				previewWidth: "100px"
+				previewWidth: "100px",
+				showDelete: true,
+				deleteCallback: false,
+				onSuccess: function (files, response, xhr, pd) {
+					scope.resFiles = response;
+				}
 			};
 			// GET URL
 			taxiRequest.get({
@@ -452,7 +471,7 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 				action: 'uploadurl.json'
 			}, function(resp) {
 				if (resp.data) {
-					options.url = resp.data.replace('http://3.gesappuat.appspot.com/', '');
+					options.url = resp.data.replace('http://taxi2gui.appspot.com/', '');
 					// init upload div
 					$(element).uploadFile(options);
 				}
