@@ -12,6 +12,10 @@
 		</div>
 	</div>
 	<div class="col-xs-12 col-sm-6">
+		<div class="alert alert-info" role="alert">
+			<span ng-if="travelData.distance">Approx. Distance: <b>{{travelData.distance}} km</b>, and Travel Time: <b>{{travelData.duration}} min.</b></span>
+			<span translate ng-if="!travelData.distance">LABEL.SELECTPOINTS</span>
+		</div>
 		<ui-gmap-google-map center="map.center" zoom="map.zoom" options="options" events="map.events">
 			<ui-gmap-marker coords="marker1.coords" options="marker1.options" events="marker1.events" idkey="marker1.id"></ui-gmap-marker>
 			<ui-gmap-marker coords="marker2.coords" options="marker2.options" events="marker2.events" idkey="marker2.id"></ui-gmap-marker>

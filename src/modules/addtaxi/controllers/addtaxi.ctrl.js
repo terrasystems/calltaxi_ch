@@ -397,17 +397,18 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 		// for multiple files:
 		$scope.uploadFiles = function(files, errFiles) {
 			blockUI.start();
-			taxiRequest.get({
-				url: 'taxi',
-				action: 'uploadurl.json'
-			}, function(resp) {
+			// taxiRequest.post({
+			// 	url: 'taxi',
+			// 	action: 'uploadurl.json'
+			// }, function(resp) {
+			$http.post('app/taxi/uploadurl.json').then(function (resp) {
 				if (resp.data) {
 					var parser = document.getElementById('parser');
 					if (!parser) {
 						parser = document.createElement('a');
 						parser.setAttribute('id', 'parser');
 					}
-					parser.href = resp.data;
+					parser.href = resp.data.data;
 					var tmp =  parser.pathname;// resp.data.replace('http://taxi2gui.appspot.com/', '');
 					//Upload.isUploadInProgress()
 					Upload.upload({

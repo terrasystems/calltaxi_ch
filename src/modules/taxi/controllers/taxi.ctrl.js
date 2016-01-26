@@ -11,7 +11,7 @@ angular.module('com.module.taxi')
  * Controller of the main-common form
  */
 	.controller('TaxiController', function($scope, uiGmapGoogleMapApi, uiGmapLogger, $log, $timeout, $http, $rootScope,
-		$state, $stateParams, $translate, mapsG) {
+		$state, $stateParams, $translate, mapsG, blockUI) {
 		//
 		uiGmapLogger.currentLevel = uiGmapLogger.LEVELS.warn;
 		// uiGmapGoogleMapApi is a promise. The 'then' callback function provides the google.maps object.
@@ -85,6 +85,7 @@ angular.module('com.module.taxi')
 			//});
 			$scope.buildRote = function() {
 				if (($scope.marker1.coords.latitude) && ($scope.marker2.coords.latitude)) {
+					blockUI.start();
 					dirService.route({
 						origin: new maps.LatLng($scope.marker1.coords.latitude, $scope.marker1.coords.longitude),
 						destination: new maps.LatLng($scope.marker2.coords.latitude, $scope.marker2.coords.longitude),
@@ -93,31 +94,23 @@ angular.module('com.module.taxi')
 					}, function(response, status) {
 						if (status === maps.DirectionsStatus.OK) {
 							dirDisplay.setDirections(response);
-							// TODO: yak u tipa bulo
-							var distance = parseFloat(response['routes'][0]['legs'][0]['distance']['value'] / 1000).toFixed(0); // Converting distance in kms
-							var duration = Math.round(response['routes'][0]['legs'][0]['duration']['value'] / 60); // Converting to mins
-							// broadcast travel data
-							$rootScope.$broadcast('travelData', {
-								'distance': distance,
-								'duration': duration
-							});
-		/*					$scope.markers = $scope.markers.concat([$scope.marker1, $scope.marker2]);
-							var bounds = new google.maps.LatLngBounds();
-							angular.forEach($scope.markers, function(marker){
-								bounds.extend(marker.coords); // your marker position, must be a LatLng instance
-							});
-
-							$scope.map.fitBounds(bounds);*/
+							$scope.travelData = {
+								distance : parseFloat(response['routes'][0]['legs'][0]['distance']['value'] / 1000).toFixed(0), // Converting distance in kms
+								duration : Math.round(response['routes'][0]['legs'][0]['duration']['value'] / 60) // Converting to mins
+							};
+							//alert('Distance=',$scope.travelData.distance);
+							//$rootScope.$broadcast('travelData', {travelData: $scope.travelData}); // broadcast travel data
 							$scope.map.center = {
 								latitude: ($scope.marker1.coords.latitude + $scope.marker2.coords.latitude) / 2,
 								longitude: ($scope.marker1.coords.longitude + $scope.marker2.coords.longitude) / 2
 							};
+							blockUI.stop();
 						} else {
 							$log.error('Directions request failed due to ' + status);
 						}
 					});
-				} else { // broadcast EMPTY !!! travel data
-					$rootScope.$broadcast('travelData', {});
+				} else {
+					//$rootScope.$broadcast('travelData', {}); // broadcast EMPTY !!! travel data
 				}
 			};
 			$scope.$on('point1', function(event, loc) {
