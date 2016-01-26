@@ -185,37 +185,55 @@ angular.module('com.module.auth').controller('RegistrationController', function(
 	$scope.resetAllForms = invokeOnAllFormOptions.bind(null, 'resetModel');
 	$scope.onSubmit = function() {
 
-		angular.extend($scope.model, {
+/*		angular.extend($scope.model, {
 			action: 'signup'
-			});
+			});*/
 		switch ($scope.tabIndex) {
 			case 0:
+			{
 				angular.extend($scope.model, {
-					url: 'user',
 					isSocialUser: false
 				});
-			  break;
+				taxiRequest.post({url:'user', action: 'signup'}, $scope.model, function(res) {
+					//$log.info(res);
+					if (res.data)
+						alertService.add(3, res.data);
+				}, function(err) {
+					$log.error(err);
+				});
+				break;
+			}
 			case 1:
 				angular.extend($scope.model, {
+					action: 'signup.json',
 					url: 'supplier',
 					role: 'ROLE_SUPPLIER'
+				});
+				taxiRequest.post($scope.model, null, function(res) {
+					//$log.info(res);
+					if (res.data)
+						alertService.add(3, res.data);
+				}, function(err) {
+					$log.error(err);
 				});
 				break;
 			case 2:
 				angular.extend($scope.model, {
-					url: 'driver',
+					action: 'signup.json',
+					url: 'supplier',
 					role: 'ROLE_DRIVER'
+				});
+				taxiRequest.post($scope.model, null, function(res) {
+					//$log.info(res);
+					if (res.data)
+						alertService.add(3, res.data);
+				}, function(err) {
+					$log.error(err);
 				});
 				break;
 		}
 
-		taxiRequest.post($scope.model, null, function(res) {
-			//$log.info(res);
-			if (res.data)
-			 alertService.add(3, res.data);
-		}, function(err) {
-			$log.error(err);
-		});
+
 		//$scope.options.updateInitialValue();
 		invokeOnAllFormOptions('updateInitialValue');
 	};
