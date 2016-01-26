@@ -370,9 +370,6 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 		};
 		$scope.resetAllForms = invokeOnAllFormOptions.bind(null, 'resetModel');
 		$scope.onSubmit = function() {
-			angular.forEach($scope.resFiles, function (value) {
-				$scope.model.imageInfos.push(value.imageUrl);
-			});
 			taxiRequest.post({
 				url: 'taxi',
 				version: 'v1',
@@ -422,7 +419,7 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 							},
 						})
 						.then(function(res) {
-							$scope.resFiles = res.data;
+							$scope.model.imageInfos = res.data;
 							blockUI.stop();
 						}, function(res) {
 							$log.error(res.data);
@@ -441,8 +438,7 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 		$scope.removeImage = function (ind) {
 			$http.post('/app/deleteimage.json').then(function(res) {
 				// if (res.data) { //TODO: is there SUCCESS status
-					$scope.images.splice(ind, 1);
-					$scope.resFiles.splice(ind, 1);
+					$scope.model.imageInfos.splice(ind, 1);
 				// }
 			}, function (err) {
 				$scope.errorMsg = err.status + ': ' + err.data;
