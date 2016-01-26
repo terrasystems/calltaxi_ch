@@ -20,7 +20,7 @@ angular.module('com.module.core')
 				point1: getCoords(address.point1),
 				point2: getCoords(address.point2)
 			};
-			$state.go('main.taxi.list', {address:JSON.stringify(adr)}, {reload:true});
+			$state.go('main.taxi.list', {address:JSON.stringify(adr)});
 			//$rootScope.$broadcast('search', );
 		};
 
