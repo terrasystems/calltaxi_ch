@@ -148,7 +148,6 @@ angular.module('com.module.auth').controller('RegistrationController', function(
 			]
 		}
 	]);
-	//angular.copy(suplFields, driverFields);
 	//
 	$scope.tabs = [
 		//user tab
@@ -181,13 +180,8 @@ angular.module('com.module.auth').controller('RegistrationController', function(
 	}
     ];
 	$scope.originalTabs = angular.copy($scope.form);
-	//$scope.originalFields = angular.copy($scope.fields);
 	$scope.resetAllForms = invokeOnAllFormOptions.bind(null, 'resetModel');
 	$scope.onSubmit = function() {
-
-/*		angular.extend($scope.model, {
-			action: 'signup'
-			});*/
 		switch ($scope.tabIndex) {
 			case 0:
 			{
@@ -198,6 +192,7 @@ angular.module('com.module.auth').controller('RegistrationController', function(
 					//$log.info(res);
 					if (res.data)
 						alertService.add(3, res.data);
+						$scope.resetAllForms();
 				}, function(err) {
 					$log.error(err);
 				});
@@ -213,6 +208,7 @@ angular.module('com.module.auth').controller('RegistrationController', function(
 					//$log.info(res);
 					if (res.data)
 						alertService.add(3, res.data);
+						$scope.resetAllForms();
 				}, function(err) {
 					$log.error(err);
 				});
@@ -227,15 +223,12 @@ angular.module('com.module.auth').controller('RegistrationController', function(
 					//$log.info(res);
 					if (res.data)
 						alertService.add(3, res.data);
+						$scope.resetAllForms();
 				}, function(err) {
 					$log.error(err);
 				});
 				break;
 		}
-
-
-		//$scope.options.updateInitialValue();
-		invokeOnAllFormOptions('updateInitialValue');
 	};
 	$scope.getindex = function(index)
 	{
