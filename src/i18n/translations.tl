@@ -78,9 +78,12 @@ LABEL
 		1,2:Description
 	IMPORTATNTINFO
 		1,2:Importatnt info
-	TAXIIMAGES
+	EXCLUSIONS
 		1,2:Exclusions
+	TAXIIMAGES
 		1,2:Taxi Images
+	SELECTPOINTS
+		1,2: Select points to see travel route and distance
 BUTTON
 	LOGIN
 		1,2:Login
