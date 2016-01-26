@@ -11,6 +11,15 @@
 angular.module('com.module.addtaxi').controller('AddtaxiController', function($scope, taxiRequest, $state,
 		alertService, blockUI, $rootScope, $translate, $log, Upload, $timeout, $http, $location) {
 		//
+		$scope.meetingPoint = {
+			geometry: {
+				location: {
+					lat: '',
+					lng: ''
+				}
+			}
+		};
+		//
 		$scope.model = {
 			id: null,
 			name: '',
@@ -197,30 +206,60 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 	},
 			{
 				key: 'meetingPoint',
-				type: 'textarea',
+				type: 'places',
+				model: $scope.meetingPoint,
 				templateOptions: {
 					label: $translate.instant('LABEL.MEETINGPOINT'),
 					placeholder: $translate.instant('LABEL.MEETINGPOINT'),
-					type: 'text'
+					options: {
+						componentRestrictions: {
+							country: 'ch'
+						},
+						types: ['geocode']
+					}
+				},
+				watcher: {
+					expression: function(field, scope) {
+					  //return field;
+						if (field.model.geometry.location.lat) {
+							scope.model.latitude = field.model.geometry.location.lat;
+							scope.model.longitude = field.model.geometry.location.lng;
+						}
+					},
+					listener: function(field, newValue, oldValue, scope, stopWatching) {
+						if (newValue){}
+					}
 				}
 		},
 			{
-				key: 'latitude',
-				type: 'input',
-				templateOptions: {
-					label: $translate.instant('LABEL.LATIT'),
-					placeholder: $translate.instant('LABEL.LATIT'),
-					type: 'number'
-				}
-		},
-			{
-				key: 'longitude',
-				type: 'input',
-				templateOptions: {
-					label: $translate.instant('LABEL.LONGIT'),
-					placeholder: $translate.instant('LABEL.LONGIT'),
-					type: 'number'
-				}
+				className: 'row',
+				fieldGroup: [{
+					key: 'latitude',
+					type: 'input',
+					className: 'col-sm-6',
+					//model: $scope.meetingPoint.geometry.location.lat,
+					templateOptions: {
+						label: $translate.instant('LABEL.LATIT'),
+						placeholder: $translate.instant('LABEL.LATIT'),
+						//type: 'number'
+					},
+					expressionProperties: {
+						'templateOptions.disabled': 'true',
+					}
+		}, {
+					key: 'longitude',
+					type: 'input',
+					className: 'col-sm-6',
+					//model: $scope.meetingPoint.geometry.location.lng,
+					templateOptions: {
+						label: $translate.instant('LABEL.LONGIT'),
+						placeholder: $translate.instant('LABEL.LONGIT'),
+						//type: 'number'
+					},
+					expressionProperties: {
+						'templateOptions.disabled': 'true',
+					}
+		}]
 		},
 			{
 				key: 'cancellationPolicy',
@@ -230,8 +269,7 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 					placeholder: $translate.instant('LABEL.CANCELLATIONPOLICY'),
 					type: 'text'
 				}
-		},
-			{
+		}, {
 				key: 'additionalInformation',
 				type: 'textarea',
 				templateOptions: {
@@ -361,7 +399,16 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 			}
 		}*/
 		];
-		//angular.copy(suplFields, driverFields);
+		//
+		// $scope.$watch('meetingPoint', function (value) {
+		// 	$scope.model.latitude = value.geometry.location.lat;
+		// 	$scope.model.longitude = value.geometry.location.lng;
+		// });
+		// //
+		// $scope.$setLatLng = function (value) {
+		// 	$scope.model.latitude = value.geometry.location.lat;
+		// 	$scope.model.longitude = value.geometry.location.lng;
+		// };
 		//
 		$scope.form = {
 			options: {},
@@ -398,7 +445,7 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 			// 	url: 'taxi',
 			// 	action: 'uploadurl.json'
 			// }, function(resp) {
-			$http.post('app/taxi/uploadurl.json').then(function (resp) {
+			$http.post('app/taxi/uploadurl.json').then(function(resp) {
 				if (resp.data) {
 					var parser = document.getElementById('parser');
 					if (!parser) {
@@ -406,7 +453,7 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 						parser.setAttribute('id', 'parser');
 					}
 					parser.href = resp.data.data;
-					var tmp =  parser.pathname;// resp.data.replace('http://taxi2gui.appspot.com/', '');
+					var tmp = parser.pathname; // resp.data.replace('http://taxi2gui.appspot.com/', '');
 					//Upload.isUploadInProgress()
 					Upload.upload({
 							url: tmp,
@@ -426,7 +473,7 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 							$scope.errorMsg = res.status + ': ' + res.data;
 						}, function(evt) {
 							// Math.min is to fix IE which reports 200% sometimes
-      				Upload.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+							Upload.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
 						});
 					//.catch(errorCallback);
 					//finally(callback, notifyCallback);
@@ -435,16 +482,16 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 				$log.error(err);
 			});
 		};
-		$scope.removeImage = function (ind) {
+		$scope.removeImage = function(ind) {
 			$http.post('/app/deleteimage.json').then(function(res) {
 				// if (res.data) { //TODO: is there SUCCESS status
-					$scope.model.imageInfos.splice(ind, 1);
+				$scope.model.imageInfos.splice(ind, 1);
 				// }
-			}, function (err) {
+			}, function(err) {
 				$scope.errorMsg = err.status + ': ' + err.data;
 				$log.error($scope.errorMsg);
 			});
 		};
-})
-//
+	})
+	//
 ;
