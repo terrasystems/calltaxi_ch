@@ -9,7 +9,7 @@
  * Controller of the Registration
  */
 angular.module('com.module.addtaxi').controller('AddtaxiController', function($scope, taxiRequest, $state,
-		alertService, blockUI, $rootScope, $translate, $log, Upload, $timeout, $http) {
+		alertService, blockUI, $rootScope, $translate, $log, Upload, $timeout, $http, $location) {
 		//
 		$scope.model = {
 			id: null,
@@ -402,7 +402,13 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 				action: 'uploadurl.json'
 			}, function(resp) {
 				if (resp.data) {
-					var tmp = resp.data.replace('http://taxi2gui.appspot.com/', '');
+					var parser = document.getElementById('parser');
+					if (!parser) {
+						parser = document.createElement('a');
+						parser.setAttribute('id', 'parser');
+					}
+					parser.href = resp.data;
+					var tmp =  parser.pathname;// resp.data.replace('http://taxi2gui.appspot.com/', '');
 					//Upload.isUploadInProgress()
 					Upload.upload({
 							url: tmp,
@@ -442,42 +448,6 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 				$log.error($scope.errorMsg);
 			});
 		};
-})
-//
-.directive('uploadFile', function(taxiRequest) {
-  return {
-    restrict: 'A',
-    link: function(scope, element, attrs) {
-			var options = {
-				multiple: true,
-				serialize: false,
-				maxFileCount:5,
-				maxFileSize: 5000*1024,
-				fileName:"myFile",
-				acceptFiles:"image/*",
-				showFileSize:true,
-				showPreview:true,
-				previewHeight: "100px",
-				previewWidth: "100px",
-				showDelete: true,
-				deleteCallback: false,
-				onSuccess: function (files, response, xhr, pd) {
-					scope.resFiles = response;
-				}
-			};
-			// GET URL
-			taxiRequest.get({
-				url: 'taxi',
-				action: 'uploadurl.json'
-			}, function(resp) {
-				if (resp.data) {
-					options.url = resp.data.replace('http://taxi2gui.appspot.com/', '');
-					// init upload div
-					$(element).uploadFile(options);
-				}
-			});
-    }
-  };
 })
 //
 ;
