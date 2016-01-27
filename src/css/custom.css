@@ -891,3 +891,16 @@ address {
 	padding-left: 0;
 	padding-right: 0;
 }
+
+/* http://dusted.codes/making-font-awesome-awesome-using-icons-without-i-tags */
+
+.ico::before {
+    display: inline-block;
+    margin-right: .5em;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform: translate(0, 0);
+}

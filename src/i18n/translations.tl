@@ -84,6 +84,8 @@ LABEL
 		1,2:Taxi Images
 	SELECTPOINTS
 		1,2: Select points to see travel route and distance
+	TAXILIST
+		1,2: Available taxi list
 BUTTON
 	LOGIN
 		1,2:Login

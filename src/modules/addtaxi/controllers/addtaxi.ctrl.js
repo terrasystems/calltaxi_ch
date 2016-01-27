@@ -1,6 +1,7 @@
 'use strict';
 /*jshint -W109 */
 /*jshint -W098 */
+/*jshint -W003 */
 /**
  * @ngdoc function
  * @name com.module.addtaxi.controller:publicController
@@ -11,33 +12,17 @@
 angular.module('com.module.addtaxi').controller('AddtaxiController', function($scope, taxiRequest, $state,
 		alertService, blockUI, $rootScope, $translate, $log, Upload, $timeout, $http, $location) {
 		//
-		$scope.meetingPoint = {
-			geometry: {
-				location: {
-					lat: '',
-					lng: ''
-				}
-			}
-		};
-		//
 		$scope.model = {
 			id: null,
 			name: '',
 			description: '',
 			acVehicle: null,
-			//maxPassengerCapacity: null,
-			//maxLuggageCapacity: null,
-			meetingPoint: null,
 			cancellationPolicy: null,
 			additionalInformation: null,
-			latitude: 1,
-			longitude: 1,
 			inclusions: [],
 			exclusions: [],
 			imageInfos: [],
-			//currency: null,
 			transporttype: null,
-			//cartype: null,
 			pickUpLocation: null,
 			dropOffLocation: null,
 			source: null,
@@ -47,10 +32,7 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 			starRating: null,
 			active: null,
 			updatedOn: null,
-			//countryDTO: null,
-			//cityDTO: null,
-			supplierDTO: null,
-			reviews: null
+			supplierDTO: null
 		};
 		$scope.options = {
 			formState: {}
@@ -207,7 +189,6 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 			{
 				key: 'meetingPoint',
 				type: 'places',
-				model: $scope.meetingPoint,
 				templateOptions: {
 					label: $translate.instant('LABEL.MEETINGPOINT'),
 					placeholder: $translate.instant('LABEL.MEETINGPOINT'),
@@ -219,15 +200,12 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 					}
 				},
 				watcher: {
-					expression: function(field, scope) {
-					  //return field;
-						if (field.model.geometry.location.lat) {
-							scope.model.latitude = field.model.geometry.location.lat;
-							scope.model.longitude = field.model.geometry.location.lng;
-						}
-					},
 					listener: function(field, newValue, oldValue, scope, stopWatching) {
-						if (newValue){}
+						if (scope.model.meetingPoint && scope.model.meetingPoint.hasOwnProperty('geometry')) {
+							$scope.model.latitude = scope.model.meetingPoint.geometry.location.lat();
+							$scope.model.longitude = scope.model.meetingPoint.geometry.location.lng();
+							scope.model.meetingPoint = scope.model.meetingPoint.formatted_address;
+						}
 					}
 				}
 		},
@@ -237,7 +215,6 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 					key: 'latitude',
 					type: 'input',
 					className: 'col-sm-6',
-					//model: $scope.meetingPoint.geometry.location.lat,
 					templateOptions: {
 						label: $translate.instant('LABEL.LATIT'),
 						placeholder: $translate.instant('LABEL.LATIT'),
@@ -250,7 +227,6 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 					key: 'longitude',
 					type: 'input',
 					className: 'col-sm-6',
-					//model: $scope.meetingPoint.geometry.location.lng,
 					templateOptions: {
 						label: $translate.instant('LABEL.LONGIT'),
 						placeholder: $translate.instant('LABEL.LONGIT'),
@@ -399,16 +375,6 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 			}
 		}*/
 		];
-		//
-		// $scope.$watch('meetingPoint', function (value) {
-		// 	$scope.model.latitude = value.geometry.location.lat;
-		// 	$scope.model.longitude = value.geometry.location.lng;
-		// });
-		// //
-		// $scope.$setLatLng = function (value) {
-		// 	$scope.model.latitude = value.geometry.location.lat;
-		// 	$scope.model.longitude = value.geometry.location.lng;
-		// };
 		//
 		$scope.form = {
 			options: {},

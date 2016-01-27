@@ -10,28 +10,23 @@
 			<div class="col-md-9 bar">
 				<ul class="nav navbar-nav top-nav left">
 					<li class="" ng-model="radioModel" uib-btn-radio="'Left'" uncheckable>
-						<a href="">
-							<i class="fa fa-taxi"></i>&nbsp;Taxi</a>
+						<a href="" class="ico fa-taxi">Taxi</a>
 					</li>
 					<li class="" ng-model="radioModel" uib-btn-radio="'Middle'" uncheckable>
-						<a href="">
-							<i class="fa fa-car"></i>&nbsp;Van</a>
+						<a href="" class="ico fa-car">Van</a>
 					</li>
 					<li class="" ng-model="radioModel" uib-btn-radio="'Right'" uib-uncheckable="uncheckable">
-						<a href="">
-							<i class="fa fa-bus"></i>&nbsp;Bus</a>
+						<a href="" class="ico fa-bus">Bus</a>
 					</li>
 				</ul>
 				<ul class="nav navbar-nav top-nav right navbar-symbols">
 					<li>
-						<a ui-sref="main.auth.login">
-							<i class="fa fa-sign-in"></i>
+						<a ui-sref="main.auth.login" class="ico fa-sign-in">
 							<span class="hidden-xs" translate>BUTTON.LOGIN</span>
 						</a>
 					</li>
 					<li>
-						<a ui-sref="main.auth.registration">
-							<i class="fa fa-user-plus"></i>
+						<a ui-sref="main.auth.registration" class="ico fa-user-plus">
 							<span class="hidden-xs" translate>BUTTON.SIGNUP</span>
 						</a>
 					</li>
@@ -47,7 +42,10 @@
 				<nav class="navbar navbar-default " role="navigation">
 					<div class="">
 						<uib-tabset class="custom nav navbar-nav navbar-main-menu filters" vertical="false" type="pills">
-							<uib-tab heading="{{'MENU.POINT2POINT'|translate}}">
+							<uib-tab>
+								<uib-tab-heading>
+					        <span class="ico fa-location-arrow" translate>MENU.POINT2POINT</span>
+					      </uib-tab-heading>
 								<div class="row" ng-form name="searchform" novalidate>
 									<div class="col-sm-5">
 										<div class="form-group">
@@ -62,14 +60,16 @@
 										<br>
 									</div>
 									<div class="col-sm-2">
-										<button type="submit" class="btn btn-primary btn-block" style="margin:0" ng-click="doSearch(address)"><i class="fa fa-search"> </i><span translate> BUTTON.SEARCH</span></button>
+										<button type="submit" class="btn btn-primary btn-block" style="margin:0" ng-click="doSearch(address)"><span class="ico fa-search" translate>BUTTON.SEARCH</span></button>
 									</div>
-<!--									<div class="col-md-12 text-center" ng-show="travelData.distance">
-										<span>Approx. Distance: <b>{{travelData.distance}} km</b>, and Travel Time: <b>{{travelData.duration}} min.</b></span>
-									</div>-->
 								</div>
 							</uib-tab>
-							<uib-tab heading="{{'MENU.AIRPORT'|translate}}"></uib-tab>
+							<uib-tab>
+								<uib-tab-heading>
+					        <span class="ico fa-plane" translate>MENU.AIRPORT</span>
+					      </uib-tab-heading>
+								<div>Aiport to City - City to Aiport</div>
+							</uib-tab>
 						</uib-tabset>
 					</div>
 				</nav>

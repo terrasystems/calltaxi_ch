@@ -84,21 +84,6 @@ angular.module('taxiApp', [
 			v: '3.20', //defaults to latest 3.X anyhow
 			//libraries: 'geometry,visualization,places'
 		});
-		delete $httpProvider.defaults.headers.common['X-Requested-With'];
-    // fileUploadProvider.defaults.redirect = window.location.href.replace(
-    //   /\/[^\/]*$/,
-    //   '/cors/result.html?%s'
-    // );
-		// // Demo settings:
-		// angular.extend(fileUploadProvider.defaults, {
-    //   // Enable image resizing, except for Android and Opera,
-    //   // which actually support image resizing, but fail to
-    //   // send Blob objects via XHR requests:
-    //   disableImageResize: /Android(?!.*Chrome)|Opera/
-    //     .test(window.navigator.userAgent),
-    //   maxFileSize: 999000,
-    //   acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i
-    // });
 	})
 	/* run */
 	.run(function($state, $stateParams, $rootScope, $location, alertService, $http, langService, menuService,
@@ -139,8 +124,12 @@ angular.module('taxiApp', [
 			extends: 'select',
 			templateUrl: 'modules/core/views/select.tmpl.html'
 		});
-		// Проверка авторизации из куков
+		formlyConfig.setType({
+      name: 'places',
+      //template: '<input type="text" ng-model="model[options.key]" uib-typeahead="item for item in to.options | filter:$viewValue | limitTo:8" class="form-control">',
+      template: '<input type="text" g-places-autocomplete options="to.options" ng-model="model[options.key]" class="form-control"/>',
+      wrapper: ['bootstrapLabel', 'bootstrapHasError'],
+    });
 		//checkUserAuth();
-		// На случай лока ранее
 		blockUI.reset();
 	});
