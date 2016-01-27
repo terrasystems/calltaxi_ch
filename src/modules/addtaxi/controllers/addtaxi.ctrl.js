@@ -383,20 +383,22 @@ angular.module('com.module.addtaxi').controller('AddtaxiController', function($s
 		};
 		$scope.resetAllForms = invokeOnAllFormOptions.bind(null, 'resetModel');
 		$scope.onSubmit = function() {
+			blockUI.start();
 			taxiRequest.post({
 				url: 'taxi',
 				version: 'v1',
 				action: 'create'
 			}, $scope.model, function(res) {
-				//$log.info(res);
 				if (res.data) {
+					blockUI.stop();
 					alertService.add(3, res.data);
 				}
 			}, function(err) {
 				$log.error(err);
+				blockUI.stop();
 			});
-			//$scope.options.updateInitialValue();
-			invokeOnAllFormOptions('updateInitialValue');
+			$scope.resetAllForms();
+			//invokeOnAllFormOptions('updateInitialValue');
 		};
 
 		function invokeOnAllFormOptions(fn) {

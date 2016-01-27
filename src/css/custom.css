@@ -904,3 +904,12 @@ address {
     -moz-osx-font-smoothing: grayscale;
     transform: translate(0, 0);
 }
+
+.ball-pulse-rise > div {
+	background-color: #f5bc3c;
+}
+
+.block-ui-message {
+	padding: 40px;
+	border-radius: 10px;
+}
