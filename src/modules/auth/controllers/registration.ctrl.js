@@ -92,6 +92,9 @@ angular.module('com.module.auth').controller('RegistrationController', function(
 			key: 'website', //className: 'col-xs-6',
 			type: 'input',
 			templateOptions: {
+				// addonLeft: {
+	   //      class: 'glyphicon glyphicon-euro'
+	   //    },
 				label: $translate.instant('LABEL.WEBSITE'),
 				placeholder: $translate.instant('LABEL.WEBSITE'),
 				type: 'text'

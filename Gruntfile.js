@@ -15,57 +15,39 @@ module.exports = function(grunt) {
 		yeoman: srcConfig,
 		// The actual grunt server settings
 		connect: {
-			options: {
-				port: 9000,
-				//debug: true,
-				hostname: '',
-				//livereload: 35729,
-				errorHandler: function(req, res, next, err) {
-	        if (err.code === 404) {
-	            res.send('Some error page');
-	        } else {
-	            next();
-	        }
-	    }
-			},
-      proxies: [
-        {
-          context: '/app',
-          host: '3.gesappuat.appspot.com',
-          //port: 8080,
-					changeOrigin: true,
-          https: false,
-				}
-      ],
-			livereload: {
-				options: {
-					open: true,
-					middleware: function (connect, options, defaultMiddleware) {
-						// Setup the proxy
-						var proxy = require('grunt-connect-proxy/lib/utils').proxyRequest;
-						return [
-							proxy,
-							connect().use(
-								'/bower_components',
-								serveStatic('./bower_components')
-							),
-							connect().use(
-								'/src/css',
-								serveStatic('./src/css')
-							),
-							serveStatic(srcConfig.dist)
-						].concat(defaultMiddleware);
-					}
-				}
-			},
-			dist: {
-				options: {
-					open: true,
-					base: '<%= yeoman.dist %>',
-					livereload: false
-				}
-			}
-		},
+            options: {
+                port: 9000,
+                // Change this to '0.0.0.0' to access the server from outside.
+                hostname: 'localhost',
+                livereload: 35729
+            },
+            livereload: {
+                options: {
+                    open: true,
+                    middleware: function(connect) {
+                        return [
+                            //connect.static('.tmp'),
+                            connect().use(
+                                '/bower_components',
+                                serveStatic('./bower_components')
+                            ),
+                            connect().use(
+                                '/src/css',
+                                serveStatic('./src/css')
+                            ),
+                            serveStatic(srcConfig.dist)
+                        ];
+                    }
+                }
+            },
+            dist: {
+                options: {
+                    open: true,
+                    base: '<%= yeoman.dist %>',
+                    livereload: false
+                }
+            }
+        },
 		//include src
 		includeSource: {
 			options: {

@@ -48,7 +48,11 @@
 					      </uib-tab-heading>
 								<div class="row" ng-form name="searchform" novalidate>
 									<div class="col-sm-5">
-										<div class="form-group">
+										<div class="input-group">
+											<div class="input-group-addon" ng-click="getCurrent()">
+												<a href class="ico fa-map-marker" ng-click="getCurrent()"></a>
+												<!-- <i class="fa fa-map-marker"></i> -->
+											</div>
 											<input type="text" name="point1" g-places-autocomplete options="autocompleteOptions" ng-model="address.point1" class="form-control" required/>
 										</div>
 										<br>
@@ -68,7 +72,10 @@
 								<uib-tab-heading>
 					        <span class="ico fa-plane" translate>MENU.AIRPORT</span>
 					      </uib-tab-heading>
-								<div>Aiport to City - City to Aiport</div>
+								<div>
+									<select name="" id="" ng-model="city1" ng-options="item for item in cities track by $index">
+									</select>
+								</div>
 							</uib-tab>
 						</uib-tabset>
 					</div>

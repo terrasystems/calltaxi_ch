@@ -7520,3 +7520,11 @@ input[type=submit] {
     vertical-align: bottom;
   }
 }
+
+.input-group-btn>.btn {
+	margin: 0;
+	padding: 16px;
+	border: none;
+	border-radius: 0;
+
+}

@@ -1,7 +1,7 @@
 <div id="wrapper" class="page-wrapper row-offcanvas row-offcanvas-left" ng-class="{'relative active' :menuStatus}">
 	<ui-view name="header"></ui-view>
 	<section id="right" class="main" ng-class="{'strech' :!menuStatus}">
-		<main class="main-content-wrapper"  ng-keyup="$event.keyCode == 45 && setAdd()" tabindex="-1">
+		<main class="main-content-wrapper">
 			<div ng-class="$state.includes('*.public.**') ? 'form-box' : 'box'" class="glacier-section">
 				<div class="container">
 					<section ui-view="content">

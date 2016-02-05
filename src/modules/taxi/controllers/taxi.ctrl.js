@@ -36,7 +36,7 @@ angular.module('com.module.taxi')
 			};
 			//
 			$scope.options = {
-				scrollwheel: false
+				scrollwheel: true
 			};
 
 			$scope.marker1 = {

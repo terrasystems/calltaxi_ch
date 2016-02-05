@@ -88,10 +88,10 @@ angular.module('com.module.core')
 	.service('getCoords', function(){
 		 return function (model) {
 			var obj = {};
-			if (angular.isDefined(model.geometry) && model.geometry) {
+			if (angular.isDefined(model) && !_.isEmpty(model.location)) {
 				obj = {
-					latitude: model.geometry.location.lat(),
-					longitude: model.geometry.location.lng()
+					latitude: model.location.lat(),
+					longitude: model.location.lng()
 				};
 			}
 			return obj;
