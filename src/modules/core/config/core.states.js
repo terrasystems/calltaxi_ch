@@ -78,7 +78,8 @@ angular.module('com.module.core')
 		//add taxi
 		{
 			name: 'main.addtaxi',
-			url:'/addtaxi'
+			url:'/addtaxi',
+			authenticate: true
 		},
 		//articles with contact us
 		{

@@ -110,7 +110,11 @@ VALIDATORS
 		1,2:Required
 	NOTVALIDEMAIL
 		1,2:Not valid email
-
+MESSAGES
+	LOGIN
+		1,2:You've been successfully logged in...
+	LOGINERROR
+		1,2:Sorry something went wrong!
 ARTICLES
 	TITLE
 		HELP

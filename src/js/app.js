@@ -98,6 +98,10 @@ angular.module('taxiApp', [
 		};
 		$rootScope.$on('$stateChangeStart', function(event, toState, fromState) { //toParams, fromParams
 			$rootScope.previousState = fromState.name;
+			if (toState.authenticate && !$rootScope.user){
+				$state.transitionTo('main.auth.login');
+				event.preventDefault();
+			}
 		});
 		$rootScope.$on('$stateChangeSuccess', function(event) {
 			// Свёртывалка меню, если развёрнуто
